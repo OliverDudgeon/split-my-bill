@@ -30,6 +30,7 @@ export default {
     tailwindConfig: './tailwind.config.js',
   },
   buildOptions: {
-    /* ... */
+    baseUrl: '/split-my-bill',
+    // metaUrlPath: '/dist',
   },
 };
