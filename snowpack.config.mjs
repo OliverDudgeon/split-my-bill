@@ -1,8 +1,8 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 export default {
   mount: {
-    public: { url: '/', static: true },
     src: { url: '/dist' },
+    public: { url: '/', static: true },
   },
   plugins: [
     '@snowpack/plugin-react-refresh',
@@ -14,6 +14,7 @@ export default {
         ...(process.versions.pnp ? { tsc: 'yarn pnpify tsc' } : {}),
       },
     ],
+    '@snowpack/plugin-postcss',
   ],
   routes: [
     /* Enable an SPA Fallback in development: */
@@ -27,7 +28,7 @@ export default {
     /* ... */
   },
   devOptions: {
-    /* ... */
+    tailwindConfig: './tailwind.config.js',
   },
   buildOptions: {
     /* ... */
