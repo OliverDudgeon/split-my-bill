@@ -28,9 +28,11 @@ export default {
   },
   devOptions: {
     tailwindConfig: './tailwind.config.js',
+    open: 'none',
   },
   buildOptions: {
     baseUrl: '/split-my-bill',
+    jsxInject: "import React from 'react'",
     // metaUrlPath: '/dist',
   },
 };

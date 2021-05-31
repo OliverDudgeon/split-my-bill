@@ -1,13 +1,11 @@
-import React from 'react';
+import { Header } from './Header';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header>
-        <h1>Split My Bill</h1>
-      </header>
+    <div className="container mx-auto px-2 md:px-4">
+      <Header />
     </div>
   );
-}
+};
 
 export default App;

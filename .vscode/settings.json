@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "actions",
-    "editor"
+    "editor",
+    "snowpack"
   ]
 }
