@@ -10,6 +10,7 @@
     "format:all": "eslint --fix . --ext ts --ext tsx --ext js"
   },
   "dependencies": {
+    "@headlessui/react": "^1.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -36,7 +37,7 @@
     "prettier": "^2.2.1",
     "snowpack": "^3.3.7",
     "tailwindcss": "^2.1.2",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.2"
   },
   "lint-staged": {
     "*.@(js|ts|tsx)": [
