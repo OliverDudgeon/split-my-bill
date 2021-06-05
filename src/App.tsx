@@ -1,9 +1,13 @@
+import type { FC } from 'react';
+
+import { BreakPointIndicator } from './components/BreakPointIndicator';
 import { Header } from './Header';
 import { MainView } from './MainView';
 
-const App = () => {
+const App: FC = () => {
   return (
-    <div className="container mx-auto px-2 md:px-4">
+    <div className="2xl:container mx-auto px-2 md:px-4">
+      <BreakPointIndicator />
       <Header />
       <MainView />
     </div>
