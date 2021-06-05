@@ -41,6 +41,12 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [priceSummary, setPriceSummary] = useState<number[] | null>(null);
+  const [peopleNames, setPeopleNames] = useState(new Array(numOfPeople).fill(''));
+
+  const updatePeoplesNames = (personIndex: number, value: string) => {
+    peopleNames[personIndex] = value;
+    setPeopleNames(peopleNames);
+  };
 
   useEffect(() => {
     if (formRef.current && receiptItems.length) {
@@ -78,11 +84,12 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
             personIndex + 4
           }`}
           key={personIndex}
-          placeholder="initial"
+          placeholder="name"
+          onChange={(event) => updatePeoplesNames(personIndex, event.target.value)}
         />
       ))}
       {receiptItems.map(([item, price], itemIndex) => (
-        <Fragment key={item}>
+        <Fragment key={`${item}-${itemIndex}`}>
           <p className="self-center col-start-1">{item}</p>
           <p className="self-center">{poundFormatter.format(price)}</p>
           <Input
@@ -96,7 +103,7 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
               className={`self-center ${personIndex === 0 ? 'col-start-1' : ''} sm:col-start-auto`}
               key={personIndex}
               name={`share-${itemIndex}-${personIndex}`}
-              placeholder="share"
+              placeholder={peopleNames[personIndex]}
               {...defaultNaturalNumberInputProps}
             />
           ))}
