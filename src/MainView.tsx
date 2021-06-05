@@ -23,9 +23,9 @@ export const MainView = () => {
   const receiptItems = divideReceipt(source);
 
   return (
-    <main>
+    <main className="py-4">
       <textarea
-        className="w-full"
+        className="w-full self-center shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         placeholder="Paste or type your receipt here"
         value={source}
         onChange={(event) => setSource(event.target.value)}
@@ -40,7 +40,6 @@ export const MainView = () => {
           newValue && setNumOfPeople(parseFloat(newValue));
         }}
       />
-      {/* {JSON.stringify(receiptItems)} */}
       <GridView numOfPeople={numOfPeople} receiptItems={receiptItems} />
     </main>
   );

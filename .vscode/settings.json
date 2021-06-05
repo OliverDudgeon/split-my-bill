@@ -5,7 +5,8 @@
     "snowpack",
     "tailwind",
     "eslint",
-    "layout"
+    "layout",
+    "ui/inputs"
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

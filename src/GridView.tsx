@@ -1,5 +1,6 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, Fragment, useEffect, useRef, useState } from 'react';
 import { poundFormatter, range, sum, sumPricesByPerson } from './utils';
+import { Input } from './components/Input';
 
 const defaultPriceInputProps = { type: 'number', min: 0, step: 0.01 };
 const defaultNaturalNumberInputProps = { type: 'number', min: 0, step: 1 };
@@ -60,38 +61,36 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
     <form
       className="grid gap-4"
       ref={formRef}
-      style={{ gridTemplateColumns: `1fr 4rem 5rem repeat(${numOfPeople}, 5rem)` }}
+      style={{
+        gridTemplateColumns: `minmax(1fr, 5rem) 3rem minmax(1fr, 5rem) repeat(${numOfPeople}, minmax(1fr, 5rem))`,
+      }}
       onChange={handleChange}
     >
       {range(numOfPeople).map((personIndex) => (
-        <input
-          className="w-16"
+        <Input
           key={personIndex}
           placeholder="initial"
           style={{ gridColumnStart: personIndex + 4 }}
         />
       ))}
-
       {receiptItems.map(([item, price], itemIndex) => (
-        <>
-          <div className="inline-block w-96">{item}</div>
-          <div className="inline-block w-16">{poundFormatter.format(price)}</div>
-          <input
-            className="w-20"
+        <Fragment key={item}>
+          <div className="inline-block">{item}</div>
+          <div className="inline-block">{poundFormatter.format(price)}</div>
+          <Input
             name={`discount-${itemIndex}`}
             placeholder="discount"
             {...defaultPriceInputProps}
           />
           {range(numOfPeople).map((personIndex) => (
-            <input
-              className="w-16"
+            <Input
               key={personIndex}
               name={`share-${itemIndex}-${personIndex}`}
               placeholder="share"
               {...defaultNaturalNumberInputProps}
             />
           ))}
-        </>
+        </Fragment>
       ))}
       {priceSummary?.map((price, personIndex) => (
         <p key={personIndex} style={{ gridColumnStart: personIndex + 4 }}>
