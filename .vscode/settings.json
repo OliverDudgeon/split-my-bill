@@ -6,7 +6,8 @@
     "tailwind",
     "eslint",
     "layout",
-    "ui/inputs"
+    "ui/inputs",
+    "app"
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

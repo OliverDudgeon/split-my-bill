@@ -23,7 +23,7 @@ Pesto & Goat Cheese Tortelloni 300g £1.50
 
 export const MainView = () => {
   const [source, setSource] = useState(testReceipt);
-  const [numOfPeople, setNumOfPeople] = useState(2);
+  const [numOfPeople, setNumOfPeople] = useState(3);
 
   const receiptItems = divideReceipt(source);
 
