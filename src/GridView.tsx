@@ -1,6 +1,7 @@
 import { FC, Fragment, useEffect, useRef, useState } from 'react';
 import { poundFormatter, range, sum, sumPricesByPerson } from './utils';
 import { Input } from './components/Input';
+import { useViewport } from './hooks/useViewport';
 
 const defaultPriceInputProps = { type: 'number', min: 0, step: 0.01 };
 const defaultNaturalNumberInputProps = { type: 'number', min: 0, step: 1 };
@@ -57,33 +58,42 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
     }
   };
 
+  const { width } = useViewport();
+  const isBreakpointXs = (width ?? 0) < 640; // Tailwind xs breakpoint
+
   return (
     <form
       className="grid gap-4"
       ref={formRef}
       style={{
-        gridTemplateColumns: `minmax(1fr, 5rem) 3rem minmax(1fr, 5rem) repeat(${numOfPeople}, minmax(1fr, 5rem))`,
+        gridTemplateColumns: isBreakpointXs
+          ? `repeat(${Math.max(numOfPeople, 3)}, 1fr)`
+          : `minmax(5rem, 1fr) 5rem 5rem repeat(${numOfPeople}, minmax(5rem, 1fr))`,
       }}
       onChange={handleChange}
     >
       {range(numOfPeople).map((personIndex) => (
         <Input
+          className={`font-bold ${personIndex === 0 && 'col-start-1'} sm:col-start-${
+            personIndex + 4
+          }`}
           key={personIndex}
           placeholder="initial"
-          style={{ gridColumnStart: personIndex + 4 }}
         />
       ))}
       {receiptItems.map(([item, price], itemIndex) => (
         <Fragment key={item}>
-          <div className="inline-block">{item}</div>
-          <div className="inline-block">{poundFormatter.format(price)}</div>
+          <p className="self-center col-start-1">{item}</p>
+          <p className="self-center">{poundFormatter.format(price)}</p>
           <Input
+            className="self-center"
             name={`discount-${itemIndex}`}
             placeholder="discount"
             {...defaultPriceInputProps}
           />
           {range(numOfPeople).map((personIndex) => (
             <Input
+              className={`self-center col-start-${personIndex + 1} sm:col-start-auto`}
               key={personIndex}
               name={`share-${itemIndex}-${personIndex}`}
               placeholder="share"
@@ -93,7 +103,10 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
         </Fragment>
       ))}
       {priceSummary?.map((price, personIndex) => (
-        <p key={personIndex} style={{ gridColumnStart: personIndex + 4 }}>
+        <p
+          className={`col-start-${personIndex + 1} sm:col-start-${personIndex + 4}`}
+          key={personIndex}
+        >
           {poundFormatter.format(price)}
         </p>
       ))}

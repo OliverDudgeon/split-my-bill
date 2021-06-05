@@ -16,8 +16,13 @@ const divideReceipt = (source: string): ReceiptItem[] => {
   return receiptItems;
 };
 
+const testReceipt = `Root Ginger Loose £1.03
+Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50
+Pesto & Goat Cheese Tortelloni 300g £1.50
+`;
+
 export const MainView = () => {
-  const [source, setSource] = useState('');
+  const [source, setSource] = useState(testReceipt);
   const [numOfPeople, setNumOfPeople] = useState(2);
 
   const receiptItems = divideReceipt(source);
