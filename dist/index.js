@@ -7036,7 +7036,9 @@ var BreakPointIndicator = () => {
 
 // build/dist/Header.js
 var Header = () => {
-  return /* @__PURE__ */ react.createElement("header", null, /* @__PURE__ */ react.createElement("h1", {
+  return /* @__PURE__ */ react.createElement("header", {
+    className: "2xl:container mx-auto"
+  }, /* @__PURE__ */ react.createElement("h1", {
     className: "text-xl"
   }, "Split My Bill"));
 };
@@ -7055,7 +7057,7 @@ var poundFormatter = new Intl.NumberFormat("de-DE", {
 // build/dist/components/Input.js
 var Input = ({className, ...props}) => {
   return /* @__PURE__ */ react.createElement("input", {
-    className: `w-full shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline appearance-none ${className}`,
+    className: `shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline appearance-none ${className}`,
     ...props
   });
 };
@@ -7101,6 +7103,11 @@ var calculatePriceSummaryFromFormData = (formData, receiptItems, numOfPeople) =>
 var GridView = ({receiptItems, numOfPeople}) => {
   const formRef = useRef(null);
   const [priceSummary, setPriceSummary] = useState(null);
+  const [peopleNames, setPeopleNames] = useState(new Array(numOfPeople));
+  const updatePeoplesNames = (personIndex, value) => {
+    peopleNames[personIndex] = value;
+    setPeopleNames(peopleNames);
+  };
   useEffect(() => {
     if (formRef.current && receiptItems.length) {
       const formData = new FormData(formRef.current);
@@ -7116,34 +7123,39 @@ var GridView = ({receiptItems, numOfPeople}) => {
     }
   };
   const {width} = useViewport();
-  const isBreakpointXs = (width ?? 0) < 640;
+  const isBreakpointAl = (width ?? 0) < 640;
+  let gridTemplateColumns;
+  if (isBreakpointAl) {
+    gridTemplateColumns = `repeat(3, 1fr)`;
+  } else {
+    gridTemplateColumns = `minmax(5rem, 1fr) 5rem 5rem repeat(${numOfPeople}, minmax(5rem, 1fr))`;
+  }
   return /* @__PURE__ */ react.createElement("form", {
-    className: "grid gap-4",
+    className: "grid gap-4 my-5",
     ref: formRef,
-    style: {
-      gridTemplateColumns: isBreakpointXs ? `repeat(${Math.max(numOfPeople, 3)}, 1fr)` : `minmax(5rem, 1fr) 5rem 5rem repeat(${numOfPeople}, minmax(5rem, 1fr))`
-    },
+    style: {gridTemplateColumns},
     onChange: handleChange
   }, range(numOfPeople).map((personIndex) => /* @__PURE__ */ react.createElement(Input, {
-    className: `font-bold ${personIndex === 0 && "col-start-1"} sm:col-start-${personIndex + 4}`,
+    className: `w-full font-bold ${personIndex === 0 ? "col-start-1 sm:col-start-4" : ""}`,
     key: personIndex,
-    placeholder: "initial"
+    placeholder: "Name",
+    onChange: (event) => updatePeoplesNames(personIndex, event.target.value)
   })), receiptItems.map(([item, price], itemIndex) => /* @__PURE__ */ react.createElement(Fragment, {
-    key: item
+    key: `${item}-${itemIndex}`
   }, /* @__PURE__ */ react.createElement("p", {
     className: "self-center col-start-1"
   }, item), /* @__PURE__ */ react.createElement("p", {
     className: "self-center"
   }, poundFormatter.format(price)), /* @__PURE__ */ react.createElement(Input, {
-    className: "self-center",
+    className: "self-center w-full",
     name: `discount-${itemIndex}`,
     placeholder: "discount",
     ...defaultPriceInputProps
   }), range(numOfPeople).map((personIndex) => /* @__PURE__ */ react.createElement(Input, {
-    className: `self-center ${personIndex === 0 ? "col-start-1" : ""} sm:col-start-auto`,
+    className: `self-center w-full ${personIndex === 0 ? "col-start-1" : ""} sm:col-start-auto`,
     key: personIndex,
     name: `share-${itemIndex}-${personIndex}`,
-    placeholder: "share",
+    placeholder: peopleNames[personIndex] || "share",
     ...defaultNaturalNumberInputProps
   })))), priceSummary?.map((price, personIndex) => /* @__PURE__ */ react.createElement("p", {
     className: personIndex === 0 ? "col-start-1 sm:col-start-4" : "",
@@ -7178,16 +7190,18 @@ var MainView = () => {
     placeholder: "Paste or type your receipt here",
     value: source,
     onChange: (event) => setSource(event.target.value)
-  }), /* @__PURE__ */ react.createElement("input", {
+  }), /* @__PURE__ */ react.createElement("label", {
+    htmlFor: "number-of-people"
+  }, "Number of People", /* @__PURE__ */ react.createElement(Input, {
+    id: "number-of-people",
     min: 2,
-    placeholder: "Number of People",
     type: "number",
     value: numOfPeople,
     onChange: (event) => {
       const newValue = event.target.value;
       newValue && setNumOfPeople(parseFloat(newValue));
     }
-  }), /* @__PURE__ */ react.createElement(GridView, {
+  })), /* @__PURE__ */ react.createElement(GridView, {
     numOfPeople,
     receiptItems
   }));
@@ -7196,7 +7210,7 @@ var MainView = () => {
 // build/dist/App.js
 var App = () => {
   return /* @__PURE__ */ react.createElement(ViewportProvider, null, /* @__PURE__ */ react.createElement("div", {
-    className: "2xl:container mx-auto px-2 md:px-4"
+    className: "px-2 md:px-4"
   }, /* @__PURE__ */ react.createElement(BreakPointIndicator, null), /* @__PURE__ */ react.createElement(Header, null), /* @__PURE__ */ react.createElement(MainView, null)));
 };
 var App_default = App;
