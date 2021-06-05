@@ -462,6 +462,9 @@ video {
   .sm\:hidden {
     display: none;
   }
+  .sm\:col-start-4 {
+    grid-column-start: 4;
+  }
   .sm\:col-start-auto {
     grid-column-start: auto;
   }

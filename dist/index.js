@@ -7140,13 +7140,13 @@ var GridView = ({receiptItems, numOfPeople}) => {
     placeholder: "discount",
     ...defaultPriceInputProps
   }), range(numOfPeople).map((personIndex) => /* @__PURE__ */ react.createElement(Input, {
-    className: `self-center col-start-${personIndex + 1} sm:col-start-auto`,
+    className: `self-center ${personIndex === 0 ? "col-start-1" : ""} sm:col-start-auto`,
     key: personIndex,
     name: `share-${itemIndex}-${personIndex}`,
     placeholder: "share",
     ...defaultNaturalNumberInputProps
   })))), priceSummary?.map((price, personIndex) => /* @__PURE__ */ react.createElement("p", {
-    className: `col-start-${personIndex + 1} sm:col-start-${personIndex + 4}`,
+    className: personIndex === 0 ? "col-start-1 sm:col-start-4" : "",
     key: personIndex
   }, poundFormatter.format(price))));
 };
@@ -7169,7 +7169,7 @@ Pesto & Goat Cheese Tortelloni 300g £1.50
 `;
 var MainView = () => {
   const [source, setSource] = useState(testReceipt);
-  const [numOfPeople, setNumOfPeople] = useState(2);
+  const [numOfPeople, setNumOfPeople] = useState(3);
   const receiptItems = divideReceipt(source);
   return /* @__PURE__ */ react.createElement("main", {
     className: "py-4"
