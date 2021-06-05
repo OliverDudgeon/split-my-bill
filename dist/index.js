@@ -386,6 +386,9 @@ var react = createCommonjsModule(function(module) {
 });
 
 // build/_snowpack/pkg/react.js
+var Fragment = react.Fragment;
+var createContext = react.createContext;
+var useContext = react.useContext;
 var useEffect = react.useEffect;
 var useRef = react.useRef;
 var useState = react.useState;
@@ -7014,6 +7017,23 @@ var reactDom = createCommonjsModule(function(module) {
 });
 var react_dom_default = reactDom;
 
+// build/dist/components/BreakPointIndicator.js
+var BreakPointIndicator = () => {
+  return MODE === "development" ? /* @__PURE__ */ react.createElement("div", {
+    className: "fixed top-0 right-0 m-8 p-3 text-xs font-mono text-white h-6 w-6 rounded-full flex items-center justify-center bg-gray-700 sm:bg-pink-500 md:bg-orange-500 lg:bg-green-500 xl:bg-blue-500"
+  }, /* @__PURE__ */ react.createElement("div", {
+    className: "block  sm:hidden md:hidden lg:hidden xl:hidden"
+  }, "al"), /* @__PURE__ */ react.createElement("div", {
+    className: "hidden sm:block  md:hidden lg:hidden xl:hidden"
+  }, "sm"), /* @__PURE__ */ react.createElement("div", {
+    className: "hidden sm:hidden md:block  lg:hidden xl:hidden"
+  }, "md"), /* @__PURE__ */ react.createElement("div", {
+    className: "hidden sm:hidden md:hidden lg:block  xl:hidden"
+  }, "lg"), /* @__PURE__ */ react.createElement("div", {
+    className: "hidden sm:hidden md:hidden lg:hidden xl:block"
+  }, "xl")) : null;
+};
+
 // build/dist/Header.js
 var Header = () => {
   return /* @__PURE__ */ react.createElement("header", null, /* @__PURE__ */ react.createElement("h1", {
@@ -7031,6 +7051,36 @@ var poundFormatter = new Intl.NumberFormat("de-DE", {
   style: "currency",
   currency: "GBP"
 });
+
+// build/dist/components/Input.js
+var Input = ({className, ...props}) => {
+  return /* @__PURE__ */ react.createElement("input", {
+    className: `w-full shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline appearance-none ${className}`,
+    ...props
+  });
+};
+
+// build/dist/hooks/useViewport.js
+var viewportContext = createContext({});
+var ViewportProvider = ({children}) => {
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const handleWindowResize = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
+  return /* @__PURE__ */ react.createElement(viewportContext.Provider, {
+    value: {width, height}
+  }, children);
+};
+var useViewport = () => {
+  const {width, height} = useContext(viewportContext);
+  return {width, height};
+};
 
 // build/dist/GridView.js
 var defaultPriceInputProps = {type: "number", min: 0, step: 0.01};
@@ -7065,34 +7115,39 @@ var GridView = ({receiptItems, numOfPeople}) => {
       setPriceSummary(sumPricesByPerson(breakdown));
     }
   };
+  const {width} = useViewport();
+  const isBreakpointXs = (width ?? 0) < 640;
   return /* @__PURE__ */ react.createElement("form", {
     className: "grid gap-4",
     ref: formRef,
-    style: {gridTemplateColumns: `1fr 4rem 5rem repeat(${numOfPeople}, 5rem)`},
+    style: {
+      gridTemplateColumns: isBreakpointXs ? `repeat(${Math.max(numOfPeople, 3)}, 1fr)` : `minmax(5rem, 1fr) 5rem 5rem repeat(${numOfPeople}, minmax(5rem, 1fr))`
+    },
     onChange: handleChange
-  }, range(numOfPeople).map((personIndex) => /* @__PURE__ */ react.createElement("input", {
-    className: "w-16",
+  }, range(numOfPeople).map((personIndex) => /* @__PURE__ */ react.createElement(Input, {
+    className: `font-bold ${personIndex === 0 && "col-start-1"} sm:col-start-${personIndex + 4}`,
     key: personIndex,
-    placeholder: "initial",
-    style: {gridColumnStart: personIndex + 4}
-  })), receiptItems.map(([item, price], itemIndex) => /* @__PURE__ */ react.createElement(react.Fragment, null, /* @__PURE__ */ react.createElement("div", {
-    className: "inline-block w-96"
-  }, item), /* @__PURE__ */ react.createElement("div", {
-    className: "inline-block w-16"
-  }, poundFormatter.format(price)), /* @__PURE__ */ react.createElement("input", {
-    className: "w-20",
+    placeholder: "initial"
+  })), receiptItems.map(([item, price], itemIndex) => /* @__PURE__ */ react.createElement(Fragment, {
+    key: item
+  }, /* @__PURE__ */ react.createElement("p", {
+    className: "self-center col-start-1"
+  }, item), /* @__PURE__ */ react.createElement("p", {
+    className: "self-center"
+  }, poundFormatter.format(price)), /* @__PURE__ */ react.createElement(Input, {
+    className: "self-center",
     name: `discount-${itemIndex}`,
     placeholder: "discount",
     ...defaultPriceInputProps
-  }), range(numOfPeople).map((personIndex) => /* @__PURE__ */ react.createElement("input", {
-    className: "w-16",
+  }), range(numOfPeople).map((personIndex) => /* @__PURE__ */ react.createElement(Input, {
+    className: `self-center col-start-${personIndex + 1} sm:col-start-auto`,
     key: personIndex,
     name: `share-${itemIndex}-${personIndex}`,
     placeholder: "share",
     ...defaultNaturalNumberInputProps
   })))), priceSummary?.map((price, personIndex) => /* @__PURE__ */ react.createElement("p", {
-    key: personIndex,
-    style: {gridColumnStart: personIndex + 4}
+    className: `col-start-${personIndex + 1} sm:col-start-${personIndex + 4}`,
+    key: personIndex
   }, poundFormatter.format(price))));
 };
 
@@ -7108,12 +7163,18 @@ var divideReceipt = (source) => {
   });
   return receiptItems;
 };
+var testReceipt = `Root Ginger Loose £1.03
+Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50
+Pesto & Goat Cheese Tortelloni 300g £1.50
+`;
 var MainView = () => {
-  const [source, setSource] = useState("");
+  const [source, setSource] = useState(testReceipt);
   const [numOfPeople, setNumOfPeople] = useState(2);
   const receiptItems = divideReceipt(source);
-  return /* @__PURE__ */ react.createElement("main", null, /* @__PURE__ */ react.createElement("textarea", {
-    className: "w-full",
+  return /* @__PURE__ */ react.createElement("main", {
+    className: "py-4"
+  }, /* @__PURE__ */ react.createElement("textarea", {
+    className: "w-full self-center shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
     placeholder: "Paste or type your receipt here",
     value: source,
     onChange: (event) => setSource(event.target.value)
@@ -7134,9 +7195,9 @@ var MainView = () => {
 
 // build/dist/App.js
 var App = () => {
-  return /* @__PURE__ */ react.createElement("div", {
-    className: "container mx-auto px-2 md:px-4"
-  }, /* @__PURE__ */ react.createElement(Header, null), /* @__PURE__ */ react.createElement(MainView, null));
+  return /* @__PURE__ */ react.createElement(ViewportProvider, null, /* @__PURE__ */ react.createElement("div", {
+    className: "2xl:container mx-auto px-2 md:px-4"
+  }, /* @__PURE__ */ react.createElement(BreakPointIndicator, null), /* @__PURE__ */ react.createElement(Header, null), /* @__PURE__ */ react.createElement(MainView, null)));
 };
 var App_default = App;
 
