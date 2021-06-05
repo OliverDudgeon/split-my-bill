@@ -93,7 +93,7 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
           />
           {range(numOfPeople).map((personIndex) => (
             <Input
-              className={`self-center col-start-${personIndex + 1} sm:col-start-auto`}
+              className={`self-center ${personIndex === 0 ? 'col-start-1' : ''} sm:col-start-auto`}
               key={personIndex}
               name={`share-${itemIndex}-${personIndex}`}
               placeholder="share"
@@ -103,10 +103,7 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
         </Fragment>
       ))}
       {priceSummary?.map((price, personIndex) => (
-        <p
-          className={`col-start-${personIndex + 1} sm:col-start-${personIndex + 4}`}
-          key={personIndex}
-        >
+        <p className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''} key={personIndex}>
           {poundFormatter.format(price)}
         </p>
       ))}
