@@ -41,7 +41,7 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [priceSummary, setPriceSummary] = useState<number[] | null>(null);
-  const [peopleNames, setPeopleNames] = useState(new Array(numOfPeople).fill(''));
+  const [peopleNames, setPeopleNames] = useState(new Array(numOfPeople));
 
   const updatePeoplesNames = (personIndex: number, value: string) => {
     peopleNames[personIndex] = value;
@@ -65,26 +65,27 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
   };
 
   const { width } = useViewport();
-  const isBreakpointXs = (width ?? 0) < 640; // Tailwind xs breakpoint
+  const isBreakpointAl = (width ?? 0) < 640; // Tailwind xs breakpoint
+
+  let gridTemplateColumns: string;
+  if (isBreakpointAl) {
+    gridTemplateColumns = `repeat(3, 1fr)`;
+  } else {
+    gridTemplateColumns = `minmax(5rem, 1fr) 5rem 5rem repeat(${numOfPeople}, minmax(5rem, 1fr))`;
+  }
 
   return (
     <form
-      className="grid gap-4"
+      className="grid gap-4 my-5"
       ref={formRef}
-      style={{
-        gridTemplateColumns: isBreakpointXs
-          ? `repeat(${Math.max(numOfPeople, 3)}, 1fr)`
-          : `minmax(5rem, 1fr) 5rem 5rem repeat(${numOfPeople}, minmax(5rem, 1fr))`,
-      }}
+      style={{ gridTemplateColumns }}
       onChange={handleChange}
     >
       {range(numOfPeople).map((personIndex) => (
         <Input
-          className={`font-bold ${personIndex === 0 && 'col-start-1'} sm:col-start-${
-            personIndex + 4
-          }`}
+          className={`w-full font-bold ${personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''}`}
           key={personIndex}
-          placeholder="name"
+          placeholder="Name"
           onChange={(event) => updatePeoplesNames(personIndex, event.target.value)}
         />
       ))}
@@ -93,17 +94,19 @@ export const GridView: FC<GridViewProps> = ({ receiptItems, numOfPeople }) => {
           <p className="self-center col-start-1">{item}</p>
           <p className="self-center">{poundFormatter.format(price)}</p>
           <Input
-            className="self-center"
+            className="self-center w-full"
             name={`discount-${itemIndex}`}
             placeholder="discount"
             {...defaultPriceInputProps}
           />
           {range(numOfPeople).map((personIndex) => (
             <Input
-              className={`self-center ${personIndex === 0 ? 'col-start-1' : ''} sm:col-start-auto`}
+              className={`self-center w-full ${
+                personIndex === 0 ? 'col-start-1' : ''
+              } sm:col-start-auto`}
               key={personIndex}
               name={`share-${itemIndex}-${personIndex}`}
-              placeholder={peopleNames[personIndex]}
+              placeholder={peopleNames[personIndex] || 'share'}
               {...defaultNaturalNumberInputProps}
             />
           ))}

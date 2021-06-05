@@ -8,7 +8,7 @@ import { ViewportProvider } from './hooks/useViewport';
 const App: FC = () => {
   return (
     <ViewportProvider>
-      <div className="2xl:container mx-auto px-2 md:px-4">
+      <div className="px-2 md:px-4">
         <BreakPointIndicator />
         <Header />
         <MainView />

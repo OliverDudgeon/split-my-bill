@@ -1,5 +1,6 @@
 import { GridView, ReceiptItem } from './GridView';
-import { useState } from 'react';
+import React, { FC, useState } from 'react';
+import { Input } from './components/Input';
 
 const CURRENCY_SYMBOLS = ['£', '$', '€'];
 
@@ -21,8 +22,9 @@ Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50
 Pesto & Goat Cheese Tortelloni 300g £1.50
 `;
 
-export const MainView = () => {
+export const MainView: FC = () => {
   const [source, setSource] = useState(testReceipt);
+
   const [numOfPeople, setNumOfPeople] = useState(3);
 
   const receiptItems = divideReceipt(source);
@@ -35,16 +37,19 @@ export const MainView = () => {
         value={source}
         onChange={(event) => setSource(event.target.value)}
       />
-      <input
-        min={2}
-        placeholder="Number of People"
-        type="number"
-        value={numOfPeople}
-        onChange={(event) => {
-          const newValue = event.target.value;
-          newValue && setNumOfPeople(parseFloat(newValue));
-        }}
-      />
+      <label htmlFor="number-of-people">
+        Number of People
+        <Input
+          id="number-of-people"
+          min={2}
+          type="number"
+          value={numOfPeople}
+          onChange={(event) => {
+            const newValue = event.target.value;
+            newValue && setNumOfPeople(parseFloat(newValue));
+          }}
+        />
+      </label>
       <GridView numOfPeople={numOfPeople} receiptItems={receiptItems} />
     </main>
   );
