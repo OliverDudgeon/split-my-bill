@@ -4,7 +4,7 @@
  * Modified for typescript.
  */
 
-import { FC, createContext, useContext, useEffect, useState } from 'react';
+import React, { FC, createContext, useContext, useEffect, useState } from 'react';
 
 interface Size {
   width?: number;
@@ -30,16 +30,16 @@ export const ViewportProvider: FC = ({ children }) => {
   }, []);
 
   /* Now we are dealing with a context instead of a Hook, so instead
-     of returning the width and height we store the values in the
-     value of the Provider */
+      of returning the width and height we store the values in the
+      value of the Provider */
   return <viewportContext.Provider value={{ width, height }}>{children}</viewportContext.Provider>;
 };
 
 /* Rewrite the "useViewport" hook to pull the width and height values
-   out of the context instead of calculating them itself */
-export const useViewport = () => {
+    out of the context instead of calculating them itself */
+export const useViewport = (): Size => {
   /* We can use the "useContext" Hook to acccess a context from within
-     another Hook, remember, Hooks are composable! */
+      another Hook, remember, Hooks are composable! */
   const { width, height } = useContext(viewportContext);
   return { width, height };
 };

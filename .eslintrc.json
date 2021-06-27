@@ -1,84 +1,102 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "prettier",
-    "react"
-  ],
+  "root": true,
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    // Uncomment the following lines to enable eslint-config-prettier
-    // Is not enabled right now to avoid issues with the Next.js repo
+    "plugin:import/warnings",
+    "plugin:import/errors",
+    "eslint-config-airbnb-base",
+    "plugin:unicorn/recommended",
     "prettier"
   ],
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
-    "react/react-in-jsx-scope": 0,
-    "react/display-name": 0,
-    "react/prop-types": 0,
-    "react/jsx-sort-props": [
+    "import/no-extraneous-dependencies": [
       "error",
       {
-        "callbacksLast": true,
-        "shorthandFirst": true,
-        "shorthandLast": false,
-        "ignoreCase": true,
-        "noSortAlphabetically": false,
-        "reservedFirst": false
+        "devDependencies": [
+          "tailwind.config.js"
+        ]
       }
     ],
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/explicit-module-boundary-types": 0,
-    "@typescript-eslint/explicit-member-accessibility": 0,
-    "@typescript-eslint/indent": 0,
-    "@typescript-eslint/member-delimiter-style": 0,
-    "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-use-before-define": 0,
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "no-console": 0,
-    "prettier/prettier": [
-      "warn",
-      {
-        "trailingComma": "all",
-        "singleQuote": true,
-        "printWidth": 100,
-        "semi": true,
-        "arrowParens": "always",
-        "bracketSpacing": true,
-        "tabWidth": 2
-      }
-    ],
-    "sort-imports": [
-      "error",
-      {
-        "ignoreCase": false,
-        "ignoreDeclarationSort": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": [
-          "none",
-          "all",
-          "multiple",
-          "single"
+    "unicorn/prefer-module": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:import/warnings",
+        "plugin:import/errors",
+        "plugin:import/typescript",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "plugin:unicorn/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "import/namespace": "off",
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": [
+              "vite.config.ts"
+            ]
+          }
         ],
-        "allowSeparatedGroups": true
+        "unicorn/filename-case": [
+          "error",
+          {
+            "cases": {
+              "camelCase": true,
+              "pascalCase": true
+            }
+          }
+        ],
+        "import/prefer-default-export": 0,
+        "prettier/prettier": [
+          "warn",
+          {
+            "trailingComma": "all",
+            "singleQuote": true,
+            "printWidth": 100,
+            "semi": true,
+            "arrowParens": "always",
+            "bracketSpacing": true,
+            "tabWidth": 2
+          }
+        ],
+        "react/jsx-sort-props": [
+          "error",
+          {
+            "callbacksLast": true,
+            "shorthandFirst": true,
+            "shorthandLast": false,
+            "ignoreCase": true,
+            "noSortAlphabetically": false,
+            "reservedFirst": false
+          }
+        ],
+        "react/prop-types": 0,
+        "react/jsx-props-no-spreading": 0,
+        "react/no-array-index-key": 0,
+        "unicorn/no-null": 1,
+        "no-restricted-syntax": 0,
+        "@typescript-eslint/no-unused-vars": 1
       }
-    ]
-  }
+    }
+  ]
 }

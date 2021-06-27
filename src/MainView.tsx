@@ -1,56 +1,98 @@
-import { GridView, ReceiptItem } from './GridView';
-import React, { FC, useState } from 'react';
-import { Input } from './components/Input';
+import React, { ChangeEvent, FC } from 'react';
 
-const CURRENCY_SYMBOLS = ['£', '$', '€'];
+import { FieldInputProps, Form, Formik } from 'formik';
 
-const divideReceipt = (source: string): ReceiptItem[] => {
-  const receiptItems: ReceiptItem[] = [];
-  source.split('\n').map((line) => {
-    for (const symbol of CURRENCY_SYMBOLS) {
-      const [item, price] = line.split(symbol);
+import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
+import { ReceiptTextArea } from './components/ReceiptTextArea';
+import { GridView } from './GridView';
+import { divideReceipt, resizeArrayRight } from './utils';
 
-      price !== undefined && receiptItems.push([item, parseFloat(price)]);
-    }
-  });
-
-  return receiptItems;
-};
+import type {
+  FormikFormState,
+  FormikSetter,
+  ReceiptItemWithShare,
+  NumericInputValue,
+} from './types';
 
 const testReceipt = `Root Ginger Loose £1.03
 Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50
 Pesto & Goat Cheese Tortelloni 300g £1.50
 `;
 
-export const MainView: FC = () => {
-  const [source, setSource] = useState(testReceipt);
-
-  const [numOfPeople, setNumOfPeople] = useState(3);
-
-  const receiptItems = divideReceipt(source);
-
-  return (
-    <main className="py-4">
-      <textarea
-        className="w-full self-center shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        placeholder="Paste or type your receipt here"
-        value={source}
-        onChange={(event) => setSource(event.target.value)}
-      />
-      <label htmlFor="number-of-people">
-        Number of People
-        <Input
-          id="number-of-people"
-          min={2}
-          type="number"
-          value={numOfPeople}
-          onChange={(event) => {
-            const newValue = event.target.value;
-            newValue && setNumOfPeople(parseFloat(newValue));
-          }}
-        />
-      </label>
-      <GridView numOfPeople={numOfPeople} receiptItems={receiptItems} />
-    </main>
-  );
+const initNumberOfPeople = 3;
+const initialValues: FormikFormState = {
+  receipt: testReceipt,
+  numberOfPeople: initNumberOfPeople,
+  receiptItems: divideReceipt(testReceipt).map((receiptItem) => ({
+    ...receiptItem,
+    shares: Array.from({ length: initNumberOfPeople }).fill('') as NumericInputValue[],
+    discount: '',
+  })),
 };
+
+/**
+ * Adjust the entries for each receipt item to match the latest textfield input
+ */
+const handleReceiptChange =
+  (values: FormikFormState, setValues: FormikSetter<FormikFormState>) =>
+  (event: ChangeEvent<HTMLTextAreaElement>, field: FieldInputProps<string>) => {
+    const receipt = divideReceipt(event.target.value);
+    const previousReceipt = values.receiptItems;
+
+    const { numberOfPeople } = values;
+
+    const newItemsState: ReceiptItemWithShare[] = receipt.map((receiptItem, itemIndex) => {
+      const previousItemAtItemIndex = previousReceipt[itemIndex];
+
+      if (previousItemAtItemIndex) {
+        return {
+          ...receiptItem,
+          discount: previousItemAtItemIndex.discount,
+          shares: previousItemAtItemIndex.shares,
+        };
+      }
+      return {
+        ...receiptItem,
+        discount: '',
+        shares: Array.from({ length: numberOfPeople }).fill('') as NumericInputValue[],
+      };
+    });
+
+    setValues({ ...values, receiptItems: newItemsState });
+    field.onChange(event);
+  };
+
+/**
+ * Adjust the form state to have the number of "shares" fields specified from the "number of people" input
+ */
+const handleChangeToNumberOfPeople =
+  (values: FormikFormState, setValues: FormikSetter<FormikFormState>) =>
+  (event: ChangeEvent<HTMLInputElement>, field: FieldInputProps<string>) => {
+    const newNumberOfPeople = Number.parseInt(event.target.value, 10);
+
+    const newReceiptItems = values.receiptItems.map((receiptItem) => ({
+      ...receiptItem,
+      shares: resizeArrayRight(receiptItem.shares, newNumberOfPeople, ''),
+    }));
+
+    setValues({ ...values, receiptItems: newReceiptItems });
+    field.onChange(event);
+  };
+
+export const MainView: FC = () => (
+  <main className="py-4">
+    <Formik initialValues={initialValues} onSubmit={() => {}}>
+      {({ values, setValues }) => (
+        <Form>
+          <ReceiptTextArea name="receipt" onValueChange={handleReceiptChange(values, setValues)} />
+          <NumberOfPeopleInput
+            label="Number of People"
+            name="numberOfPeople"
+            onValueChange={handleChangeToNumberOfPeople(values, setValues)}
+          />
+          <GridView values={values} />
+        </Form>
+      )}
+    </Formik>
+  </main>
+);
