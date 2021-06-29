@@ -4,9 +4,9 @@
  * @returns Array of integers increasing to n
  */
 
-import { CURRENCY_SYMBOLS } from './constants';
+import { CURRENCY_SYMBOLS } from '../constants';
 
-import type { ReceiptItem } from './types';
+import type { ReceiptItem } from '../types';
 
 export const range = (n: number): number[] => [...Array.from({ length: n }).keys()];
 

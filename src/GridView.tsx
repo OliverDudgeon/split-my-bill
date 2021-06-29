@@ -1,11 +1,14 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment, useEffect } from 'react';
 
 import { FieldArray } from 'formik';
 
+import qs from 'qs';
+import { throttle } from 'lodash';
+import { minify } from './utils/serialisation';
 import { Input } from './components/Input';
 import { defaultNaturalNumberInputProperties, defaultPriceInputProperties } from './constants';
 import { useViewport } from './hooks/useViewport';
-import { poundFormatter, sum, sumPricesByPerson } from './utils';
+import { poundFormatter, sum, sumPricesByPerson } from './utils/utils';
 
 import type { FormikFormState } from './types';
 
@@ -13,7 +16,16 @@ interface GridViewProperties {
   values: FormikFormState;
 }
 
+const updateUrl = throttle((url: string) => {
+  window.history.pushState('', '', url);
+}, 500);
+
 export const GridView: FC<GridViewProperties> = ({ values }) => {
+  useEffect(() => {
+    const url = `${window.location.pathname}?${qs.stringify(minify({ ...values }))}`;
+    updateUrl(url);
+  });
+
   const priceSummary = sumPricesByPerson(
     values.receiptItems.map(({ price, discount, shares }) => {
       // discount is a FormDataEntryValue - assume a number has been inputted

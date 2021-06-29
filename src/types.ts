@@ -18,6 +18,16 @@ export interface FormikFormState {
   receiptItems: ReceiptItemWithShare[];
 }
 
+export interface MinifiedFormikState {
+  n: number;
+  r: {
+    d: NumericInputValue;
+    s: NumericInputValue[];
+    i: string;
+    p: number;
+  }[];
+}
+
 export type FormikSetter<TValue> = (
   values: SetStateAction<TValue>,
   shouldValidate?: boolean,

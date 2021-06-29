@@ -2,17 +2,20 @@ import React, { ChangeEvent, FC } from 'react';
 
 import { FieldInputProps, Form, Formik } from 'formik';
 
+import qs from 'qs';
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
 import { GridView } from './GridView';
-import { divideReceipt, resizeArrayRight } from './utils';
+import { divideReceipt, resizeArrayRight } from './utils/utils';
 
 import type {
   FormikFormState,
   FormikSetter,
   ReceiptItemWithShare,
   NumericInputValue,
+  MinifiedFormikState,
 } from './types';
+import { deminify } from './utils/serialisation';
 
 const testReceipt = `Root Ginger Loose £1.03
 Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50
@@ -79,20 +82,35 @@ const handleChangeToNumberOfPeople =
     field.onChange(event);
   };
 
-export const MainView: FC = () => (
-  <main className="py-4">
-    <Formik initialValues={initialValues} onSubmit={() => {}}>
-      {({ values, setValues }) => (
-        <Form>
-          <ReceiptTextArea name="receipt" onValueChange={handleReceiptChange(values, setValues)} />
-          <NumberOfPeopleInput
-            label="Number of People"
-            name="numberOfPeople"
-            onValueChange={handleChangeToNumberOfPeople(values, setValues)}
-          />
-          <GridView values={values} />
-        </Form>
-      )}
-    </Formik>
-  </main>
-);
+export const MainView: FC = () => {
+  let parsedFormikState: FormikFormState | undefined;
+  try {
+    const queryParameters = window.location.search.slice(1); // Need to remove the "?" in the search part
+    const urlValues = qs.parse(queryParameters) as unknown as MinifiedFormikState;
+
+    parsedFormikState = deminify(urlValues);
+  } catch {
+    parsedFormikState = undefined;
+  }
+
+  return (
+    <main className="py-4">
+      <Formik initialValues={parsedFormikState ?? initialValues} onSubmit={() => {}}>
+        {({ values, setValues }) => (
+          <Form>
+            <ReceiptTextArea
+              name="receipt"
+              onValueChange={handleReceiptChange(values, setValues)}
+            />
+            <NumberOfPeopleInput
+              label="Number of People"
+              name="numberOfPeople"
+              onValueChange={handleChangeToNumberOfPeople(values, setValues)}
+            />
+            {values.receiptItems.length > 0 && <GridView values={values} />}
+          </Form>
+        )}
+      </Formik>
+    </main>
+  );
+};

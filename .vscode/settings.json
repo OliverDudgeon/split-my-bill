@@ -27,6 +27,7 @@
     "eslint",
     "layout",
     "ui/inputs",
-    "app"
+    "app",
+    "query-params"
   ],
 }
