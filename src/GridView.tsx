@@ -2,7 +2,6 @@ import React, { FC, Fragment, useEffect } from 'react';
 
 import { FieldArray } from 'formik';
 
-import pako from 'pako';
 import { throttle } from 'lodash';
 import { compressEncode, minify } from './utils/serialisation';
 import { Input } from './components/Input';

@@ -2,7 +2,6 @@ import React, { ChangeEvent, FC } from 'react';
 
 import { FieldInputProps, Form, Formik } from 'formik';
 
-import pako from 'pako';
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
 import { GridView } from './GridView';
@@ -13,7 +12,6 @@ import type {
   FormikSetter,
   ReceiptItemWithShare,
   NumericInputValue,
-  MinifiedFormikState,
 } from './types';
 import { decompressDecode, deminify } from './utils/serialisation';
 
