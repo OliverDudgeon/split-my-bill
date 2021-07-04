@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC } from 'react';
 
 import { FieldInputProps, Form, Formik } from 'formik';
 
+import { ShareButton } from 'components/ShareButton';
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
 import { GridView } from './GridView';
@@ -113,6 +114,10 @@ export const MainView: FC = () => {
           </Form>
         )}
       </Formik>
+      <div>
+        <p>Click the button to copy a shortened url to share with your splitees</p>
+        <ShareButton />
+      </div>
     </main>
   );
 };
