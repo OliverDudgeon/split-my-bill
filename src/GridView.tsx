@@ -56,8 +56,8 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
         {() =>
           values.receiptItems.map(({ item, price, shares }, itemIndex) => (
             <Fragment key={`${item}-${itemIndex}`}>
-              <p className="self-center col-start-1">{item}</p>
-              <p className="self-center">{poundFormatter.format(price)}</p>
+              <span className="self-center col-start-1">{item}</span>
+              <span className="self-center">{poundFormatter.format(price)}</span>
               <Input
                 className="self-center w-full"
                 name={`receiptItems.${itemIndex}.discount`}
@@ -82,10 +82,14 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
           ))
         }
       </FieldArray>
+      <b>Total:</b>
+      <b className="col-start-2">
+        {poundFormatter.format(sum(values.receiptItems.map((item) => item.price)))}
+      </b>
       {priceSummary.map((price, personIndex) => (
-        <p className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''} key={personIndex}>
+        <span className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''} key={personIndex}>
           {poundFormatter.format(price)}
-        </p>
+        </span>
       ))}
     </div>
   );

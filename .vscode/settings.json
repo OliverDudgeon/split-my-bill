@@ -29,6 +29,7 @@
     "ui/inputs",
     "app",
     "query-params",
-    "url-state"
+    "url-state",
+    "totals"
   ],
 }
