@@ -24,7 +24,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
   useEffect(() => {
     const minified = minify({ ...values });
     const url = compressEncode(minified);
-    updateUrl(url);
+    updateUrl(`?${url}`);
   });
 
   const priceSummary = sumPricesByPerson(

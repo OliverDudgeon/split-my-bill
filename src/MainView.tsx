@@ -85,10 +85,10 @@ const handleChangeToNumberOfPeople =
 export const MainView: FC = () => {
   let parsedFormikState: FormikFormState | undefined;
   try {
-    const paths = window.location.pathname;
+    const paths = window.location.search;
 
-    // Extract the part of the url after the base path
-    const urlValues = decompressDecode(paths.split('/')[2]);
+    // Remove the ? at the start
+    const urlValues = decompressDecode(paths.slice(1));
 
     parsedFormikState = deminify(urlValues);
   } catch (error) {
