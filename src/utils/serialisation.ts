@@ -30,7 +30,12 @@ export const deminify = ({
     price: p,
   }));
 
-  const state = { numberOfPeople, receiptItems, peoplesInitials };
+  const state = {
+    numberOfPeople,
+    receiptItems,
+    peoplesInitials:
+      peoplesInitials ?? (Array.from({ length: numberOfPeople }).fill('') as string[]),
+  };
   const receipt = state.receiptItems.map(({ item, price }) => `${item} £${price}`).join('\n');
   return { ...state, receipt: `${receipt}\n` };
 };
