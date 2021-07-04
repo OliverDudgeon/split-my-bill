@@ -58,6 +58,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
               className={`font-bold self-center w-full col-start-auto ${
                 personIndex === 0 ? 'sm:col-start-4' : ''
               }`}
+              key={personIndex}
               name={`peoplesInitials.${personIndex}`}
               placeholder="Initial"
             />
