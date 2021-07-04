@@ -31,6 +31,7 @@
     "query-params",
     "url-state",
     "totals",
-    "initials"
+    "initials",
+    "discounts"
   ],
 }
