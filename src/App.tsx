@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+import { Footer } from 'Footer';
 import { BreakPointIndicator } from './components/BreakPointIndicator';
 import { Header } from './Header';
 import { MainView } from './MainView';
@@ -11,6 +12,7 @@ const App: FC = () => (
       <BreakPointIndicator />
       <Header />
       <MainView />
+      <Footer />
     </div>
   </ViewportProvider>
 );
