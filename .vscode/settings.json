@@ -34,6 +34,7 @@
     "initials",
     "discounts",
     "share-button",
-    "footer"
+    "footer",
+    "currency-format"
   ],
 }

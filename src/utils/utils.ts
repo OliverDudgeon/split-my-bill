@@ -30,9 +30,10 @@ export const resizeArrayRight = <TArrayValue extends unknown>(
 ): TArrayValue[] =>
   [...array, ...(Array.from({ length }).fill(fillWith) as TArrayValue[])].slice(0, length);
 
-export const poundFormatter = new Intl.NumberFormat('de-DE', {
+export const poundFormatter = new Intl.NumberFormat('en-GB', {
   style: 'currency',
   currency: 'GBP',
+  currencyDisplay: 'narrowSymbol',
 });
 
 export const divideReceipt = (source: string): ReceiptItem[] => {
