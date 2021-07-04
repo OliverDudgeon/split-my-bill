@@ -2,7 +2,11 @@ import { FormikFormState, MinifiedFormikState, ReceiptItemWithShare } from 'type
 import pako from 'pako';
 import { base64ToBytes, bytesToBase64 } from 'byte-base64';
 
-export const minify = ({ numberOfPeople, receiptItems }: FormikFormState): MinifiedFormikState => {
+export const minify = ({
+  numberOfPeople,
+  receiptItems,
+  peoplesInitials,
+}: FormikFormState): MinifiedFormikState => {
   // eslint-disable-next-line unicorn/prevent-abbreviations
   const r = receiptItems.map(({ discount: d, shares: s, item: i, price: p }) => ({
     d,
@@ -11,10 +15,14 @@ export const minify = ({ numberOfPeople, receiptItems }: FormikFormState): Minif
     p,
   }));
 
-  return { n: numberOfPeople, r };
+  return { n: numberOfPeople, r, p: peoplesInitials };
 };
 
-export const deminify = ({ n: numberOfPeople, r }: MinifiedFormikState): FormikFormState => {
+export const deminify = ({
+  n: numberOfPeople,
+  r,
+  p: peoplesInitials,
+}: MinifiedFormikState): FormikFormState => {
   const receiptItems: ReceiptItemWithShare[] = r.map(({ d, s, i, p }) => ({
     discount: d,
     shares: s,
@@ -22,7 +30,7 @@ export const deminify = ({ n: numberOfPeople, r }: MinifiedFormikState): FormikF
     price: p,
   }));
 
-  const state = { numberOfPeople, receiptItems };
+  const state = { numberOfPeople, receiptItems, peoplesInitials };
   const receipt = state.receiptItems.map(({ item, price }) => `${item} £${price}`).join('\n');
   return { ...state, receipt: `${receipt}\n` };
 };

@@ -24,6 +24,7 @@ const initNumberOfPeople = 3;
 const initialValues: FormikFormState = {
   receipt: testReceipt,
   numberOfPeople: initNumberOfPeople,
+  peoplesInitials: Array.from({ length: initNumberOfPeople }).fill('') as string[],
   receiptItems: divideReceipt(testReceipt).map((receiptItem) => ({
     ...receiptItem,
     shares: Array.from({ length: initNumberOfPeople }).fill('') as NumericInputValue[],

@@ -1,6 +1,6 @@
 import React, { FC, Fragment, useEffect } from 'react';
 
-import { FieldArray } from 'formik';
+import { Field, FieldArray } from 'formik';
 
 import { throttle } from 'lodash';
 import { compressEncode, minify } from './utils/serialisation';
@@ -51,6 +51,19 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
 
   return (
     <div className="grid gap-4 my-5" style={{ gridTemplateColumns }}>
+      <FieldArray name="peoplesInitials">
+        {() =>
+          values.peoplesInitials.map((person, personIndex) => (
+            <Input
+              className={`font-bold self-center w-full col-start-auto ${
+                personIndex === 0 ? 'sm:col-start-4' : ''
+              }`}
+              name={`peoplesInitials.${personIndex}`}
+              placeholder="Initial"
+            />
+          ))
+        }
+      </FieldArray>
       <FieldArray name="receiptItems">
         {() =>
           values.receiptItems.map(({ item, price, shares }, itemIndex) => (
@@ -72,6 +85,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
                       } sm:col-start-auto`}
                       key={personIndex}
                       name={`receiptItems.${itemIndex}.shares.${personIndex}`}
+                      placeholder={values.peoplesInitials[personIndex]}
                       {...defaultNaturalNumberInputProperties}
                     />
                   ))
@@ -85,11 +99,15 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
       <b className="col-start-2">
         {poundFormatter.format(sum(values.receiptItems.map((item) => item.price)))}
       </b>
-      {priceSummary.map((price, personIndex) => (
-        <span className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''} key={personIndex}>
-          {poundFormatter.format(price)}
-        </span>
-      ))}
+      {priceSummary.map((price, personIndex) => {
+        const initial = values.peoplesInitials[personIndex];
+        const formattedPrice = poundFormatter.format(price);
+        return (
+          <span className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''} key={personIndex}>
+            {`${initial ? `${initial}: ` : ''}${formattedPrice}`}
+          </span>
+        );
+      })}
     </div>
   );
 };

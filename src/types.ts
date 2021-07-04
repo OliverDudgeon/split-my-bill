@@ -15,6 +15,7 @@ export interface ReceiptItemWithShare extends ReceiptItem {
 export interface FormikFormState {
   receipt: string;
   numberOfPeople: number;
+  peoplesInitials: string[];
   receiptItems: ReceiptItemWithShare[];
 }
 
@@ -26,6 +27,7 @@ export interface MinifiedFormikState {
     i: string;
     p: number;
   }[];
+  p: string[];
 }
 
 export type FormikSetter<TValue> = (

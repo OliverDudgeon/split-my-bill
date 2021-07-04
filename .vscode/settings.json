@@ -30,6 +30,7 @@
     "app",
     "query-params",
     "url-state",
-    "totals"
+    "totals",
+    "initials"
   ],
 }
