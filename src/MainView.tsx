@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC } from 'react';
 
 import { FieldInputProps, Form, Formik } from 'formik';
 
-import qs from 'qs';
+import pako from 'pako';
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
 import { GridView } from './GridView';
@@ -15,7 +15,7 @@ import type {
   NumericInputValue,
   MinifiedFormikState,
 } from './types';
-import { deminify } from './utils/serialisation';
+import { decompressDecode, deminify } from './utils/serialisation';
 
 const testReceipt = `Root Ginger Loose £1.03
 Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50
@@ -85,11 +85,14 @@ const handleChangeToNumberOfPeople =
 export const MainView: FC = () => {
   let parsedFormikState: FormikFormState | undefined;
   try {
-    const queryParameters = window.location.search.slice(1); // Need to remove the "?" in the search part
-    const urlValues = qs.parse(queryParameters) as unknown as MinifiedFormikState;
+    const paths = window.location.pathname;
+
+    // Extract the part of the url after the base path
+    const urlValues = decompressDecode(paths.split('/')[2]);
 
     parsedFormikState = deminify(urlValues);
-  } catch {
+  } catch (error) {
+    console.error(error);
     parsedFormikState = undefined;
   }
 

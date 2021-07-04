@@ -28,6 +28,7 @@
     "layout",
     "ui/inputs",
     "app",
-    "query-params"
+    "query-params",
+    "url-state"
   ],
 }

@@ -2,9 +2,9 @@ import React, { FC, Fragment, useEffect } from 'react';
 
 import { FieldArray } from 'formik';
 
-import qs from 'qs';
+import pako from 'pako';
 import { throttle } from 'lodash';
-import { minify } from './utils/serialisation';
+import { compressEncode, minify } from './utils/serialisation';
 import { Input } from './components/Input';
 import { defaultNaturalNumberInputProperties, defaultPriceInputProperties } from './constants';
 import { useViewport } from './hooks/useViewport';
@@ -22,7 +22,8 @@ const updateUrl = throttle((url: string) => {
 
 export const GridView: FC<GridViewProperties> = ({ values }) => {
   useEffect(() => {
-    const url = `${window.location.pathname}?${qs.stringify(minify({ ...values }))}`;
+    const minified = minify({ ...values });
+    const url = compressEncode(minified);
     updateUrl(url);
   });
 
