@@ -1,6 +1,6 @@
 import React, { FC, Fragment, useEffect } from 'react';
 
-import { Field, FieldArray } from 'formik';
+import { FieldArray } from 'formik';
 
 import { throttle } from 'lodash';
 import { compressEncode, minify } from './utils/serialisation';

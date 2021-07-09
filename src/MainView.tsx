@@ -78,7 +78,9 @@ const handleChangeToNumberOfPeople =
       shares: resizeArrayRight(receiptItem.shares, newNumberOfPeople, ''),
     }));
 
-    setValues({ ...values, receiptItems: newReceiptItems });
+    const newPeoplesInitials = resizeArrayRight(values.peoplesInitials, newNumberOfPeople, '');
+
+    setValues({ ...values, receiptItems: newReceiptItems, peoplesInitials: newPeoplesInitials });
     field.onChange(event);
   };
 
@@ -87,7 +89,7 @@ export const MainView: FC = () => {
   try {
     const paths = window.location.search;
 
-    // Remove the ? at the start
+    // Remove the '?' at the start
     const urlValues = decompressDecode(paths.slice(1));
 
     parsedFormikState = deminify(urlValues);
