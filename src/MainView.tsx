@@ -1,20 +1,19 @@
 import React, { ChangeEvent, FC } from 'react';
 
+import { ShareButton } from 'components/ShareButton';
 import { FieldInputProps, Form, Formik } from 'formik';
 
-import { ShareButton } from 'components/ShareButton';
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
-import { GridView } from './GridView';
+import { decompressDecode, deminify } from './utils/serialisation';
 import { divideReceipt, resizeArrayRight } from './utils/utils';
-
+import { GridView } from './GridView';
 import type {
   FormikFormState,
   FormikSetter,
-  ReceiptItemWithShare,
   NumericInputValue,
+  ReceiptItemWithShare,
 } from './types';
-import { decompressDecode, deminify } from './utils/serialisation';
 
 const testReceipt = `Root Ginger Loose £1.03
 Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50

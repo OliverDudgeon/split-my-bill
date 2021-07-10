@@ -1,6 +1,7 @@
 import React, { ChangeEvent, ReactElement } from 'react';
 
 import type { FieldHookConfig, FieldInputProps } from 'formik';
+
 import { TextArea } from './TextArea';
 
 interface ReceiptTextAreaProperties {

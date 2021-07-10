@@ -1,14 +1,13 @@
 import React, { FC, Fragment, useEffect } from 'react';
 
 import { FieldArray } from 'formik';
-
 import { throttle } from 'lodash';
-import { compressEncode, minify } from './utils/serialisation';
-import { Input } from './components/Input';
-import { defaultNaturalNumberInputProperties, defaultPriceInputProperties } from './constants';
-import { useViewport } from './hooks/useViewport';
-import { poundFormatter, sum, sumPricesByPerson } from './utils/utils';
 
+import { Input } from './components/Input';
+import { useViewport } from './hooks/useViewport';
+import { compressEncode, minify } from './utils/serialisation';
+import { poundFormatter, sum, sumPricesByPerson } from './utils/utils';
+import { defaultNaturalNumberInputProperties, defaultPriceInputProperties } from './constants';
 import type { FormikFormState } from './types';
 
 interface GridViewProperties {

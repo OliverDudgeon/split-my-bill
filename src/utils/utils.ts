@@ -5,7 +5,6 @@
  */
 
 import { CURRENCY_SYMBOLS } from '../constants';
-
 import type { ReceiptItem } from '../types';
 
 export const range = (n: number): number[] => [...Array.from({ length: n }).keys()];

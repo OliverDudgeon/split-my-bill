@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 
 import { Footer } from 'Footer';
+
 import { BreakPointIndicator } from './components/BreakPointIndicator';
+import { ViewportProvider } from './hooks/useViewport';
 import { Header } from './Header';
 import { MainView } from './MainView';
-import { ViewportProvider } from './hooks/useViewport';
 
 const App: FC = () => (
   <ViewportProvider>

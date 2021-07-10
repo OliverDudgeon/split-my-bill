@@ -1,6 +1,6 @@
-import { FormikFormState, MinifiedFormikState, ReceiptItemWithShare } from 'types';
-import pako from 'pako';
 import { base64ToBytes, bytesToBase64 } from 'byte-base64';
+import pako from 'pako';
+import { FormikFormState, MinifiedFormikState, ReceiptItemWithShare } from 'types';
 
 export const minify = ({
   numberOfPeople,

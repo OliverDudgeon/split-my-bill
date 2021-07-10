@@ -4,7 +4,7 @@
  * Modified for typescript.
  */
 
-import React, { FC, createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, FC, useContext, useEffect, useState } from 'react';
 
 interface Size {
   width?: number;
