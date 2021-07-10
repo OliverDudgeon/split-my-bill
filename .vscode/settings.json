@@ -37,6 +37,7 @@
     "footer",
     "currency-format",
     "receipt",
-    "deps"
+    "deps",
+    "readme"
   ],
 }
