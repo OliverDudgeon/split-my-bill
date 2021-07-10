@@ -39,6 +39,7 @@
     "receipt",
     "deps",
     "readme",
-    "keyboard-control"
+    "keyboard-control",
+    "items"
   ],
 }

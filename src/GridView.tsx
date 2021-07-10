@@ -79,7 +79,17 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
             const inputIndex = values.numberOfPeople + itemIndex * (values.numberOfPeople + 1) + 1;
             return (
               <Fragment key={`${item}-${itemIndex}`}>
-                <span className="self-center col-start-1">{item}</span>
+                <span
+                  className={`self-center col-start-1 ${
+                    Math.floor(
+                      (focus - 1 - values.numberOfPeople) / (values.numberOfPeople + 1),
+                    ) === itemIndex
+                      ? 'font-bold'
+                      : ''
+                  }`}
+                >
+                  {item}
+                </span>
                 <span className="self-center">
                   {poundFormatter.format(price - (Number.parseInt(discount, 10) || 0))}
                 </span>
