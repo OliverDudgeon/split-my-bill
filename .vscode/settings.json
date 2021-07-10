@@ -35,6 +35,7 @@
     "discounts",
     "share-button",
     "footer",
-    "currency-format"
+    "currency-format",
+    "receipt"
   ],
 }

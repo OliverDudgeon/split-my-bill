@@ -5,6 +5,7 @@ import { FieldInputProps, Form, Formik } from 'formik';
 
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
+import { ReceiptTotal } from './components/ReceiptTotal';
 import { decompressDecode, deminify } from './utils/serialisation';
 import { divideReceipt, resizeArrayRight } from './utils/utils';
 import { GridView } from './GridView';
@@ -106,6 +107,7 @@ export const MainView: FC = () => {
               name="receipt"
               onValueChange={handleReceiptChange(values, setValues)}
             />
+            <ReceiptTotal receiptItems={values.receiptItems} />
             <NumberOfPeopleInput
               label="Number of People"
               name="numberOfPeople"
