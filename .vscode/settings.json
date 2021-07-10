@@ -38,6 +38,7 @@
     "currency-format",
     "receipt",
     "deps",
-    "readme"
+    "readme",
+    "keyboard-control"
   ],
 }

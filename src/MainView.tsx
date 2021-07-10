@@ -9,12 +9,7 @@ import { ReceiptTotal } from './components/ReceiptTotal';
 import { decompressDecode, deminify } from './utils/serialisation';
 import { divideReceipt, resizeArrayRight } from './utils/utils';
 import { GridView } from './GridView';
-import type {
-  FormikFormState,
-  FormikSetter,
-  NumericInputValue,
-  ReceiptItemWithShare,
-} from './types';
+import type { FormikFormState, FormikSetter, ReceiptItemWithShare } from './types';
 
 const testReceipt = `Root Ginger Loose £1.03
 Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50
@@ -28,7 +23,7 @@ const initialValues: FormikFormState = {
   peoplesInitials: Array.from({ length: initNumberOfPeople }).fill('') as string[],
   receiptItems: divideReceipt(testReceipt).map((receiptItem) => ({
     ...receiptItem,
-    shares: Array.from({ length: initNumberOfPeople }).fill('') as NumericInputValue[],
+    shares: Array.from({ length: initNumberOfPeople }).fill('') as string[],
     discount: '',
   })),
 };
@@ -57,7 +52,7 @@ const handleReceiptChange =
       return {
         ...receiptItem,
         discount: '',
-        shares: Array.from({ length: numberOfPeople }).fill('') as NumericInputValue[],
+        shares: Array.from({ length: numberOfPeople }).fill('') as string[],
       };
     });
 

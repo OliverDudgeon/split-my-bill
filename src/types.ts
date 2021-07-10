@@ -5,11 +5,9 @@ export interface ReceiptItem {
   price: number;
 }
 
-export type NumericInputValue = number | '';
-
 export interface ReceiptItemWithShare extends ReceiptItem {
-  discount: NumericInputValue;
-  shares: NumericInputValue[];
+  discount: string;
+  shares: string[];
 }
 
 export interface FormikFormState {
@@ -22,8 +20,8 @@ export interface FormikFormState {
 export interface MinifiedFormikState {
   n: number;
   r: {
-    d: NumericInputValue;
-    s: NumericInputValue[];
+    d: string;
+    s: string[];
     i: string;
     p: number;
   }[];
