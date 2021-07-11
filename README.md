@@ -1,8 +1,10 @@
 # Split my Bill
 
-<center>
+<br />
+<div align="center">
 <b>Go to the app: <a href="https://oliverdudgeon.github.io/split-my-bill">Split My Bill</b></a>
-</center>
+</div>
+<br />
 
 Groups like to share, be that a meal or a grocery shop, but working out who owes what can be tricky. [Split My Bill](https://oliverdudgeon.github.io/split-my-bill) is designed to solve this problem by allowing a receipt to be entered and the items divided by share. To ensure everyone in the group is satisfied, your receipt has a permanent link which you can share with your group so they can be confident you have split the bill fairly.
 
