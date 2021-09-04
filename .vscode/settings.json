@@ -5,7 +5,6 @@
     "source.fixAll",
     "source.organizeImports"
   ],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "files.exclude": {
     "**/.eslintcache": true,
@@ -40,5 +39,6 @@
     "keyboard-control",
     "items",
     "vitamin"
-  ]
+  ],
+  "cSpell.words": ["Formik"]
 }
