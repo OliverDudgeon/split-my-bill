@@ -15,9 +15,7 @@
     "**/yarn.lock": true
   },
   "git.enableCommitSigning": true,
-  "stylelint.validate": [
-    "css"
-  ],
+  "stylelint.validate": ["css"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "conventionalCommits.scopes": [
     "actions",
@@ -40,6 +38,7 @@
     "deps",
     "readme",
     "keyboard-control",
-    "items"
-  ],
+    "items",
+    "vitamin"
+  ]
 }

@@ -1,27 +1,16 @@
 import reactRefresh from '@vitejs/plugin-react-refresh';
+import istanbul from 'rollup-plugin-istanbul';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   base: '/split-my-bill/',
-  build: {
-    brotliSize: false,
-  },
   plugins: [
     tsconfigPaths(),
     reactRefresh(),
     VitePWA({
-      workbox: {
-        additionalManifestEntries: [
-          // eslint-disable-next-line unicorn/no-null
-          // { url: "https://rsms.me/inter/inter.css", revision: null },
-        ],
-        cleanupOutdatedCaches: true,
-        clientsClaim: true,
-        skipWaiting: true,
-        navigateFallback: undefined,
-      },
+      registerType: 'autoUpdate',
       manifest: {
         name: 'Split My Bill',
         short_name: 'Split My Bill',
@@ -41,5 +30,9 @@ export default defineConfig({
         ],
       },
     }),
+    mode === 'test' &&
+      istanbul({
+        include: ['src/**/*.tsx'],
+      }),
   ],
-});
+}));
