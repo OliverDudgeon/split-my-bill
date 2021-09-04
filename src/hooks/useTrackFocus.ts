@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export const useRoveFocus = (
+export const useTrackFocus = (
   size: number,
   verticalStep: number,
 ): readonly [number, React.Dispatch<React.SetStateAction<number>>] => {

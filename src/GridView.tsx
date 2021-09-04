@@ -1,13 +1,21 @@
 import React, { FC, Fragment, useEffect } from 'react';
 
 import { FieldArray } from 'formik';
-import { useRoveFocus } from 'hooks/useRoveFocus';
+import { useFocusInput } from 'hooks/useFocusInput';
+import { useTrackFocus } from 'hooks/useTrackFocus';
 import { throttle } from 'lodash';
 
 import { Input } from './components/Input';
 import { useViewport } from './hooks/useViewport';
 import { compressEncode, minify } from './utils/serialisation';
-import { poundFormatter, sum, sumPricesByPerson } from './utils/utils';
+import {
+  getDiscountInputName,
+  getInitialsInputName,
+  getShareInputName,
+  poundFormatter,
+  sum,
+  sumPricesByPerson,
+} from './utils/utils';
 import type { FormikFormState } from './types';
 
 interface GridViewProperties {
@@ -19,17 +27,21 @@ const updateUrl = throttle((url: string) => {
 }, 500);
 
 export const GridView: FC<GridViewProperties> = ({ values }) => {
-  const [focus, setFocus] = useRoveFocus(
+  // Handle keyboard navigation
+  const [focus, setFocus] = useTrackFocus(
     values.receiptItems.length * (values.numberOfPeople + 1) + values.numberOfPeople,
     values.numberOfPeople + 1,
   );
+  useFocusInput(focus, values.numberOfPeople);
 
+  // Update URL with encoded data
   useEffect(() => {
     const minified = minify({ ...values });
     const url = compressEncode(minified);
     updateUrl(`?${url}`);
   });
 
+  // Divide the receipt
   const splitItems = values.receiptItems.map(({ price, discount, shares }) => {
     // discount is a FormDataEntryValue - assume a number has been inputted
     const actualPrice = price - (Number.parseInt(discount, 10) || 0);
@@ -45,6 +57,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
   });
   const priceSummary = sumPricesByPerson(splitItems);
 
+  // Responsive UI
   const { width } = useViewport();
   const isBreakpointAl = (width ?? 0) < 640; // Tailwind xs breakpoint
 
@@ -63,9 +76,8 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
                 className={`font-bold self-center w-full col-start-auto ${
                   personIndex === 0 ? 'sm:col-start-4' : ''
                 }`}
-                focus={focus === inputIndex}
                 key={personIndex}
-                name={`peoplesInitials.${personIndex}`}
+                name={getInitialsInputName(personIndex)}
                 placeholder="Initial"
                 onClick={() => setFocus(inputIndex)}
               />
@@ -95,8 +107,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
                 </span>
                 <Input
                   className="self-center w-full"
-                  focus={focus === inputIndex}
-                  name={`receiptItems.${itemIndex}.discount`}
+                  name={getDiscountInputName(itemIndex)}
                   placeholder="discount"
                   onClick={() => setFocus(inputIndex)}
                 />
@@ -107,9 +118,8 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
                         className={`self-center w-full ${
                           personIndex === 0 ? 'col-start-1' : ''
                         } sm:col-start-auto`}
-                        focus={focus === inputIndex + personIndex + 1}
                         key={personIndex}
-                        name={`receiptItems.${itemIndex}.shares.${personIndex}`}
+                        name={getShareInputName(itemIndex, personIndex)}
                         placeholder={values.peoplesInitials[personIndex]}
                         onClick={() => setFocus(inputIndex + personIndex + 1)}
                       />

@@ -1,20 +1,11 @@
-import React, { FC, InputHTMLAttributes, useEffect, useRef } from 'react';
+import React, { FC, InputHTMLAttributes, useRef } from 'react';
 
 import { Field } from 'formik';
 
-interface InputProperties extends InputHTMLAttributes<HTMLInputElement> {
-  focus?: boolean;
-}
+type InputProperties = InputHTMLAttributes<HTMLInputElement>;
 
-export const Input: FC<InputProperties> = ({ className, focus, ...properties }) => {
+export const Input: FC<InputProperties> = ({ className, ...properties }) => {
   const reference = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (focus) {
-      // Move element into view when it is focused
-      reference.current?.focus();
-    }
-  }, [focus]);
 
   return (
     <Field
@@ -22,7 +13,6 @@ export const Input: FC<InputProperties> = ({ className, focus, ...properties }) 
                   focus:shadow-outline appearance-none ${className ?? ''}`}
       {...properties}
       innerRef={reference}
-      tabIndex={focus ? 0 : focus === undefined ? undefined : -1}
       onKeyDown={(event: KeyboardEvent) => {
         // Prevent focus switch when in middle of text
         const position = reference.current?.selectionStart; // Cursor position
