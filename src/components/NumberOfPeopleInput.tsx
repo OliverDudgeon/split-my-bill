@@ -1,32 +1,62 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 
-import { FieldHookConfig, FieldInputProps, useField } from 'formik';
+import { FormikFormState, FormikSetter } from 'types';
+import { resizeArrayRight } from 'utils/utils';
 
+import { IncrementButton } from './IncrementButton';
 import { Input } from './Input';
 
-interface NumberOfPeopleInputProperties {
-  onValueChange: (event: ChangeEvent<HTMLInputElement>, field: FieldInputProps<string>) => void;
-  label: string;
+/**
+ * Adjust the form state to have the number of "shares" fields specified from the "number of people" input
+ */
+const handleChangeToNumberOfPeople = (
+  values: FormikFormState,
+  setValues: FormikSetter<FormikFormState>,
+  newNumberOfPeople: number,
+) => {
+  const newReceiptItems = values.receiptItems.map((receiptItem) => ({
+    ...receiptItem,
+    shares: resizeArrayRight(receiptItem.shares, newNumberOfPeople, ''),
+  }));
+  const newPeoplesInitials = resizeArrayRight(values.peoplesInitials, newNumberOfPeople, '');
+
+  setValues({
+    ...values,
+    numberOfPeople: newNumberOfPeople,
+    receiptItems: newReceiptItems,
+    peoplesInitials: newPeoplesInitials,
+  });
+};
+
+export interface NumberOfPeopleInputProperties {
+  values: FormikFormState;
+  setValues: (
+    values: React.SetStateAction<FormikFormState>,
+    shouldValidate?: boolean | undefined,
+  ) => void;
 }
 
 export const NumberOfPeopleInput = ({
-  label,
-  onValueChange,
-  ...properties
-}: FieldHookConfig<string> & NumberOfPeopleInputProperties): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [field, meta] = useField(properties);
-
-  return (
-    <>
-      <label htmlFor="number-of-people">{label}</label>
-      <Input
-        {...field}
-        id="number-of-people"
-        min={2}
-        type="number"
-        onChange={(event) => onValueChange(event, field)}
-      />
-    </>
-  );
-};
+  values,
+  setValues,
+}: NumberOfPeopleInputProperties): JSX.Element => (
+  <>
+    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+    <label htmlFor="number-of-people">Number of People</label>
+    <IncrementButton
+      side="left"
+      onClick={() =>
+        handleChangeToNumberOfPeople(values, setValues, Math.max(2, values.numberOfPeople - 1))
+      }
+    >
+      -
+    </IncrementButton>
+    <Input disabled id="number-of-people" name="numberOfPeople" />
+    <IncrementButton
+      side="right"
+      onClick={() => handleChangeToNumberOfPeople(values, setValues, values.numberOfPeople + 1)}
+    >
+      +
+    </IncrementButton>
+  </>
+);

@@ -38,7 +38,8 @@
     "readme",
     "keyboard-control",
     "items",
-    "vitamin"
+    "vitamin",
+    "number-of-people"
   ],
   "cSpell.words": ["Formik"]
 }

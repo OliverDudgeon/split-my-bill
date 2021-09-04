@@ -7,7 +7,7 @@ import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
 import { ReceiptTotal } from './components/ReceiptTotal';
 import { decompressDecode, deminify } from './utils/serialisation';
-import { divideReceipt, resizeArrayRight } from './utils/utils';
+import { divideReceipt } from './utils/utils';
 import { GridView } from './GridView';
 import type { FormikFormState, FormikSetter, ReceiptItemWithShare } from './types';
 
@@ -60,25 +60,6 @@ const handleReceiptChange =
     field.onChange(event);
   };
 
-/**
- * Adjust the form state to have the number of "shares" fields specified from the "number of people" input
- */
-const handleChangeToNumberOfPeople =
-  (values: FormikFormState, setValues: FormikSetter<FormikFormState>) =>
-  (event: ChangeEvent<HTMLInputElement>, field: FieldInputProps<string>) => {
-    const newNumberOfPeople = Number.parseInt(event.target.value, 10);
-
-    const newReceiptItems = values.receiptItems.map((receiptItem) => ({
-      ...receiptItem,
-      shares: resizeArrayRight(receiptItem.shares, newNumberOfPeople, ''),
-    }));
-
-    const newPeoplesInitials = resizeArrayRight(values.peoplesInitials, newNumberOfPeople, '');
-
-    setValues({ ...values, receiptItems: newReceiptItems, peoplesInitials: newPeoplesInitials });
-    field.onChange(event);
-  };
-
 export const MainView: FC = () => {
   let parsedFormikState: FormikFormState | undefined;
   try {
@@ -103,11 +84,9 @@ export const MainView: FC = () => {
               onValueChange={handleReceiptChange(values, setValues)}
             />
             <ReceiptTotal receiptItems={values.receiptItems} />
-            <NumberOfPeopleInput
-              label="Number of People"
-              name="numberOfPeople"
-              onValueChange={handleChangeToNumberOfPeople(values, setValues)}
-            />
+
+            <NumberOfPeopleInput setValues={setValues} values={values} />
+
             {values.receiptItems.length > 0 && <GridView values={values} />}
           </Form>
         )}
