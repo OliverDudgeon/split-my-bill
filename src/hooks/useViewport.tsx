@@ -38,7 +38,7 @@ export const ViewportProvider: FC = ({ children }) => {
 /* Rewrite the "useViewport" hook to pull the width and height values
     out of the context instead of calculating them itself */
 export const useViewport = (): Size => {
-  /* We can use the "useContext" Hook to acccess a context from within
+  /* We can use the "useContext" Hook to access a context from within
       another Hook, remember, Hooks are composable! */
   const { width, height } = useContext(viewportContext);
   return { width, height };
