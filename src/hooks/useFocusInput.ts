@@ -13,5 +13,9 @@ export const useFocusInput = (focus: number, numberOfPeople: number): void => {
       throw new Error(`Found ${inputs.length} inputs with the 'name': ${name} @ focus = ${focus}`);
     }
     inputs[0].focus();
-  }, [focus, numberOfPeople]);
+
+    // Including 'numberOfPeople' in here causes the focus to move when changing number of people
+    // This causes the keyboard to popup on mobile devices -- a bad UX
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [focus]);
 };
