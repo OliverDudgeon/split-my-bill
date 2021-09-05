@@ -1,7 +1,11 @@
 import type { FC, HTMLProps } from 'react';
 import React from 'react';
 
-export const IncrementButton: FC<HTMLProps<HTMLButtonElement> & { side?: 'left' | 'right' }> = ({
+export interface IncrementButtonProperties extends HTMLProps<HTMLButtonElement> {
+  side?: 'left' | 'right';
+}
+
+export const IncrementButton: FC<IncrementButtonProperties> = ({
   children,
   className,
   side,
@@ -9,9 +13,9 @@ export const IncrementButton: FC<HTMLProps<HTMLButtonElement> & { side?: 'left' 
 }) => (
   <button
     {...properties}
-    className={`shadow border ${
+    className={`shadow-sm border ${
       side === undefined ? 'rounded' : side === 'left' ? 'rounded-l' : 'rounded-r'
-    } py-2 px-3 text-gray-700 leading-tight focus:outline-none
+    } text-2xl px-3 text-gray-700 leading-tight focus:outline-none
     focus:shadow-outline appearance-none ${className ?? ''}`}
     type="button"
   >

@@ -40,7 +40,7 @@ export const NumberOfPeopleInput = ({
   values,
   setValues,
 }: NumberOfPeopleInputProperties): JSX.Element => (
-  <>
+  <div className="flex">
     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
     <label htmlFor="number-of-people">Number of People</label>
     <IncrementButton
@@ -51,12 +51,17 @@ export const NumberOfPeopleInput = ({
     >
       -
     </IncrementButton>
-    <Input disabled id="number-of-people" name="numberOfPeople" />
+    <Input
+      disabled
+      className="w-12 text-center rounded-none shadow-sm text-lg"
+      id="number-of-people"
+      name="numberOfPeople"
+    />
     <IncrementButton
       side="right"
       onClick={() => handleChangeToNumberOfPeople(values, setValues, values.numberOfPeople + 1)}
     >
       +
     </IncrementButton>
-  </>
+  </div>
 );
