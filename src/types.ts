@@ -13,12 +13,14 @@ export interface ReceiptItemWithShare extends ReceiptItem {
 export interface FormikFormState {
   receipt: string;
   numberOfPeople: number;
+  serviceCharge: string;
   peoplesInitials: string[];
   receiptItems: ReceiptItemWithShare[];
 }
 
 export interface MinifiedFormikState {
   n: number;
+  sc: string;
   r: {
     d: string;
     s: string[];

@@ -1,12 +1,21 @@
 import React, { FC } from 'react';
 
 import { ReceiptItem } from 'types';
-import { poundFormatter, sum } from 'utils/utils';
+
+import { calculateServiceChargeFraction, calculateTotal, poundFormatter } from '../utils/utils';
 
 interface ReceiptTotalProperties {
   receiptItems: ReceiptItem[];
+  serviceCharge?: string;
 }
 
-export const ReceiptTotal: FC<ReceiptTotalProperties> = ({ receiptItems }) => (
-  <p>{`Total: ${poundFormatter.format(sum(receiptItems.map((item) => item.price)))}`}</p>
-);
+export const ReceiptTotal: FC<ReceiptTotalProperties> = ({ receiptItems, serviceCharge = '' }) => {
+  const serviceChargeFraction = calculateServiceChargeFraction(serviceCharge);
+  const total = calculateTotal(receiptItems);
+  return (
+    <p>
+      {`Total: ${poundFormatter.format(total * (serviceChargeFraction + 1))}`}
+      {!!serviceCharge && ` sc: (${poundFormatter.format(total * serviceChargeFraction)})`}
+    </p>
+  );
+};

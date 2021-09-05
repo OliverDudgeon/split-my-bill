@@ -51,6 +51,12 @@ export const calculateDiscount = (discount: string, price: number): number => {
   return price - parsedDiscount;
 };
 
+export const calculateServiceChargeFraction = (serviceCharge: string): number =>
+  (Number.parseFloat(serviceCharge) || 0) / 100;
+
+export const calculateTotal = (receiptItems: ReceiptItem[]): number =>
+  sum(receiptItems.map((item) => item.price));
+
 export const divideReceipt = (source: string): ReceiptItem[] => {
   const receiptItems: ReceiptItem[] = [];
   for (const line of source.split('\n')) {

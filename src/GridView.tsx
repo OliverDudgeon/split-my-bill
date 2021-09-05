@@ -10,6 +10,8 @@ import { useViewport } from './hooks/useViewport';
 import { compressEncode, minify } from './utils/serialisation';
 import {
   calculateDiscount,
+  calculateServiceChargeFraction,
+  calculateTotal,
   getDiscountInputName,
   getInitialsInputName,
   getShareInputName,
@@ -56,6 +58,11 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
     return shares.map((share) => (actualPrice * (Number.parseInt(share, 10) || 0)) / totalShares);
   });
   const priceSummary = sumPricesByPerson(splitItems);
+
+  const total = calculateTotal(values.receiptItems);
+  const serviceChargePrice = total * calculateServiceChargeFraction(values.serviceCharge);
+
+  const serviceChargePerPerson = priceSummary.map((price) => (serviceChargePrice * price) / total);
 
   // Responsive UI
   const { width } = useViewport();
@@ -139,10 +146,12 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
       </b>
       {priceSummary.map((price, personIndex) => {
         const initial = values.peoplesInitials[personIndex];
-        const formattedPrice = poundFormatter.format(price);
+        const serviceCharge = serviceChargePerPerson[personIndex];
+        const formattedPrice = poundFormatter.format(price + serviceCharge);
         return (
           <span className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''} key={personIndex}>
             {`${initial ? `${initial}: ` : ''}${formattedPrice}`}
+            {!!serviceCharge && ` sc: (${poundFormatter.format(serviceCharge)})`}
           </span>
         );
       })}

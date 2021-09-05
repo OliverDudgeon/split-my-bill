@@ -1,11 +1,12 @@
 import React, { ChangeEvent, FC } from 'react';
 
-import { ShareButton } from 'components/ShareButton';
 import { FieldInputProps, Form, Formik } from 'formik';
 
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
 import { ReceiptTotal } from './components/ReceiptTotal';
+import { ServiceChargeInput } from './components/ServiceChargeInput';
+import { ShareButton } from './components/ShareButton';
 import { decompressDecode, deminify } from './utils/serialisation';
 import { divideReceipt } from './utils/utils';
 import { GridView } from './GridView';
@@ -20,6 +21,7 @@ const initNumberOfPeople = 3;
 const initialValues: FormikFormState = {
   receipt: testReceipt,
   numberOfPeople: initNumberOfPeople,
+  serviceCharge: '0',
   peoplesInitials: Array.from({ length: initNumberOfPeople }).fill('') as string[],
   receiptItems: divideReceipt(testReceipt).map((receiptItem) => ({
     ...receiptItem,
@@ -84,6 +86,10 @@ export const MainView: FC = () => {
               onValueChange={handleReceiptChange(values, setValues)}
             />
             <ReceiptTotal receiptItems={values.receiptItems} />
+
+            <ServiceChargeInput />
+
+            <ReceiptTotal receiptItems={values.receiptItems} serviceCharge={values.serviceCharge} />
 
             <NumberOfPeopleInput setValues={setValues} values={values} />
 

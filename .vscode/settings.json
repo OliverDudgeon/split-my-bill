@@ -39,7 +39,8 @@
     "keyboard-control",
     "items",
     "vitamin",
-    "number-of-people"
+    "number-of-people",
+    "service-charge"
   ],
   "cSpell.words": ["Formik"]
 }
