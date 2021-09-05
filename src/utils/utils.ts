@@ -35,6 +35,22 @@ export const poundFormatter = new Intl.NumberFormat('en-GB', {
   currencyDisplay: 'narrowSymbol',
 });
 
+/**
+ * Calculates a actual price from a price and a discount
+ * @param discount the discount to be calculated: either a absolute price to be subtracted or a percentage
+ * @param price the price the discount is taken from
+ * @returns the calculated price
+ */
+export const calculateDiscount = (discount: string, price: number): number => {
+  // discount is a string - it can be either a absolute number (1.50 meaning £1.50) or a percentage
+  // (1.5% meaning a 0.95x multiplier)
+  const parsedDiscount = Number.parseFloat(discount) || 0;
+  if (discount.includes('%')) {
+    return price * (1 - parsedDiscount / 100);
+  }
+  return price - parsedDiscount;
+};
+
 export const divideReceipt = (source: string): ReceiptItem[] => {
   const receiptItems: ReceiptItem[] = [];
   for (const line of source.split('\n')) {

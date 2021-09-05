@@ -9,6 +9,7 @@ import { Input } from './components/Input';
 import { useViewport } from './hooks/useViewport';
 import { compressEncode, minify } from './utils/serialisation';
 import {
+  calculateDiscount,
   getDiscountInputName,
   getInitialsInputName,
   getShareInputName,
@@ -43,8 +44,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
 
   // Divide the receipt
   const splitItems = values.receiptItems.map(({ price, discount, shares }) => {
-    // discount is a FormDataEntryValue - assume a number has been inputted
-    const actualPrice = price - (Number.parseInt(discount, 10) || 0);
+    const actualPrice = calculateDiscount(discount, price);
 
     const totalShares = sum(shares.map((share) => Number.parseInt(share, 10) || 0));
 
@@ -103,7 +103,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
                   {item}
                 </span>
                 <span className="self-center">
-                  {poundFormatter.format(price - (Number.parseInt(discount, 10) || 0))}
+                  {poundFormatter.format(calculateDiscount(discount, price))}
                 </span>
                 <Input
                   className="self-center w-full"
@@ -134,11 +134,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
       <b>Total:</b>
       <b className="col-start-2">
         {poundFormatter.format(
-          sum(
-            values.receiptItems.map(
-              ({ price, discount }) => price - (Number.parseInt(discount, 10) || 0),
-            ),
-          ),
+          sum(values.receiptItems.map(({ price, discount }) => calculateDiscount(discount, price))),
         )}
       </b>
       {priceSummary.map((price, personIndex) => {
