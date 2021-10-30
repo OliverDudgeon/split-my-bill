@@ -1,4 +1,5 @@
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import eslintPlugin from '@nabla/vite-plugin-eslint';
+import react from '@vitejs/plugin-react';
 import istanbul from 'rollup-plugin-istanbul';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -8,7 +9,8 @@ export default defineConfig(({ mode }) => ({
   base: '/split-my-bill/',
   plugins: [
     tsconfigPaths(),
-    reactRefresh(),
+    react(),
+    eslintPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {

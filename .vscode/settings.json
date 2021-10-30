@@ -8,7 +8,6 @@
   "editor.formatOnSave": true,
   "files.exclude": {
     "**/.eslintcache": true,
-    "**/.vscode": true,
     "**/dist": true,
     "**/node_modules": true,
     "**/yarn.lock": true
@@ -42,5 +41,6 @@
     "number-of-people",
     "service-charge"
   ],
-  "cSpell.words": ["Formik"]
+  "cSpell.words": ["Formik"],
+  "iridium.npm.packageManager": "yarn"
 }
