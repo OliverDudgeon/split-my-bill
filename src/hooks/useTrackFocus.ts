@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export const useTrackFocus = (
+export function useTrackFocus(
   size: number,
   verticalStep: number,
-): readonly [number, React.Dispatch<React.SetStateAction<number>>] => {
+): readonly [number, React.Dispatch<React.SetStateAction<number>>] {
   const [currentFocus, setCurrentFocus] = useState(1);
 
   const handleKeyInput = useCallback(
@@ -12,7 +12,7 @@ export const useTrackFocus = (
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         (event.target as any)?.tagName === 'INPUT' &&
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        (event.target as any)?.name !== 'numberOfPeople'
+        (event.target as any).name !== 'numberOfPeople'
       ) {
         switch (event.key) {
           case 'Tab': {
@@ -71,4 +71,4 @@ export const useTrackFocus = (
   }, [handleKeyInput]);
 
   return [currentFocus, setCurrentFocus] as const;
-};
+}

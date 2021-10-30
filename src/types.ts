@@ -27,7 +27,7 @@ export interface MinifiedFormikState {
     i: string;
     p: number;
   }[];
-  p: string[];
+  p?: string[];
 }
 
 export type FormikSetter<TValue> = (

@@ -1,10 +1,11 @@
-import React, { FC, InputHTMLAttributes, useRef } from 'react';
+import type { InputHTMLAttributes, ReactElement } from 'react';
+import { useRef } from 'react';
 
 import { Field } from 'formik';
 
 type InputProperties = InputHTMLAttributes<HTMLInputElement>;
 
-export const Input: FC<InputProperties> = ({ className, ...properties }) => {
+export function Input({ className, ...properties }: InputProperties): ReactElement {
   const reference = useRef<HTMLInputElement>(null);
 
   return (
@@ -29,4 +30,4 @@ export const Input: FC<InputProperties> = ({ className, ...properties }) => {
       }}
     />
   );
-};
+}

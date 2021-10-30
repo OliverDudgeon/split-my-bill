@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import type { ReactElement } from 'react';
 
-import { ReceiptItem } from 'types';
+import type { ReceiptItem } from 'types';
 
 import { calculateServiceChargeFraction, calculateTotal, poundFormatter } from '../utils/utils';
 
@@ -9,7 +9,10 @@ interface ReceiptTotalProperties {
   serviceCharge?: string;
 }
 
-export const ReceiptTotal: FC<ReceiptTotalProperties> = ({ receiptItems, serviceCharge = '' }) => {
+export function ReceiptTotal({
+  receiptItems,
+  serviceCharge = '',
+}: ReceiptTotalProperties): ReactElement {
   const serviceChargeFraction = calculateServiceChargeFraction(serviceCharge);
   const total = calculateTotal(receiptItems);
   return (
@@ -18,4 +21,4 @@ export const ReceiptTotal: FC<ReceiptTotalProperties> = ({ receiptItems, service
       {!!serviceCharge && ` sc: (${poundFormatter.format(total * serviceChargeFraction)})`}
     </p>
   );
-};
+}

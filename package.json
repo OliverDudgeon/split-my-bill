@@ -15,7 +15,7 @@
     "format": "prettier -uw --ignore-path .gitignore .",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx src",
     "run-stylelint": "stylelint --cache --fix --ignore-path .gitignore '**/*.css'",
-    "lint": "npm-run-all --parallel run-tsc run-stylelint run-eslint",
+    "lint": "npm-run-all --parallel type-check run-stylelint run-eslint",
     "validate": "yarn lint && yarn build --mode test && yarn test:headless"
   },
   "dependencies": {
@@ -52,6 +52,8 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-unicorn": "37.0.1",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-plugin-react-prefer-function-component": "0.0.7",
     "gh-pages": "^3.2.3",
     "husky": "7.0.4",
     "lint-staged": "11.2.6",
@@ -67,8 +69,6 @@
     "vite": "2.6.13",
     "vite-plugin-pwa": "0.11.3",
     "vite-tsconfig-paths": "3.3.17",
-    "eslint-config-airbnb": "18.2.1",
-    "eslint-plugin-react-prefer-function-component": "0.0.7",
     "npm-run-all": "4.1.5",
     "rollup": "2.58.3",
     "workbox-build": "6.3.0",

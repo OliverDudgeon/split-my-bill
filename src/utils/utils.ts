@@ -22,7 +22,7 @@ export const sumPricesByPerson = (prices: number[][]): number[] =>
  * @param fillWith new values will be filled with this value
  * @returns A new array with a new length
  */
-export const resizeArrayRight = <TArrayValue extends unknown>(
+export const resizeArrayRight = <TArrayValue>(
   array: TArrayValue[],
   length: number,
   fillWith?: TArrayValue,
@@ -62,6 +62,7 @@ export const divideReceipt = (source: string): ReceiptItem[] => {
   for (const line of source.split('\n')) {
     for (const symbol of CURRENCY_SYMBOLS) {
       const [item, price] = line.split(symbol);
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (price !== undefined) {
         receiptItems.push({ item, price: Number.parseFloat(price) });
       }
@@ -75,7 +76,7 @@ type InitialsName = `peoplesInitials.${number}`;
 type DiscountName = `receiptItems.${number}.discount`;
 type ShareName = `receiptItems.${number}.shares.${number}`;
 
-type InputName = InitialsName | DiscountName | ShareName;
+type InputName = DiscountName | InitialsName | ShareName;
 
 export const getInitialsInputName = (personIndex: number): InitialsName =>
   `peoplesInitials.${personIndex}`;

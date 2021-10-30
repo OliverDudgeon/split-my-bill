@@ -1,6 +1,6 @@
 import { base64ToBytes, bytesToBase64 } from 'byte-base64';
 import pako from 'pako';
-import { FormikFormState, MinifiedFormikState, ReceiptItemWithShare } from 'types';
+import type { FormikFormState, MinifiedFormikState, ReceiptItemWithShare } from 'types';
 
 export const minify = ({
   numberOfPeople,
@@ -43,6 +43,7 @@ export const deminify = ({
   return { ...state, receipt: `${receipt}\n` };
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const compressEncode = (object: any): string => {
   const compressed = pako.gzip(JSON.stringify(object));
   const base64 = bytesToBase64(compressed);
@@ -50,7 +51,7 @@ export const compressEncode = (object: any): string => {
 };
 
 export const decompressDecode = (base64: string): MinifiedFormikState => {
-  const replacedBase64 = base64.replace(/-/g, '/');
+  const replacedBase64 = base64.replaceAll('-', '/');
   const compressed = base64ToBytes(replacedBase64);
   const decompressed = pako.ungzip(compressed);
 

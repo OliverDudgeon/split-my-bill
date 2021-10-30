@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement } from 'react';
+import type { ChangeEvent, ReactElement } from 'react';
 
 import type { FieldHookConfig, FieldInputProps } from 'formik';
 
@@ -8,9 +8,9 @@ interface ReceiptTextAreaProperties {
   onValueChange: (event: ChangeEvent<HTMLTextAreaElement>, field: FieldInputProps<string>) => void;
 }
 
-export const ReceiptTextArea = ({
+export function ReceiptTextArea({
   onValueChange,
   ...config
-}: FieldHookConfig<string> & ReceiptTextAreaProperties): ReactElement => (
-  <TextArea {...config} className="w-full self-center" onValueChange={onValueChange} />
-);
+}: FieldHookConfig<string> & ReceiptTextAreaProperties): ReactElement {
+  return <TextArea {...config} className="w-full self-center" onValueChange={onValueChange} />;
+}

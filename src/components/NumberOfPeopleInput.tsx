@@ -1,6 +1,7 @@
-import React from 'react';
+import type React from 'react';
+import type { ReactElement } from 'react';
 
-import { FormikFormState, FormikSetter } from 'types';
+import type { FormikFormState, FormikSetter } from 'types';
 import { resizeArrayRight } from 'utils/utils';
 
 import { IncrementButton } from './IncrementButton';
@@ -36,32 +37,36 @@ export interface NumberOfPeopleInputProperties {
   ) => void;
 }
 
-export const NumberOfPeopleInput = ({
+export function NumberOfPeopleInput({
   values,
   setValues,
-}: NumberOfPeopleInputProperties): JSX.Element => (
-  <div className="flex">
-    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-    <label htmlFor="number-of-people">Number of People</label>
-    <IncrementButton
-      side="left"
-      onClick={() =>
-        handleChangeToNumberOfPeople(values, setValues, Math.max(2, values.numberOfPeople - 1))
-      }
-    >
-      -
-    </IncrementButton>
-    <Input
-      disabled
-      className="w-12 text-center rounded-none shadow-sm text-lg"
-      id="number-of-people"
-      name="numberOfPeople"
-    />
-    <IncrementButton
-      side="right"
-      onClick={() => handleChangeToNumberOfPeople(values, setValues, values.numberOfPeople + 1)}
-    >
-      +
-    </IncrementButton>
-  </div>
-);
+}: NumberOfPeopleInputProperties): ReactElement {
+  return (
+    <div className="flex">
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label htmlFor="number-of-people">Number of People</label>
+      <IncrementButton
+        side="left"
+        onClick={() => {
+          handleChangeToNumberOfPeople(values, setValues, Math.max(2, values.numberOfPeople - 1));
+        }}
+      >
+        -
+      </IncrementButton>
+      <Input
+        disabled
+        className="w-12 text-center rounded-none shadow-sm text-lg"
+        id="number-of-people"
+        name="numberOfPeople"
+      />
+      <IncrementButton
+        side="right"
+        onClick={() => {
+          handleChangeToNumberOfPeople(values, setValues, values.numberOfPeople + 1);
+        }}
+      >
+        +
+      </IncrementButton>
+    </div>
+  );
+}

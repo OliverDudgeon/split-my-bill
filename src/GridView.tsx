@@ -1,4 +1,5 @@
-import React, { FC, Fragment, useEffect } from 'react';
+import type { ReactElement } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import { FieldArray } from 'formik';
 import { useFocusInput } from 'hooks/useFocusInput';
@@ -29,7 +30,7 @@ const updateUrl = throttle((url: string) => {
   window.history.pushState('', '', url);
 }, 500);
 
-export const GridView: FC<GridViewProperties> = ({ values }) => {
+export function GridView({ values }: GridViewProperties): ReactElement {
   // Handle keyboard navigation
   const [focus, setFocus] = useTrackFocus(
     values.receiptItems.length * (values.numberOfPeople + 1) + values.numberOfPeople,
@@ -75,7 +76,7 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
   return (
     <div className="grid gap-4 my-5" style={{ gridTemplateColumns }}>
       <FieldArray name="peoplesInitials">
-        {() =>
+        {(): ReactElement[] =>
           values.peoplesInitials.map((person, personIndex) => {
             const inputIndex = personIndex + 1;
             return (
@@ -86,7 +87,9 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
                 key={personIndex}
                 name={getInitialsInputName(personIndex)}
                 placeholder="Initial"
-                onClick={() => setFocus(inputIndex)}
+                onClick={() => {
+                  setFocus(inputIndex);
+                }}
               />
             );
           })
@@ -116,7 +119,9 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
                   className="self-center w-full"
                   name={getDiscountInputName(itemIndex)}
                   placeholder="discount"
-                  onClick={() => setFocus(inputIndex)}
+                  onClick={() => {
+                    setFocus(inputIndex);
+                  }}
                 />
                 <FieldArray name={`receiptItems.${itemIndex}`}>
                   {() =>
@@ -128,7 +133,9 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
                         key={personIndex}
                         name={getShareInputName(itemIndex, personIndex)}
                         placeholder={values.peoplesInitials[personIndex]}
-                        onClick={() => setFocus(inputIndex + personIndex + 1)}
+                        onClick={() => {
+                          setFocus(inputIndex + personIndex + 1);
+                        }}
                       />
                     ))
                   }
@@ -157,4 +164,4 @@ export const GridView: FC<GridViewProperties> = ({ values }) => {
       })}
     </div>
   );
-};
+}

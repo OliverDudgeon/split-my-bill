@@ -1,121 +1,239 @@
 {
   "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "prettier",
+    "simple-import-sort",
+    "react-prefer-function-component"
+  ],
   "extends": [
-    "eslint:recommended",
-    "plugin:import/warnings",
-    "plugin:import/errors",
-    "eslint-config-airbnb-base",
-    "plugin:unicorn/recommended",
+    "eslint:all",
+    "plugin:@typescript-eslint/all",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:react/all",
+    "plugin:jsx-a11y/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:react/jsx-runtime",
+    "plugin:unicorn/all",
+    "plugin:react-prefer-function-component/recommended",
     "prettier"
   ],
-  "plugins": ["prettier", "simple-import-sort"],
   "rules": {
+    // My Rules
+    "prettier/prettier": [
+      "warn",
+      {
+        "trailingComma": "all",
+        "singleQuote": true,
+        "printWidth": 100,
+        "semi": true,
+        "arrowParens": "always",
+        "bracketSpacing": true,
+        "tabWidth": 2
+      }
+    ],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "shorthandLast": false,
+        "ignoreCase": true,
+        "noSortAlphabetically": false,
+        "reservedFirst": false
+      }
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          // Node.js builtins. You could also generate this regex if you use a `.js` config.
+          // For example: `^(${require("module").builtinModules.join("|")})(/|$)`
+          [
+            "^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)"
+          ],
+          // Packages. `react` related packages come first.
+          ["^react"],
+          ["^@?\\w"],
+          // Side effect imports.
+          ["^\\u0000"],
+          // Parent imports. Put `..` last.
+          // Other relative imports. Put same-folder imports and `.` last.
+          [
+            "^\\.\\.(?!/?$)",
+            "^\\.\\./?$",
+            "^\\./(?=.*/)(?!/?$)",
+            "^\\.(?!/?$)",
+            "^\\./?$"
+          ],
+          // Style imports.
+          ["^.+\\.s?css$"]
+        ]
+      }
+    ],
+    "import/prefer-default-export": 0,
+    "react/no-array-index-key": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-type-alias": 0,
+    "@typescript-eslint/no-explicit-any": "warn",
+    "unicorn/no-keyword-prefix": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/require-default-props": 0,
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "controlComponents": [
+          "Input" // Add React components used inside a <label>
+        ]
+      }
+    ],
+    // Vitamin
+    "no-dupe-else-if": "error",
+    "no-promise-executor-return": "error",
+    "no-unreachable-loop": "error",
+    "no-useless-backreference": "error",
+    "require-atomic-updates": "error",
+    "default-case-last": "error",
+    "grouped-accessor-pairs": "error",
+    "no-constructor-return": "error",
+    "no-implicit-coercion": "error",
+    "prefer-regex-literals": "error",
+    "capitalized-comments": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ForInStatement",
+        "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+      },
+      {
+        "selector": "LabeledStatement",
+        "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+      },
+      {
+        "selector": "WithStatement",
+        "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
+    ],
+    "no-void": "off",
+    "@typescript-eslint/padding-line-between-statements": "off",
+    "@typescript-eslint/prefer-enum-initializers": "off",
+    "@typescript-eslint/prefer-readonly-parameter-types": "off",
+    "@typescript-eslint/prefer-regexp-exec": "off",
+    // "@typescript-eslint/no-magic-numbers": [
+    //   "error",
+    //   {
+    //     "ignoreEnums": true,
+    //     "ignore": [
+    //       0
+    //     ],
+    //     "enforceConst": true,
+    //     "detectObjects": true
+    //   }
+    // ],
+    // "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/init-declarations": "off",
+    "@typescript-eslint/no-confusing-void-expression": [
+      "error",
+      {
+        "ignoreArrowShorthand": true
+      }
+    ],
+    "@typescript-eslint/non-nullable-type-assertion-style": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-implicit-any-catch": "off",
+    "@typescript-eslint/member-ordering": "off",
+    "@typescript-eslint/prefer-includes": "off",
+    "@typescript-eslint/no-restricted-imports": "off",
+    "import/no-deprecated": "error",
+    "import/order": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["tailwind.config.js"]
+        "devDependencies": ["vite.config.ts"]
       }
     ],
-    "unicorn/prefer-module": "off"
+    // React classes should not be used
+    "react/no-did-update-set-state": "off",
+    "react/no-find-dom-node": "off",
+    "react/no-is-mounted": "off",
+    "react/no-redundant-should-component-update": "off",
+    "react/no-render-return-value": "off",
+    "react/no-string-refs": "off",
+    "react/no-this-in-sfc": "off",
+    "react/no-will-update-set-state": "off",
+    "react/prefer-es6-class": "off",
+    "react/no-unused-state": "off",
+    "react/prefer-stateless-function": "off",
+    "react/require-render-return": "off",
+    "react/sort-comp": "off",
+    "react/state-in-constructor": "off",
+    "react/static-property-placement": "off",
+    "react/boolean-prop-naming": [
+      "error",
+      {
+        "validateNested": true
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "function-declaration"
+      }
+    ],
+    "react/no-unstable-nested-components": "error",
+    "react/jsx-handler-names": [
+      "error",
+      {
+        "eventHandlerPrefix": "on",
+        "eventHandlerPropPrefix": "on",
+        "checkLocalVariables": true,
+        // "checkInlineFunction": true
+        "checkInlineFunction": false
+      }
+    ],
+    "react/jsx-key": "error",
+    "react/jsx-no-bind": [
+      "error",
+      {
+        "ignoreRefs": false,
+        "allowArrowFunctions": true,
+        "allowFunctions": true,
+        "allowBind": false,
+        "ignoreDOMComponents": false
+      }
+    ],
+    "react/jsx-no-constructed-context-values": "error",
+    "react/jsx-no-script-url": "error",
+    "react/jsx-no-useless-fragment": "error",
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        }
+      }
+    ],
+    "unicorn/no-nested-ternary": ["error"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
-      "parser": "@typescript-eslint/parser",
       "parserOptions": {
-        "project": "./tsconfig.json"
-      },
-      "extends": [
-        "eslint:recommended",
-        "plugin:import/warnings",
-        "plugin:import/errors",
-        "plugin:import/typescript",
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "airbnb-typescript",
-        "airbnb/hooks",
-        "plugin:unicorn/recommended",
-        "prettier"
-      ],
-      "rules": {
-        "import/namespace": "off",
-        "import/no-extraneous-dependencies": [
-          "error",
-          {
-            "devDependencies": ["vite.config.ts"]
-          }
-        ],
-        "unicorn/filename-case": [
-          "error",
-          {
-            "cases": {
-              "camelCase": true,
-              "pascalCase": true
-            }
-          }
-        ],
-        "import/prefer-default-export": 0,
-        "prettier/prettier": [
-          "warn",
-          {
-            "trailingComma": "all",
-            "singleQuote": true,
-            "printWidth": 100,
-            "semi": true,
-            "arrowParens": "always",
-            "bracketSpacing": true,
-            "tabWidth": 2
-          }
-        ],
-        "react/jsx-sort-props": [
-          "error",
-          {
-            "callbacksLast": true,
-            "shorthandFirst": true,
-            "shorthandLast": false,
-            "ignoreCase": true,
-            "noSortAlphabetically": false,
-            "reservedFirst": false
-          }
-        ],
-        "react/require-default-props": 0,
-        "react/prop-types": 0,
-        "react/jsx-props-no-spreading": 0,
-        "react/no-array-index-key": 0,
-        "unicorn/no-null": 1,
-        "no-restricted-syntax": 0,
-        "@typescript-eslint/no-unused-vars": 1,
-        "simple-import-sort/imports": [
-          "error",
-          {
-            "groups": [
-              // Node.js builtins. You could also generate this regex if you use a `.js` config.
-              // For example: `^(${require("module").builtinModules.join("|")})(/|$)`
-              [
-                "^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)"
-              ],
-              // Packages. `react` related packages come first.
-              ["^react"],
-              ["^@?\\w"],
-              // Side effect imports.
-              ["^\\u0000"],
-              // Parent imports. Put `..` last.
-              // Other relative imports. Put same-folder imports and `.` last.
-              [
-                "^\\.\\.(?!/?$)",
-                "^\\.\\./?$",
-                "^\\./(?=.*/)(?!/?$)",
-                "^\\.(?!/?$)",
-                "^\\./?$"
-              ],
-              // Style imports.
-              ["^.+\\.s?css$"]
-            ]
-          }
-        ]
+        "project": ["./tsconfig.json"]
       }
     }
   ]

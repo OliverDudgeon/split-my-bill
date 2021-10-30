@@ -1,6 +1,7 @@
-import React, { ChangeEvent, FC } from 'react';
+import type { ChangeEvent, ReactElement } from 'react';
 
-import { FieldInputProps, Form, Formik } from 'formik';
+import type { FieldInputProps } from 'formik';
+import { Form, Formik } from 'formik';
 
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
@@ -33,16 +34,16 @@ const initialValues: FormikFormState = {
 /**
  * Adjust the entries for each receipt item to match the latest textfield input
  */
-const handleReceiptChange =
+const onReceiptChange =
   (values: FormikFormState, setValues: FormikSetter<FormikFormState>) =>
   (event: ChangeEvent<HTMLTextAreaElement>, field: FieldInputProps<string>) => {
     const receipt = divideReceipt(event.target.value);
-    const previousReceipt = values.receiptItems;
 
-    const { numberOfPeople } = values;
+    const { receiptItems: previousReceipt, numberOfPeople } = values;
 
     const newItemsState: ReceiptItemWithShare[] = receipt.map((receiptItem, itemIndex) => {
-      const previousItemAtItemIndex = previousReceipt[itemIndex];
+      const previousItemAtItemIndex =
+        itemIndex <= previousReceipt.length - 1 ? previousReceipt[itemIndex] : undefined;
 
       if (previousItemAtItemIndex) {
         return {
@@ -62,7 +63,7 @@ const handleReceiptChange =
     field.onChange(event);
   };
 
-export const MainView: FC = () => {
+export function MainView(): ReactElement {
   let parsedFormikState: FormikFormState | undefined;
   try {
     const paths = window.location.search;
@@ -81,10 +82,7 @@ export const MainView: FC = () => {
       <Formik initialValues={parsedFormikState ?? initialValues} onSubmit={() => {}}>
         {({ values, setValues }) => (
           <Form>
-            <ReceiptTextArea
-              name="receipt"
-              onValueChange={handleReceiptChange(values, setValues)}
-            />
+            <ReceiptTextArea name="receipt" onValueChange={onReceiptChange(values, setValues)} />
             <ReceiptTotal receiptItems={values.receiptItems} />
 
             <ServiceChargeInput />
@@ -103,4 +101,4 @@ export const MainView: FC = () => {
       </div>
     </main>
   );
-};
+}
