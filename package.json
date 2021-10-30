@@ -10,7 +10,7 @@
     "build": "tsc && vite build",
     "type-check": "tsc --pretty --noEmit",
     "serve": "vite preview",
-    "serve:test": "start-server-and-test 'yarn serve' http://localhost:5000",
+    "serve:test": "start-server-and-test 'yarn serve' http://localhost:5000/split-my-bill/",
     "prepare": "husky install",
     "format": "prettier -uw --ignore-path .gitignore .",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx src",
