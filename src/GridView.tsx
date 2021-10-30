@@ -4,7 +4,7 @@ import { Fragment, useEffect } from 'react';
 import { FieldArray } from 'formik';
 import { useFocusInput } from 'hooks/useFocusInput';
 import { useTrackFocus } from 'hooks/useTrackFocus';
-import { throttle } from 'lodash';
+import throttle from 'just-throttle';
 
 import { Input } from './components/Input';
 import { useViewport } from './hooks/useViewport';
