@@ -12,7 +12,9 @@
     "**/node_modules": true,
     "**/yarn.lock": true
   },
-  "stylelint.validate": ["css"],
+  "stylelint.validate": [
+    "css"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "conventionalCommits.scopes": [
     "actions",
@@ -38,8 +40,11 @@
     "items",
     "vitamin",
     "number-of-people",
-    "service-charge"
+    "service-charge",
+    "service-worker"
   ],
-  "cSpell.words": ["Formik"],
+  "cSpell.words": [
+    "Formik"
+  ],
   "iridium.npm.packageManager": "yarn"
 }
