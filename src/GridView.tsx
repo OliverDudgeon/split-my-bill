@@ -95,56 +95,61 @@ export function GridView({ values }: GridViewProperties): ReactElement {
           })
         }
       </FieldArray>
-      <FieldArray name="receiptItems">
-        {() =>
-          values.receiptItems.map(({ item, price, shares, discount }, itemIndex) => {
-            const inputIndex = values.numberOfPeople + itemIndex * (values.numberOfPeople + 1) + 1;
-            return (
-              <Fragment key={`${item}-${itemIndex}`}>
-                <span
-                  className={`self-center col-start-1 ${
-                    Math.floor(
-                      (focus - 1 - values.numberOfPeople) / (values.numberOfPeople + 1),
-                    ) === itemIndex
-                      ? 'font-bold'
-                      : ''
-                  }`}
-                >
-                  {item}
-                </span>
-                <span className="self-center">
-                  {poundFormatter.format(calculateDiscount(discount, price))}
-                </span>
-                <Input
-                  className="self-center w-full"
-                  name={getDiscountInputName(itemIndex)}
-                  placeholder="discount"
-                  onClick={() => {
-                    setFocus(inputIndex);
-                  }}
-                />
-                <FieldArray name={`receiptItems.${itemIndex}`}>
-                  {() =>
-                    shares.map((_, personIndex) => (
-                      <Input
-                        className={`self-center w-full ${
-                          personIndex === 0 ? 'col-start-1' : ''
-                        } sm:col-start-auto`}
-                        key={personIndex}
-                        name={getShareInputName(itemIndex, personIndex)}
-                        placeholder={values.peoplesInitials[personIndex]}
-                        onClick={() => {
-                          setFocus(inputIndex + personIndex + 1);
-                        }}
-                      />
-                    ))
-                  }
-                </FieldArray>
-              </Fragment>
-            );
-          })
-        }
-      </FieldArray>
+      {values.receiptItems.length > 0 ? (
+        <FieldArray name="receiptItems">
+          {() =>
+            values.receiptItems.map(({ item, price, shares, discount }, itemIndex) => {
+              const inputIndex =
+                values.numberOfPeople + itemIndex * (values.numberOfPeople + 1) + 1;
+              return (
+                <Fragment key={`${item}-${itemIndex}`}>
+                  <span
+                    className={`self-center col-start-1 ${
+                      Math.floor(
+                        (focus - 1 - values.numberOfPeople) / (values.numberOfPeople + 1),
+                      ) === itemIndex
+                        ? 'font-bold'
+                        : ''
+                    }`}
+                  >
+                    {item}
+                  </span>
+                  <span className="self-center">
+                    {poundFormatter.format(calculateDiscount(discount, price))}
+                  </span>
+                  <Input
+                    className="self-center w-full"
+                    name={getDiscountInputName(itemIndex)}
+                    placeholder="discount"
+                    onClick={() => {
+                      setFocus(inputIndex);
+                    }}
+                  />
+                  <FieldArray name={`receiptItems.${itemIndex}`}>
+                    {() =>
+                      shares.map((_, personIndex) => (
+                        <Input
+                          className={`self-center w-full ${
+                            personIndex === 0 ? 'col-start-1' : ''
+                          } sm:col-start-auto`}
+                          key={personIndex}
+                          name={getShareInputName(itemIndex, personIndex)}
+                          placeholder={values.peoplesInitials[personIndex]}
+                          onClick={() => {
+                            setFocus(inputIndex + personIndex + 1);
+                          }}
+                        />
+                      ))
+                    }
+                  </FieldArray>
+                </Fragment>
+              );
+            })
+          }
+        </FieldArray>
+      ) : (
+        <p className="col-span-full">You have no receipt items to display.</p>
+      )}
       <b>Total:</b>
       <b className="col-start-2">
         {poundFormatter.format(

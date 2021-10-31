@@ -12,8 +12,12 @@ export const range = (n: number): number[] => [...Array.from({ length: n }).keys
 // eslint-disable-next-line unicorn/no-array-reduce
 export const sum = (array: number[]): number => array.reduce((a, b) => a + b, 0);
 
-export const sumPricesByPerson = (prices: number[][]): number[] =>
-  range(prices[0].length).map((index) => sum(prices.map((item) => item[index])));
+export const sumPricesByPerson = (prices: number[][]): number[] => {
+  if (prices.length === 0) {
+    return [];
+  }
+  return range(prices[0].length).map((index) => sum(prices.map((item) => item[index])));
+};
 
 /**
  * Shrink or increase the length of an array

@@ -80,20 +80,26 @@ export function MainView(): ReactElement {
   return (
     <main className="py-4">
       <Formik initialValues={parsedFormikState ?? initialValues} onSubmit={() => {}}>
-        {({ values, setValues }) => (
-          <Form>
-            <ReceiptTextArea name="receipt" onValueChange={onReceiptChange(values, setValues)} />
-            <ReceiptTotal receiptItems={values.receiptItems} />
+        {({ values, setValues }) => {
+          console.log(values);
+          return (
+            <Form>
+              <ReceiptTextArea name="receipt" onValueChange={onReceiptChange(values, setValues)} />
+              <ReceiptTotal receiptItems={values.receiptItems} />
 
-            <ServiceChargeInput />
+              <ServiceChargeInput />
 
-            <ReceiptTotal receiptItems={values.receiptItems} serviceCharge={values.serviceCharge} />
+              <ReceiptTotal
+                receiptItems={values.receiptItems}
+                serviceCharge={values.serviceCharge}
+              />
 
-            <NumberOfPeopleInput setValues={setValues} values={values} />
+              <NumberOfPeopleInput setValues={setValues} values={values} />
 
-            {values.receiptItems.length > 0 && <GridView values={values} />}
-          </Form>
-        )}
+              <GridView values={values} />
+            </Form>
+          );
+        }}
       </Formik>
       <div>
         <p>Click the button to copy a shortened url to share with your splitees</p>
