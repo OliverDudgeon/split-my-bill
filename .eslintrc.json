@@ -95,6 +95,16 @@
         ]
       }
     ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/naming-convention": 0,
     // Vitamin
     "no-dupe-else-if": "error",
     "no-promise-executor-return": "error",

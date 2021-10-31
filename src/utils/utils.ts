@@ -4,7 +4,7 @@
  * @returns Array of integers increasing to n
  */
 
-import { CURRENCY_SYMBOLS } from '../constants';
+import { ITEM_REGEX } from '../constants';
 import type { ReceiptItem } from '../types';
 
 export const range = (n: number): number[] => [...Array.from({ length: n }).keys()];
@@ -57,15 +57,20 @@ export const calculateServiceChargeFraction = (serviceCharge: string): number =>
 export const calculateTotal = (receiptItems: ReceiptItem[]): number =>
   sum(receiptItems.map((item) => item.price));
 
+type Match = [string, string, string, string, string, string];
+
 export const divideReceipt = (source: string): ReceiptItem[] => {
   const receiptItems: ReceiptItem[] = [];
   for (const line of source.split('\n')) {
-    for (const symbol of CURRENCY_SYMBOLS) {
-      const [item, price] = line.split(symbol);
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      if (price !== undefined) {
-        receiptItems.push({ item, price: Number.parseFloat(price) });
-      }
+    const match = line.match(ITEM_REGEX) as Match | null;
+
+    const [_, item, negative, _prefixCurrency, price, _suffixCurrency] = match ?? [];
+
+    if (item !== undefined && price !== undefined) {
+      receiptItems.push({
+        item,
+        price: Number.parseFloat(price) * (negative ? -1 : 1),
+      });
     }
   }
 
