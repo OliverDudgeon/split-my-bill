@@ -71,7 +71,7 @@ export function MainView(): ReactElement {
     // Remove the '?' at the start
     const urlValues = decompressDecode(paths.slice(1));
 
-    parsedFormikState = deminify(urlValues);
+    parsedFormikState = urlValues !== undefined ? deminify(urlValues) : undefined;
   } catch (error) {
     console.error(error);
     parsedFormikState = undefined;

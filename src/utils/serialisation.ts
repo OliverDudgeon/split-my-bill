@@ -50,12 +50,16 @@ export const compressEncode = (object: any): string => {
   return base64.replace(/\//g, '-');
 };
 
-export const decompressDecode = (base64: string): MinifiedFormikState => {
+export const decompressDecode = (base64: string): MinifiedFormikState | undefined => {
   const replacedBase64 = base64.replaceAll('-', '/');
   const compressed = base64ToBytes(replacedBase64);
   const decompressed = pako.ungzip(compressed);
 
   const decompressedString = new TextDecoder().decode(decompressed);
+
+  if (!decompressedString) {
+    return undefined;
+  }
 
   return JSON.parse(decompressedString) as MinifiedFormikState;
 };
