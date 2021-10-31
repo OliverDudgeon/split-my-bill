@@ -1,8 +1,8 @@
 import type { ReactElement } from 'react';
 
-import type { ReceiptItem } from 'types';
-
-import { calculateServiceChargeFraction, calculateTotal, poundFormatter } from '../utils/money';
+import type { ReceiptItem } from '../types';
+import { calculateServiceChargeFraction, calculateTotal } from '../utils/money';
+import { ColonTotal } from './ColonTotal';
 
 interface ReceiptTotalProperties {
   receiptItems: ReceiptItem[];
@@ -16,9 +16,11 @@ export function ReceiptTotal({
   const serviceChargeFraction = calculateServiceChargeFraction(serviceCharge);
   const total = calculateTotal(receiptItems);
   return (
-    <p>
-      {`Total: ${poundFormatter.format(total * (serviceChargeFraction + 1))}`}
-      {!!serviceCharge && ` sc: (${poundFormatter.format(total * serviceChargeFraction)})`}
-    </p>
+    <ColonTotal
+      label="Total"
+      price={total}
+      subLabel="sc"
+      subPrice={serviceCharge ? total * serviceChargeFraction : undefined}
+    />
   );
 }

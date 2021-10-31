@@ -4,6 +4,7 @@ import { Fragment, useEffect } from 'react';
 import { FieldArray } from 'formik';
 import throttle from 'just-throttle';
 
+import { ColonTotal } from './components/ColonTotal';
 import { Input } from './components/Input';
 import { useFocusInput } from './hooks/useFocusInput';
 import { useTrackFocus } from './hooks/useTrackFocus';
@@ -159,14 +160,16 @@ export function GridView({ values }: GridViewProperties): ReactElement {
       </b>
 
       {priceSummary.map((price, personIndex) => {
-        const initial = values.peoplesInitials[personIndex];
         const serviceCharge = serviceChargePerPerson[personIndex];
-        const formattedPrice = poundFormatter.format(price + serviceCharge);
         return (
-          <span className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''} key={personIndex}>
-            {`${initial ? `${initial}: ` : ''}${formattedPrice}`}
-            {!!serviceCharge && ` sc: (${poundFormatter.format(serviceCharge)})`}
-          </span>
+          <ColonTotal
+            className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''}
+            key={personIndex}
+            label={values.peoplesInitials[personIndex]}
+            price={price + serviceCharge}
+            subLabel="sc"
+            subPrice={serviceCharge}
+          />
         );
       })}
     </div>
