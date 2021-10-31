@@ -1,15 +1,13 @@
 import type { ReactElement } from 'react';
-import { Fragment, useEffect } from 'react';
 
-import { FieldArray } from 'formik';
-import throttle from 'just-throttle';
+import { MainTableArray } from 'components/MainTableArray';
 
-import { ColonTotal } from './components/ColonTotal';
-import { Input } from './components/Input';
+import { InitialsInputsArray } from './components/InitialsInputsArray';
+import { PeopleTotals } from './components/PeopleTotals';
 import { useFocusInput } from './hooks/useFocusInput';
+import { useGridTemplateColumns } from './hooks/useGridTemplateColumns';
 import { useTrackFocus } from './hooks/useTrackFocus';
-import { useViewport } from './hooks/useViewport';
-import { getDiscountInputName, getInitialsInputName, getShareInputName } from './utils/inputs';
+import { useUpdateUrl } from './hooks/useUpdateUrl';
 import {
   calculateDiscount,
   calculateServiceChargeFraction,
@@ -17,7 +15,7 @@ import {
   poundFormatter,
   sumPricesByPerson,
 } from './utils/money';
-import { compressEncode, minify } from './utils/serialisation';
+import { splitItems } from './utils/receipt';
 import { sum } from './utils/utils';
 import type { FormikFormState } from './types';
 
@@ -25,128 +23,33 @@ interface GridViewProperties {
   values: FormikFormState;
 }
 
-const updateUrl = throttle((url: string) => {
-  window.history.pushState('', '', url);
-}, 500);
-
 export function GridView({ values }: GridViewProperties): ReactElement {
+  const { receiptItems, numberOfPeople, peoplesInitials, serviceCharge } = values;
+
   // Handle keyboard navigation
   const [focus, setFocus] = useTrackFocus(
-    values.receiptItems.length * (values.numberOfPeople + 1) + values.numberOfPeople,
-    values.numberOfPeople + 1,
+    receiptItems.length * (numberOfPeople + 1) + numberOfPeople,
+    numberOfPeople + 1,
   );
-  useFocusInput(focus, values.numberOfPeople);
+  useFocusInput(focus, numberOfPeople);
 
-  // Update URL with encoded data
-  useEffect(() => {
-    const minified = minify({ ...values });
-    const url = compressEncode(minified);
-    updateUrl(`?${url}`);
-  });
-
-  // Divide the receipt
-  const splitItems = values.receiptItems.map(({ price, discount, shares }) => {
-    const actualPrice = calculateDiscount(discount, price);
-
-    const totalShares = sum(shares.map((share) => Number.parseInt(share, 10) || 0));
-
-    if (totalShares === 0) {
-      return Array.from({ length: values.numberOfPeople }).fill(
-        actualPrice / values.numberOfPeople,
-      ) as number[];
-    }
-    return shares.map((share) => (actualPrice * (Number.parseInt(share, 10) || 0)) / totalShares);
-  });
-  const priceSummary = sumPricesByPerson(splitItems);
-
-  const total = calculateTotal(values.receiptItems);
-  const serviceChargePrice = total * calculateServiceChargeFraction(values.serviceCharge);
-
-  const serviceChargePerPerson = priceSummary.map((price) => (serviceChargePrice * price) / total);
-
-  // Responsive UI
-  const { width } = useViewport();
-  const isBreakpointAl = (width ?? 0) < 640; // Tailwind xs breakpoint
-
-  const gridTemplateColumns = isBreakpointAl
-    ? `repeat(3, 1fr)`
-    : `minmax(5rem, 1fr) 5rem 5.5rem repeat(${values.numberOfPeople}, minmax(7rem, 1fr))`;
+  useUpdateUrl(values);
 
   return (
-    <div className="grid gap-4 my-5" style={{ gridTemplateColumns }}>
-      <FieldArray name="peoplesInitials">
-        {(): ReactElement[] =>
-          values.peoplesInitials.map((person, personIndex) => {
-            const inputIndex = personIndex + 1;
-            return (
-              <Input
-                className={`font-bold self-center w-full col-start-auto ${
-                  personIndex === 0 ? 'sm:col-start-4' : ''
-                }`}
-                key={personIndex}
-                name={getInitialsInputName(personIndex)}
-                placeholder="Initial"
-                onClick={() => {
-                  setFocus(inputIndex);
-                }}
-              />
-            );
-          })
-        }
-      </FieldArray>
+    <div className="grid gap-4 my-5" style={useGridTemplateColumns(numberOfPeople)}>
+      <InitialsInputsArray
+        peoplesInitials={peoplesInitials}
+        onClick={(inputIndex) => setFocus(inputIndex)}
+      />
 
-      {values.receiptItems.length > 0 ? (
-        <FieldArray name="receiptItems">
-          {() =>
-            values.receiptItems.map(({ item, price, shares, discount }, itemIndex) => {
-              const inputIndex =
-                values.numberOfPeople + itemIndex * (values.numberOfPeople + 1) + 1;
-              return (
-                <Fragment key={`${item}-${itemIndex}`}>
-                  <span
-                    className={`self-center col-start-1 ${
-                      Math.floor(
-                        (focus - 1 - values.numberOfPeople) / (values.numberOfPeople + 1),
-                      ) === itemIndex
-                        ? 'font-bold'
-                        : ''
-                    }`}
-                  >
-                    {item}
-                  </span>
-                  <span className="self-center">
-                    {poundFormatter.format(calculateDiscount(discount, price))}
-                  </span>
-                  <Input
-                    className="self-center w-full"
-                    name={getDiscountInputName(itemIndex)}
-                    placeholder="discount"
-                    onClick={() => {
-                      setFocus(inputIndex);
-                    }}
-                  />
-                  <FieldArray name={`receiptItems.${itemIndex}`}>
-                    {() =>
-                      shares.map((_, personIndex) => (
-                        <Input
-                          className={`self-center w-full ${
-                            personIndex === 0 ? 'col-start-1' : ''
-                          } sm:col-start-auto`}
-                          key={personIndex}
-                          name={getShareInputName(itemIndex, personIndex)}
-                          placeholder={values.peoplesInitials[personIndex]}
-                          onClick={() => {
-                            setFocus(inputIndex + personIndex + 1);
-                          }}
-                        />
-                      ))
-                    }
-                  </FieldArray>
-                </Fragment>
-              );
-            })
-          }
-        </FieldArray>
+      {receiptItems.length > 0 ? (
+        <MainTableArray
+          focus={focus}
+          numberOfPeople={numberOfPeople}
+          peoplesInitials={peoplesInitials}
+          receiptItems={receiptItems}
+          onClick={(inputIndex) => setFocus(inputIndex)}
+        />
       ) : (
         <p className="col-span-full">You have no receipt items to display.</p>
       )}
@@ -155,23 +58,16 @@ export function GridView({ values }: GridViewProperties): ReactElement {
 
       <b className="col-start-2">
         {poundFormatter.format(
-          sum(values.receiptItems.map(({ price, discount }) => calculateDiscount(discount, price))),
+          sum(receiptItems.map(({ price, discount }) => calculateDiscount(discount, price))),
         )}
       </b>
 
-      {priceSummary.map((price, personIndex) => {
-        const serviceCharge = serviceChargePerPerson[personIndex];
-        return (
-          <ColonTotal
-            className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''}
-            key={personIndex}
-            label={values.peoplesInitials[personIndex]}
-            price={price + serviceCharge}
-            subLabel="sc"
-            subPrice={serviceCharge}
-          />
-        );
-      })}
+      <PeopleTotals
+        labels={peoplesInitials}
+        priceSummary={sumPricesByPerson(splitItems(values))}
+        serviceChargeFraction={calculateServiceChargeFraction(serviceCharge)}
+        total={calculateTotal(receiptItems)}
+      />
     </div>
   );
 }
