@@ -8,12 +8,9 @@ export function useTrackFocus(
 
   const handleKeyInput = useCallback(
     (event: KeyboardEvent) => {
-      if (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        (event.target as any)?.tagName === 'INPUT' &&
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        (event.target as any).name !== 'numberOfPeople'
-      ) {
+      // Event doesn't always occur on an <input> element, so we assume it to be and check next
+      const target = event.target as HTMLInputElement | null;
+      if (target?.tagName === 'INPUT' && target.name !== 'numberOfPeople') {
         switch (event.key) {
           case 'Tab': {
             if (event.shiftKey) {
