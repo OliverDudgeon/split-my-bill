@@ -1,16 +1,16 @@
 import type { ChangeEvent, ReactElement } from 'react';
 
-import { ResetButton } from 'components/ResetButton';
 import type { FieldInputProps } from 'formik';
 import { Form, Formik } from 'formik';
 
 import { NumberOfPeopleInput } from './components/NumberOfPeopleInput';
 import { ReceiptTextArea } from './components/ReceiptTextArea';
 import { ReceiptTotal } from './components/ReceiptTotal';
+import { ResetButton } from './components/ResetButton';
 import { ServiceChargeInput } from './components/ServiceChargeInput';
 import { ShareButton } from './components/ShareButton';
+import { divideReceipt } from './utils/receipt';
 import { decompressDecode, deminify } from './utils/serialisation';
-import { divideReceipt } from './utils/utils';
 import { GridView } from './GridView';
 import type { FormikFormState, FormikSetter, ReceiptItemWithShare } from './types';
 

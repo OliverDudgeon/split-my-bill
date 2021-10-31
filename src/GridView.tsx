@@ -2,24 +2,22 @@ import type { ReactElement } from 'react';
 import { Fragment, useEffect } from 'react';
 
 import { FieldArray } from 'formik';
-import { useFocusInput } from 'hooks/useFocusInput';
-import { useTrackFocus } from 'hooks/useTrackFocus';
 import throttle from 'just-throttle';
 
 import { Input } from './components/Input';
+import { useFocusInput } from './hooks/useFocusInput';
+import { useTrackFocus } from './hooks/useTrackFocus';
 import { useViewport } from './hooks/useViewport';
-import { compressEncode, minify } from './utils/serialisation';
+import { getDiscountInputName, getInitialsInputName, getShareInputName } from './utils/inputs';
 import {
   calculateDiscount,
   calculateServiceChargeFraction,
   calculateTotal,
-  getDiscountInputName,
-  getInitialsInputName,
-  getShareInputName,
   poundFormatter,
-  sum,
   sumPricesByPerson,
-} from './utils/utils';
+} from './utils/money';
+import { compressEncode, minify } from './utils/serialisation';
+import { sum } from './utils/utils';
 import type { FormikFormState } from './types';
 
 interface GridViewProperties {
@@ -95,6 +93,7 @@ export function GridView({ values }: GridViewProperties): ReactElement {
           })
         }
       </FieldArray>
+
       {values.receiptItems.length > 0 ? (
         <FieldArray name="receiptItems">
           {() =>
@@ -150,12 +149,15 @@ export function GridView({ values }: GridViewProperties): ReactElement {
       ) : (
         <p className="col-span-full">You have no receipt items to display.</p>
       )}
+
       <b>Total:</b>
+
       <b className="col-start-2">
         {poundFormatter.format(
           sum(values.receiptItems.map(({ price, discount }) => calculateDiscount(discount, price))),
         )}
       </b>
+
       {priceSummary.map((price, personIndex) => {
         const initial = values.peoplesInitials[personIndex];
         const serviceCharge = serviceChargePerPerson[personIndex];

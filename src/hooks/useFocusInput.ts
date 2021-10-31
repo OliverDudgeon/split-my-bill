@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { getInputName } from 'utils/utils';
+import { getInputName } from '../utils/inputs';
 
 export const useFocusInput = (focus: number, numberOfPeople: number): void => {
   useEffect(() => {
