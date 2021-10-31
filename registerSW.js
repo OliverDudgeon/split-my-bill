@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/split-my-bill/sw.js', { scope: '/split-my-bill/' })})}
