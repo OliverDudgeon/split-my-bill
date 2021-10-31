@@ -1,5 +1,6 @@
 import type { ChangeEvent, ReactElement } from 'react';
 
+import { ResetButton } from 'components/ResetButton';
 import type { FieldInputProps } from 'formik';
 import { Form, Formik } from 'formik';
 
@@ -80,26 +81,21 @@ export function MainView(): ReactElement {
   return (
     <main className="py-4">
       <Formik initialValues={parsedFormikState ?? initialValues} onSubmit={() => {}}>
-        {({ values, setValues }) => {
-          console.log(values);
-          return (
-            <Form>
-              <ReceiptTextArea name="receipt" onValueChange={onReceiptChange(values, setValues)} />
-              <ReceiptTotal receiptItems={values.receiptItems} />
+        {({ values, setValues }) => (
+          <Form>
+            <ReceiptTextArea name="receipt" onValueChange={onReceiptChange(values, setValues)} />
+            <ReceiptTotal receiptItems={values.receiptItems} />
 
-              <ServiceChargeInput />
+            <ServiceChargeInput />
+            <ResetButton onReset={() => setValues(initialValues)} />
 
-              <ReceiptTotal
-                receiptItems={values.receiptItems}
-                serviceCharge={values.serviceCharge}
-              />
+            <ReceiptTotal receiptItems={values.receiptItems} serviceCharge={values.serviceCharge} />
 
-              <NumberOfPeopleInput setValues={setValues} values={values} />
+            <NumberOfPeopleInput setValues={setValues} values={values} />
 
-              <GridView values={values} />
-            </Form>
-          );
-        }}
+            <GridView values={values} />
+          </Form>
+        )}
       </Formik>
       <div>
         <p>Click the button to copy a shortened url to share with your splitees</p>
