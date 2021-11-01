@@ -6611,10 +6611,10 @@ jsprim@^1.2.2:
     array-includes "^3.1.2"
     object.assign "^4.1.2"
 
-just-throttle@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/just-throttle/-/just-throttle-3.0.0.tgz#6fc6feb2056d6ffd873b8f7b9290a0865f74ab4f"
-  integrity sha512-6byCGp5SUzCx8lA4t5uAcyQ4beK/qb1z9vWvJ5K+c10fqdNQ0iVXWuAokmQtwTdTyMeDRGZQWimKOVNSHfKqzA==
+just-throttle@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/just-throttle/-/just-throttle-3.1.1.tgz#12db5925d7291eb4cf616c987893c972f1a983eb"
+  integrity sha512-YMrIKroyuJcWJeNuI0/aQ0tj+HUaYfWEimPRUutxP4yRLcat8QapSl+gNEtSWG1+06T/Wckqdkutw55btCKvGw==
 
 keyv@^3.0.0:
   version "3.1.0"
