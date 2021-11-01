@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 
 export function Footer(): ReactElement {
   return (
-    <footer>
+    <footer className="max-w-screen-lg mx-auto my-6">
       <ul>
         <li>Created By Oliver Dudgeon</li>
         <a

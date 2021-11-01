@@ -4,7 +4,7 @@ import { ShareButton } from '../inputs/ShareButton';
 
 export function Actions(): ReactElement {
   return (
-    <div>
+    <div className="max-w-screen-sm mx-auto mb-12">
       <p>Click the button to copy a shortened url to share with your splitees</p>
       <ShareButton />
     </div>

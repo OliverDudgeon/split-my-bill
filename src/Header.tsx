@@ -1,9 +1,5 @@
 import type { ReactElement } from 'react';
 
 export function Header(): ReactElement {
-  return (
-    <header className="2xl:container mx-auto">
-      <h1 className="text-xl">Split My Bill</h1>
-    </header>
-  );
+  return <h1 className="text-center text-7xl mt-2 mb-8">Split My Bill</h1>;
 }

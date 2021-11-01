@@ -52,14 +52,24 @@ export function Receipt({ values, setValues }: AppFormikProperties): ReactElemen
   return (
     <>
       <ReceiptTextArea name="receipt" onValueChange={onReceiptChange(values, setValues)} />
-      <ReceiptTotal receiptItems={values.receiptItems} />
 
-      <ServiceChargeInput />
-      <ResetButton onReset={() => setValues({ ...initialValues, receipt: '', receiptItems: [] })} />
+      <div>
+        <b>
+          <ReceiptTotal receiptItems={values.receiptItems} />
+        </b>
+      </div>
 
-      <ReceiptTotal receiptItems={values.receiptItems} serviceCharge={values.serviceCharge} />
+      <div className="flex justify-between my-3">
+        <ServiceChargeInput />
+        <ReceiptTotal receiptItems={values.receiptItems} serviceCharge={values.serviceCharge} />
+      </div>
 
-      <NumberOfPeopleInput setValues={setValues} values={values} />
+      <div className="flex justify-between my-3">
+        <NumberOfPeopleInput setValues={setValues} values={values} />
+        <ResetButton
+          onReset={() => setValues({ ...initialValues, receipt: '', receiptItems: [] })}
+        />
+      </div>
     </>
   );
 }
