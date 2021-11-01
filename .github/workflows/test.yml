@@ -17,18 +17,18 @@ jobs:
       - name: Install dependencies
         uses: cypress-io/github-action@v2
         with:
-          install-command: yarn --frozen-lockfile --silent
+          install-command: pnpm i --frozen-lockfile --silent
           # just perform install
           runTests: false
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Run e2e tests
         uses: cypress-io/github-action@v2
         with:
-          build: yarn build --mode test
-          command: yarn test:headless
+          build: pnpm build --mode test
+          command: pnpm test:headless
           # we have already installed all dependencies above
           install: false
 

@@ -14,13 +14,16 @@ jobs:
   # This workflow contains a single job called "build"
   deploy:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [16]
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Node
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: "16"
+          node-version: ${{ matrix.node-version }}
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -29,9 +32,14 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npm i -g yarn
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
+      - name: Cache .pnpm-store
+        uses: actions/cache@v1
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - run: sudo npm install -g pnpm
+      - run: pnpm i --frozen-lockfile
+      - run: pnpm build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

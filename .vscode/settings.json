@@ -10,11 +10,10 @@
     "**/.eslintcache": true,
     "**/dist": true,
     "**/node_modules": true,
-    "**/yarn.lock": true
+    "**/yarn.lock": true,
+    "**/pnpm-lock.yaml": true
   },
-  "stylelint.validate": [
-    "css"
-  ],
+  "stylelint.validate": ["css"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "conventionalCommits.scopes": [
     "actions",
@@ -45,8 +44,6 @@
     "reset-button",
     "utils"
   ],
-  "cSpell.words": [
-    "Formik"
-  ],
-  "iridium.npm.packageManager": "yarn"
+  "cSpell.words": ["Formik"],
+  "iridium.npm.packageManager": "pnpm"
 }

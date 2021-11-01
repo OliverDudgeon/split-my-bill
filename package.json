@@ -5,19 +5,24 @@
   "private": true,
   "scripts": {
     "dev": "vite --open",
-    "test": "yarn serve:test 'cypress open'",
-    "test:headless": "yarn serve:test 'cypress run'",
+    "test": "pnpm serve:test 'cypress open'",
+    "test:headless": "pnpm serve:test 'cypress run'",
     "build": "tsc && vite build",
     "type-check": "tsc --pretty --noEmit",
     "serve": "vite preview",
-    "serve:test": "start-server-and-test 'yarn serve' http://localhost:5000/split-my-bill/",
+    "serve:test": "start-server-and-test 'pnpm serve' http://localhost:5000/split-my-bill/",
+    "preinstall": "npx -y only-allow pnpm",
     "prepare": "husky install",
     "format": "prettier -uw --ignore-path .gitignore .",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx src",
     "run-stylelint": "stylelint --cache --fix --ignore-path .gitignore '**/*.css'",
     "lint": "npm-run-all --parallel type-check run-stylelint run-eslint",
-    "validate": "yarn lint && yarn build --mode test && yarn test:headless",
+    "validate": "pnpm lint && pnpm build --mode test && pnpm test:headless",
     "release": "release-it"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=6"
   },
   "dependencies": {
     "byte-base64": "^1.1.0",
