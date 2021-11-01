@@ -29,10 +29,9 @@ jobs:
       - name: Run e2e tests
         uses: cypress-io/github-action@v2
         with:
-          build: pnpm build --mode test
-          command: pnpm test:headless
           # we have already installed all dependencies above
           install: false
+          command: pnpm test:headless
 
       # - name: Upload coverage
       #   uses: codecov/codecov-action@v2
