@@ -30,6 +30,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - run: pnpm i --frozen-lockfile
+      - run: pnpm build
+
       - name: Run e2e tests
         uses: cypress-io/github-action@v2
         with:
