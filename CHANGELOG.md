@@ -1,3 +1,14 @@
+### [0.1.1](https://github.com/OliverDudgeon/split-my-bill/compare/0.1.0...0.1.1) (2021-11-01)
+
+### Bug Fixes
+
+- **actions:** Add missing pnpm install ([d06a7dd](https://github.com/OliverDudgeon/split-my-bill/commit/d06a7dd3aa2fb718c59b303fc3c0abc18b57f8c4))
+- **actions:** Another test-action fix ([ee4379a](https://github.com/OliverDudgeon/split-my-bill/commit/ee4379ad288744cd3a7d5f00f43af7f4fc6508bf))
+- **actions:** Fix order of jobs ([8038a13](https://github.com/OliverDudgeon/split-my-bill/commit/8038a1303bf9470a4ba4b0120a9eca02ba8edde6))
+- **actions:** One more test-action fix ([711ba1c](https://github.com/OliverDudgeon/split-my-bill/commit/711ba1c5a595b6f0ccce16491a626ae93770c908))
+- **actions:** pnpm actions fixes ([1c26282](https://github.com/OliverDudgeon/split-my-bill/commit/1c2628285427958d5fecd5eec8875410705ce9ee))
+- **actions:** Use Node 16 in test-action ([43d27e6](https://github.com/OliverDudgeon/split-my-bill/commit/43d27e677f067db3549f85ea96035320b718d1e6))
+
 ## [0.1.0](https://github.com/OliverDudgeon/split-my-bill/compare/1.0.0-beta.9...0.1.0) (2021-10-31)
 
 ### Features
