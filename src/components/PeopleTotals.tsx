@@ -1,6 +1,6 @@
-import type { ReactElement } from "react";
+import type { ReactElement } from 'react';
 
-import { ColonTotal } from "./ColonTotal";
+import { ColonTotal } from './ColonTotal';
 
 export interface PeopleTotalsProperties {
   labels: string[];
@@ -32,7 +32,7 @@ export function PeopleTotals({
         const serviceCharge = (total * serviceChargeFraction * price) / total;
         return (
           <ColonTotal
-            className={personIndex === 0 ? "col-start-1 sm:col-start-4" : ""}
+            className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''}
             key={personIndex}
             label={labels[personIndex]}
             price={price + serviceCharge}
