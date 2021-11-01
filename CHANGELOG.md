@@ -1,3 +1,10 @@
+## [0.2.0](https://github.com/OliverDudgeon/split-my-bill/compare/0.1.1...0.2.0) (2021-11-01)
+
+### Features
+
+- **layout:** Improve layout and spacing of components ([447268d](https://github.com/OliverDudgeon/split-my-bill/commit/447268d90c08faaa7b14c690459cb027de2c8ac1))
+- **reset-button:** Change reset behaviour to reset to empty receipt ([5a71b46](https://github.com/OliverDudgeon/split-my-bill/commit/5a71b463d5c873fa5d51c80aebf2d584ab861715))
+
 ### [0.1.1](https://github.com/OliverDudgeon/split-my-bill/compare/0.1.0...0.1.1) (2021-11-01)
 
 ### Bug Fixes
