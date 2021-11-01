@@ -18,10 +18,6 @@ jobs:
         uses: pnpm/action-setup@v2.0.1
         with:
           version: 6
-          # Only install what we need to run the client in-action and tests against it
-          # format:    `--filter <packagename>...`
-          run_install: |
-            - args: [--filter myclient... --filter cypress-tests...]
 
       - name: Lint
         run: pnpm lint
