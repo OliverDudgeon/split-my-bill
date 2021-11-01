@@ -87,7 +87,9 @@ export function MainView(): ReactElement {
             <ReceiptTotal receiptItems={values.receiptItems} />
 
             <ServiceChargeInput />
-            <ResetButton onReset={() => setValues(initialValues)} />
+            <ResetButton
+              onReset={() => setValues({ ...initialValues, receipt: '', receiptItems: [] })}
+            />
 
             <ReceiptTotal receiptItems={values.receiptItems} serviceCharge={values.serviceCharge} />
 
