@@ -1,5 +1,7 @@
 import type { SetStateAction } from 'react';
 
+import type { FormikProps } from 'formik';
+
 export interface ReceiptItem {
   item: string;
   price: number;
@@ -17,6 +19,8 @@ export interface FormikFormState {
   peoplesInitials: string[];
   receiptItems: ReceiptItemWithShare[];
 }
+
+export type AppFormikProperties = FormikProps<FormikFormState>;
 
 export interface MinifiedFormikState {
   n: number;

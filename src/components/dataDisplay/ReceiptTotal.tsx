@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 
-import type { ReceiptItem } from '../types';
-import { calculateServiceChargeFraction, calculateTotal } from '../utils/money';
+import type { ReceiptItem } from '../../types';
+import { calculateServiceChargeFraction, calculateTotal } from '../../utils/money';
 import { ColonTotal } from './ColonTotal';
 
 interface ReceiptTotalProperties {

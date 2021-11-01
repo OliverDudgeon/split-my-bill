@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import { FieldArray } from 'formik';
 
 import { getInitialsInputName } from '../utils/inputs';
-import { Input } from './Input';
+import { Input } from './inputs/Input';
 
 export interface InitialsInputsArrayProperties {
   peoplesInitials: string[];

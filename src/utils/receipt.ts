@@ -1,4 +1,4 @@
-import { ITEM_REGEX } from '../constants';
+import { ITEM_REGEX } from '../regexp';
 import type { FormikFormState, ReceiptItem } from '../types';
 import { calculateDiscount } from './money';
 import { sum } from './utils';

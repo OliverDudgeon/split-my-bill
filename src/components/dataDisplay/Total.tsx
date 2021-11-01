@@ -1,6 +1,6 @@
 import type { HTMLProps, ReactElement } from 'react';
 
-import { poundFormatter } from '../utils/money';
+import { poundFormatter } from '../../utils/money';
 
 export interface TotalProperties extends HTMLProps<HTMLSpanElement> {
   price: number;

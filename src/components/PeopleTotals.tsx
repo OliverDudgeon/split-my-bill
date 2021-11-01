@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 
-import { ColonTotal } from './ColonTotal';
+import { ColonTotal } from './dataDisplay/ColonTotal';
 
 export interface PeopleTotalsProperties {
   labels: string[];
@@ -8,17 +8,6 @@ export interface PeopleTotalsProperties {
   total: number;
   serviceChargeFraction: number;
 }
-
-// function doesFormatterRound(price: number): -1 | 0 | 1 {
-//   const difference = price - Number.parseFloat(price.toFixed(2));
-//   if (difference > 0) {
-//     return -1;
-//   }
-//   if (difference < 0) {
-//     return 1;
-//   }
-//   return 0;
-// }
 
 export function PeopleTotals({
   total,

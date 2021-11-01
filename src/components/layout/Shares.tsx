@@ -1,29 +1,28 @@
 import type { ReactElement } from 'react';
 
-import { MainTableArray } from 'components/MainTableArray';
-
-import { InitialsInputsArray } from './components/InitialsInputsArray';
-import { PeopleTotals } from './components/PeopleTotals';
-import { useFocusInput } from './hooks/useFocusInput';
-import { useGridTemplateColumns } from './hooks/useGridTemplateColumns';
-import { useTrackFocus } from './hooks/useTrackFocus';
-import { useUpdateUrl } from './hooks/useUpdateUrl';
+import { useFocusInput } from '../../hooks/useFocusInput';
+import { useGridTemplateColumns } from '../../hooks/useGridTemplateColumns';
+import { useTrackFocus } from '../../hooks/useTrackFocus';
+import { useUpdateUrl } from '../../hooks/useUpdateUrl';
+import type { FormikFormState } from '../../types';
 import {
   calculateDiscount,
   calculateServiceChargeFraction,
   calculateTotal,
   poundFormatter,
   sumPricesByPerson,
-} from './utils/money';
-import { splitItems } from './utils/receipt';
-import { sum } from './utils/utils';
-import type { FormikFormState } from './types';
+} from '../../utils/money';
+import { splitItems } from '../../utils/receipt';
+import { sum } from '../../utils/utils';
+import { InitialsInputsArray } from '../InitialsInputsArray';
+import { MainTableArray } from '../MainTableArray';
+import { PeopleTotals } from '../PeopleTotals';
 
-interface GridViewProperties {
+interface SharesProperties {
   values: FormikFormState;
 }
 
-export function GridView({ values }: GridViewProperties): ReactElement {
+export function Shares({ values }: SharesProperties): ReactElement {
   const { receiptItems, numberOfPeople, peoplesInitials, serviceCharge } = values;
 
   // Handle keyboard navigation

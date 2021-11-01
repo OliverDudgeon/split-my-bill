@@ -2,11 +2,11 @@ import type { ReactElement } from 'react';
 import { Fragment } from 'react';
 
 import { FieldArray } from 'formik';
-import type { ReceiptItemWithShare } from 'types';
-import { getDiscountInputName, getShareInputName } from 'utils/inputs';
-import { calculateDiscount, poundFormatter } from 'utils/money';
 
-import { Input } from './Input';
+import type { ReceiptItemWithShare } from '../types';
+import { getDiscountInputName, getShareInputName } from '../utils/inputs';
+import { calculateDiscount, poundFormatter } from '../utils/money';
+import { Input } from './inputs/Input';
 
 export interface MainTableArrayProperties {
   receiptItems: ReceiptItemWithShare[];
