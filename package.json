@@ -56,7 +56,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-react-prefer-function-component": "0.0.7",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "eslint-plugin-unicorn": "37.0.1",
+    "eslint-plugin-unicorn": "38.0.0",
     "gh-pages": "^3.2.3",
     "husky": "7.0.4",
     "lint-staged": "11.2.6",
