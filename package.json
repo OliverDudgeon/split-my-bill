@@ -27,7 +27,7 @@
   "dependencies": {
     "byte-base64": "^1.1.0",
     "formik": "^2.2.9",
-    "just-throttle": "^3.0.0",
+    "just-throttle": "^4.0.1",
     "pako": "^2.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2"
