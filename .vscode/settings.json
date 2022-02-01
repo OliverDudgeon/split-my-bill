@@ -42,7 +42,8 @@
     "service-charge",
     "service-worker",
     "reset-button",
-    "utils"
+    "utils",
+    "regexp"
   ],
   "cSpell.words": ["Formik"],
   "iridium.npm.packageManager": "pnpm"
