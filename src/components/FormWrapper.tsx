@@ -38,6 +38,7 @@ export function FormWrapper({ children }: FormWrapperProperties): ReactElement {
 
     parsedFormikState = urlValues !== undefined ? deminify(urlValues) : undefined;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     parsedFormikState = undefined;
   }

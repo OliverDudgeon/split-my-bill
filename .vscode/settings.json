@@ -43,7 +43,8 @@
     "service-worker",
     "reset-button",
     "utils",
-    "regexp"
+    "regexp",
+    "testing"
   ],
   "cSpell.words": ["Formik"],
   "iridium.npm.packageManager": "pnpm"

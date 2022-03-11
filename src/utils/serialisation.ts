@@ -44,7 +44,7 @@ export const deminify = ({
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const compressEncode = (object: any): string => {
+export const compressEncode = (object: unknown): string => {
   const compressed = pako.gzip(JSON.stringify(object));
   const base64 = bytesToBase64(compressed);
   return base64.replace(/\//g, '-');
