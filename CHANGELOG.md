@@ -1,4 +1,11 @@
-### [0.2.2](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.1...0.2.2) (2022-02-01)
+
+
+### [0.2.3](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.2...0.2.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **regexp:** Improve regexp by using [^£] groups ([fd34109](https://github.com/OliverDudgeon/split-my-bill/commit/fd341092e0a2cd9d1e1336638962cd6bf8e620d9))### [0.2.2](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.1...0.2.2) (2022-02-01)
 
 ## [0.2.0](https://github.com/OliverDudgeon/split-my-bill/compare/0.1.1...0.2.0) (2021-11-01)
 
