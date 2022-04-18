@@ -10,7 +10,7 @@ export const initNumberOfPeople = 3;
 export const initialValues: FormikFormState = {
   receipt: testReceipt,
   numberOfPeople: initNumberOfPeople,
-  serviceCharge: '0',
+  percentDiscount: '0',
   peoplesInitials: Array.from({ length: initNumberOfPeople }).fill('') as string[],
   receiptItems: divideReceipt(testReceipt).map((receiptItem) => ({
     ...receiptItem,

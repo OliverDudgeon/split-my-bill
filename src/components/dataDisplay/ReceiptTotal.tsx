@@ -1,26 +1,26 @@
 import type { ReactElement } from 'react';
 
 import type { ReceiptItem } from '../../types';
-import { calculateServiceChargeFraction, calculateTotal } from '../../utils/money';
+import { calculatePercentDiscountFraction, calculateTotal } from '../../utils/money';
 import { ColonTotal } from './ColonTotal';
 
 interface ReceiptTotalProperties {
   receiptItems: ReceiptItem[];
-  serviceCharge?: string;
+  percentDiscount?: string;
 }
 
 export function ReceiptTotal({
   receiptItems,
-  serviceCharge = '',
+  percentDiscount = '',
 }: ReceiptTotalProperties): ReactElement {
-  const serviceChargeFraction = calculateServiceChargeFraction(serviceCharge);
+  const percentDiscountFraction = calculatePercentDiscountFraction(percentDiscount);
   const total = calculateTotal(receiptItems);
   return (
     <ColonTotal
       label="Total"
       price={total}
       subLabel="sc"
-      subPrice={serviceCharge ? total * serviceChargeFraction : undefined}
+      subPrice={percentDiscount ? total * percentDiscountFraction : undefined}
     />
   );
 }

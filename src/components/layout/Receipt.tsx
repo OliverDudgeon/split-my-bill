@@ -12,9 +12,9 @@ import type {
 import { divideReceipt } from '../../utils/receipt';
 import { ReceiptTotal } from '../dataDisplay/ReceiptTotal';
 import { NumberOfPeopleInput } from '../inputs/NumberOfPeopleInput';
+import { PercentDiscountInput } from '../inputs/PercentDiscountInput';
 import { ReceiptTextArea } from '../inputs/ReceiptTextArea';
 import { ResetButton } from '../inputs/ResetButton';
-import { ServiceChargeInput } from '../inputs/ServiceChargeInput';
 
 /**
  * Adjust the entries for each receipt item to match the latest textfield input
@@ -60,8 +60,8 @@ export function Receipt({ values, setValues }: AppFormikProperties): ReactElemen
       </div>
 
       <div className="flex justify-between my-3">
-        <ServiceChargeInput />
-        <ReceiptTotal receiptItems={values.receiptItems} serviceCharge={values.serviceCharge} />
+        <PercentDiscountInput />
+        <ReceiptTotal percentDiscount={values.percentDiscount} receiptItems={values.receiptItems} />
       </div>
 
       <div className="flex justify-between my-3">

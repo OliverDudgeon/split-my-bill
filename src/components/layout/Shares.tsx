@@ -7,7 +7,7 @@ import { useUpdateUrl } from '../../hooks/useUpdateUrl';
 import type { FormikFormState } from '../../types';
 import {
   calculateDiscount,
-  calculateServiceChargeFraction,
+  calculatePercentDiscountFraction,
   calculateTotal,
   poundFormatter,
   sumPricesByPerson,
@@ -23,7 +23,7 @@ interface SharesProperties {
 }
 
 export function Shares({ values }: SharesProperties): ReactElement {
-  const { receiptItems, numberOfPeople, peoplesInitials, serviceCharge } = values;
+  const { receiptItems, numberOfPeople, peoplesInitials, percentDiscount } = values;
 
   // Handle keyboard navigation
   const [focus, setFocus] = useTrackFocus(
@@ -63,8 +63,8 @@ export function Shares({ values }: SharesProperties): ReactElement {
 
       <PeopleTotals
         labels={peoplesInitials}
+        percentDiscountFraction={calculatePercentDiscountFraction(percentDiscount)}
         priceSummary={sumPricesByPerson(splitItems(values))}
-        serviceChargeFraction={calculateServiceChargeFraction(serviceCharge)}
         total={calculateTotal(receiptItems)}
       />
     </div>

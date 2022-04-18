@@ -6,27 +6,27 @@ export interface PeopleTotalsProperties {
   labels: string[];
   priceSummary: number[];
   total: number;
-  serviceChargeFraction: number;
+  percentDiscountFraction: number;
 }
 
 export function PeopleTotals({
   total,
-  serviceChargeFraction,
+  percentDiscountFraction,
   priceSummary,
   labels,
 }: PeopleTotalsProperties): ReactElement {
   return (
     <>
       {priceSummary.map((price, personIndex) => {
-        const serviceCharge = (total * serviceChargeFraction * price) / total;
+        const percentDiscount = (total * percentDiscountFraction * price) / total;
         return (
           <ColonTotal
             className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''}
             key={personIndex}
             label={labels[personIndex]}
-            price={price + serviceCharge}
-            subLabel="sc"
-            subPrice={serviceCharge}
+            price={price + percentDiscount}
+            subLabel="%dis"
+            subPrice={percentDiscount}
           />
         );
       })}
