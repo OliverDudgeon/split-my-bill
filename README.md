@@ -1,5 +1,8 @@
 # Split my Bill
 
+[![CodeQL](https://github.com/OliverDudgeon/split-my-bill/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/OliverDudgeon/split-my-bill/actions/workflows/codeql-analysis.yml) [![license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/OliverDudgeon/split-my-bill/blob/main/LICENSE)
+
+
 <br />
 <div align="center">
 <b>Go to the app: <a href="https://oliverdudgeon.github.io/split-my-bill">Split My Bill</b></a>
