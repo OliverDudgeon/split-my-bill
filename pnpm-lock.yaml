@@ -20,7 +20,7 @@ specifiers:
   eslint-plugin-prettier: 4.0.0
   eslint-plugin-react: 7.29.4
   eslint-plugin-react-hooks: 4.5.0
-  eslint-plugin-react-prefer-function-component: 1.0.0
+  eslint-plugin-react-prefer-function-component: 2.0.0
   eslint-plugin-simple-import-sort: 7.0.0
   eslint-plugin-unicorn: 42.0.0
   formik: 2.2.9
@@ -73,7 +73,7 @@ devDependencies:
   eslint-plugin-prettier: 4.0.0_mzpligoj26dazigcet37nxg2zy
   eslint-plugin-react: 7.29.4_eslint@8.14.0
   eslint-plugin-react-hooks: 4.5.0_eslint@8.14.0
-  eslint-plugin-react-prefer-function-component: 1.0.0
+  eslint-plugin-react-prefer-function-component: 2.0.0
   eslint-plugin-simple-import-sort: 7.0.0_eslint@8.14.0
   eslint-plugin-unicorn: 42.0.0_eslint@8.14.0
   gh-pages: 3.2.3
@@ -2835,8 +2835,8 @@ packages:
       eslint: 8.14.0
     dev: true
 
-  /eslint-plugin-react-prefer-function-component/1.0.0:
-    resolution: {integrity: sha512-qyYrkofEbc5s7QOHjt0uXY6DqMpZvU0yiVlI3E65DjN+m8PtttivQi+AkWT2TOLYAkOhglH9+YZ9saFuPjqeKw==}
+  /eslint-plugin-react-prefer-function-component/2.0.0:
+    resolution: {integrity: sha512-f/S1k3FXEGk5s+q2nOL4VxAXWGbWElVidmXcDlulo7kt5py5OS2dB0NzuAH6bASihJWEM9GqFXfBmyiYRvR55A==}
     dev: true
 
   /eslint-plugin-react/7.29.4_eslint@8.14.0:
