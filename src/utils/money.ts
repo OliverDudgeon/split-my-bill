@@ -23,8 +23,8 @@ export const calculateDiscount = (discount: string, price: number): number => {
   return price - parsedDiscount;
 };
 
-export const calculatePercentDiscountFraction = (percentDiscount: string): number =>
-  (Number.parseFloat(percentDiscount) || 0) / 100;
+export const calculatePercentDiscountFraction = (percentageMultiplier: string): number =>
+  (Number.parseFloat(percentageMultiplier) || 0) / 100;
 
 export const calculateTotal = (receiptItems: ReceiptItem[]): number =>
   sum(receiptItems.map((item) => item.price));

@@ -61,7 +61,10 @@ export function Receipt({ values, setValues }: AppFormikProperties): ReactElemen
 
       <div className="flex justify-between my-3">
         <PercentDiscountInput />
-        <ReceiptTotal percentDiscount={values.percentDiscount} receiptItems={values.receiptItems} />
+        <ReceiptTotal
+          percentDiscount={values.percentageMultiplier}
+          receiptItems={values.receiptItems}
+        />
       </div>
 
       <div className="flex justify-between my-3">

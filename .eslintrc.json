@@ -97,6 +97,7 @@
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-type-alias": 0,
     "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-require-imports": 0,
     "unicorn/no-keyword-prefix": 0,
     "react/jsx-props-no-spreading": 0,
     "react/require-default-props": 0,
@@ -150,18 +151,8 @@
     "@typescript-eslint/prefer-enum-initializers": "off",
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/prefer-regexp-exec": "off",
-    // "@typescript-eslint/no-magic-numbers": [
-    //   "error",
-    //   {
-    //     "ignoreEnums": true,
-    //     "ignore": [
-    //       0
-    //     ],
-    //     "enforceConst": true,
-    //     "detectObjects": true
-    //   }
-    // ],
-    // "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-magic-numbers": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/init-declarations": "off",
     "@typescript-eslint/no-confusing-void-expression": [
       "error",
@@ -175,16 +166,10 @@
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/prefer-includes": "off",
     "@typescript-eslint/no-restricted-imports": "off",
+    "@typescript-eslint/no-var-requires": "off",
     "import/no-deprecated": "error",
     "import/order": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "vite.config.ts"
-        ]
-      }
-    ],
+    "import/no-extraneous-dependencies": "off",
     // React classes should not be used
     "react/no-did-update-set-state": "off",
     "react/no-find-dom-node": "off",
@@ -219,9 +204,8 @@
       {
         "eventHandlerPrefix": "on",
         "eventHandlerPropPrefix": "on",
-        "checkLocalVariables": true,
+        "checkLocalVariables": true
         // "checkInlineFunction": true
-        "checkInlineFunction": false
       }
     ],
     "react/jsx-key": "error",
@@ -249,7 +233,8 @@
     ],
     "unicorn/no-nested-ternary": [
       "error"
-    ]
+    ],
+    "unicorn/prefer-module": "off"
   },
   "settings": {
     "react": {

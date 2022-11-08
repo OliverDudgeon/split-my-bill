@@ -15,7 +15,7 @@ export interface ReceiptItemWithShare extends ReceiptItem {
 export interface FormikFormState {
   receipt: string;
   numberOfPeople: number;
-  percentDiscount: string;
+  percentageMultiplier: string;
   peoplesInitials: string[];
   receiptItems: ReceiptItemWithShare[];
 }

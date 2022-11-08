@@ -23,7 +23,7 @@ interface SharesProperties {
 }
 
 export function Shares({ values }: SharesProperties): ReactElement {
-  const { receiptItems, numberOfPeople, peoplesInitials, percentDiscount } = values;
+  const { receiptItems, numberOfPeople, peoplesInitials, percentageMultiplier } = values;
 
   // Handle keyboard navigation
   const [focus, setFocus] = useTrackFocus(
@@ -63,7 +63,7 @@ export function Shares({ values }: SharesProperties): ReactElement {
 
       <PeopleTotals
         labels={peoplesInitials}
-        percentDiscountFraction={calculatePercentDiscountFraction(percentDiscount)}
+        percentageMultiplierFraction={calculatePercentDiscountFraction(percentageMultiplier)}
         priceSummary={sumPricesByPerson(splitItems(values))}
         total={calculateTotal(receiptItems)}
       />

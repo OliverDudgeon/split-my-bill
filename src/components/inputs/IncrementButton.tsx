@@ -12,12 +12,15 @@ export function IncrementButton({
 }: IncrementButtonProperties): ReactElement {
   const roundedClass = () => {
     switch (side) {
-      case 'left':
+      case 'left': {
         return 'rounded-l';
-      case 'right':
+      }
+      case 'right': {
         return 'rounded-r';
-      default:
+      }
+      default: {
         return 'rounded';
+      }
     }
   };
   return (

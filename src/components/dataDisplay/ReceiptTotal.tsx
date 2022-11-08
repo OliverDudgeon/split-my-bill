@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react';
 
+import { percentageMultiplierText } from '../../constants';
 import type { ReceiptItem } from '../../types';
 import { calculatePercentDiscountFraction, calculateTotal } from '../../utils/money';
 import { ColonTotal } from './ColonTotal';
@@ -19,7 +20,7 @@ export function ReceiptTotal({
     <ColonTotal
       label="Total"
       price={total}
-      subLabel="sc"
+      subLabel={`${percentageMultiplierText} added`}
       subPrice={percentDiscount ? total * percentDiscountFraction : undefined}
     />
   );

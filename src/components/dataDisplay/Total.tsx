@@ -33,7 +33,7 @@ export function Total({
   return (
     <span {...properties}>
       {/* eslint-disable-next-line unicorn/no-null */}
-      {text} {subText ? `(${subText})` : null}
+      {text} {subText ? <span className="text-xs">{`(${subText})`}</span> : null}
     </span>
   );
 }

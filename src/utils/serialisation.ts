@@ -6,7 +6,7 @@ export const minify = ({
   numberOfPeople,
   receiptItems,
   peoplesInitials,
-  percentDiscount,
+  percentageMultiplier,
 }: FormikFormState): MinifiedFormikState => {
   // eslint-disable-next-line unicorn/prevent-abbreviations
   const r = receiptItems.map(({ discount: d, shares: s, item: index, price: p }) => ({
@@ -16,14 +16,14 @@ export const minify = ({
     p,
   }));
 
-  return { n: numberOfPeople, r, p: peoplesInitials, sc: percentDiscount };
+  return { n: numberOfPeople, r, p: peoplesInitials, sc: percentageMultiplier };
 };
 
 export const deminify = ({
   n: numberOfPeople,
   r,
   p: peoplesInitials,
-  sc: percentDiscount,
+  sc: percentageMultiplier,
 }: MinifiedFormikState): FormikFormState => {
   const receiptItems: ReceiptItemWithShare[] = r.map(({ d, s, i, p }) => ({
     discount: d,
@@ -35,7 +35,7 @@ export const deminify = ({
   const state = {
     numberOfPeople,
     receiptItems,
-    percentDiscount,
+    percentageMultiplier,
     peoplesInitials:
       peoplesInitials ?? (Array.from({ length: numberOfPeople }).fill('') as string[]),
   };
