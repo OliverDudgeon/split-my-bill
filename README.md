@@ -36,5 +36,5 @@ Use [standard-version](https://github.com/conventional-changelog/standard-versio
 
 ```sh
 pnpm dlx standard-version -t "''"
-git push --follow-tags origin master
+git push --follow-tags origin main
 ```
