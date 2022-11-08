@@ -27,10 +27,10 @@
     "just-throttle": "4.1.1",
     "pako": "2.1.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss╬": "3.1.8"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "tailwindcss": "3.1.8",
     "@nabla/vite-plugin-eslint": "1.4.1",
     "@types/pako": "2.0.0",
     "@types/react": "18.0.25",
