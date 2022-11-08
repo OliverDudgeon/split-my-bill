@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.5...0.2.6) (2022-11-08)
+
+
+### Bug Fixes
+
+* **deps:** fix package.json ([d1044c3](https://github.com/OliverDudgeon/split-my-bill/commit/d1044c37abbda0eef2917e3927c1103ad9230b89))
+
 ### [0.2.5](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.4...0.2.5) (2022-11-08)
 
 
