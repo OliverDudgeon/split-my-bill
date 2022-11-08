@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.4...0.2.5) (2022-11-08)
+
+
+### Bug Fixes
+
+* **share-button:** fix share button ([a172db8](https://github.com/OliverDudgeon/split-my-bill/commit/a172db83300522f432309a908f5f770047d115e2))
+* **totals:** fix display of initials in totals when initials are given with whitespace ([c305041](https://github.com/OliverDudgeon/split-my-bill/commit/c30504113bf90818b1aa64d650340da85fc8518e))
+
 ### [0.2.4](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.3...0.2.4) (2022-04-18)
 
 ### [0.2.3](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.2...0.2.3) (2022-03-11)
