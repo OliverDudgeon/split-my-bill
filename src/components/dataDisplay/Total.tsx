@@ -32,7 +32,8 @@ export function Total({
 
   return (
     <span {...properties}>
-      {text} {subText && `(${subText})`}
+      {/* eslint-disable-next-line unicorn/no-null */}
+      {text} {subText ? `(${subText})` : null}
     </span>
   );
 }
