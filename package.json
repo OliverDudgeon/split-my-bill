@@ -30,7 +30,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "tailwindcss": "3.1.8",
+    "tailwindcss": "3.3.2",
     "@nabla/vite-plugin-eslint": "1.4.1",
     "@types/pako": "2.0.0",
     "@types/react": "18.0.25",
