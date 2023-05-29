@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.6...0.2.7) (2023-05-29)
+
+
+### Features
+
+* **discounts:** display original price as hover text ([8821ddd](https://github.com/OliverDudgeon/split-my-bill/commit/8821ddd61e261d2b98fb9b53e1b01672b22652ab)), closes [#1](https://github.com/OliverDudgeon/split-my-bill/issues/1)
+* **money:** when the receipt can't be perfectly split, display the remaining amount ([a68ca28](https://github.com/OliverDudgeon/split-my-bill/commit/a68ca28ef943809a0e824a34690c7d90f4043792)), closes [#1](https://github.com/OliverDudgeon/split-my-bill/issues/1)
+
+
+### Bug Fixes
+
+* **receipt:** imrpove parsing to better handle a few things ([f735d41](https://github.com/OliverDudgeon/split-my-bill/commit/f735d41bff0e9f00175fee6b3c9fa4cdfc9046db))
+
 ### [0.2.6](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.5...0.2.6) (2022-11-08)
 
 

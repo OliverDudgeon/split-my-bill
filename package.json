@@ -1,7 +1,7 @@
 {
   "name": "split-my-bill",
   "license": "MIT",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "scripts": {
     "build": "vite build",
@@ -75,10 +75,10 @@
     "*.{ts,tsx}": "eslint --cache --fix"
   },
   "browserslist": {
-		"production": "Edge >= 18, Firefox >= 60, Chrome >= 61, Safari >= 11, Opera >= 48",
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version"
-		]
-	}
+    "production": "Edge >= 18, Firefox >= 60, Chrome >= 61, Safari >= 11, Opera >= 48",
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version"
+    ]
+  }
 }
