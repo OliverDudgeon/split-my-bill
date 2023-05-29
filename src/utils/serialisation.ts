@@ -47,7 +47,7 @@ export const deminify = ({
 export const compressEncode = (object: unknown): string => {
   const compressed = pako.gzip(JSON.stringify(object));
   const base64 = bytesToBase64(compressed);
-  return base64.replace(/\//g, '-');
+  return base64.replaceAll('/', '-');
 };
 
 export const decompressDecode = (base64: string): MinifiedFormikState | undefined => {

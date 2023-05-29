@@ -36,7 +36,7 @@ export function FormWrapper({ children }: FormWrapperProperties): ReactElement {
     // Remove the '?' at the start
     const urlValues = decompressDecode(paths.slice(1));
 
-    parsedFormikState = urlValues !== undefined ? deminify(urlValues) : undefined;
+    parsedFormikState = urlValues === undefined ? undefined : deminify(urlValues);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
