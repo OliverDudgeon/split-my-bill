@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.11](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.10...0.2.11) (2023-05-29)
+
 ### [0.2.10](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.9...0.2.10) (2023-05-29)
 
 ### [0.2.9](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.8...0.2.9) (2023-05-29)
