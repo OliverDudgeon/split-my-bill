@@ -46,7 +46,8 @@
     "reset-button",
     "utils",
     "regexp",
-    "testing"
+    "testing",
+    "money"
   ],
   "cSpell.words": [
     "Formik"

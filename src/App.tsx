@@ -6,6 +6,7 @@ import { Actions } from './components/layout/Actions';
 import { MastHead } from './components/layout/MastHead';
 import { Receipt } from './components/layout/Receipt';
 import { Shares } from './components/layout/Shares';
+import { TotallingMessage } from './components/layout/TotallingMessage';
 import { ViewportProvider } from './hooks/useViewport';
 import { Footer } from './Footer';
 import { Header } from './Header';
@@ -23,6 +24,7 @@ function App(): ReactElement {
                 <Receipt {...properties} />
               </MastHead>
               <Shares values={properties.values} />
+              <TotallingMessage values={properties.values} />
               <Actions />
             </>
           )}

@@ -1,4 +1,4 @@
-import type { ReceiptItem } from '../types';
+import type { ReceiptItem, ReceiptItemWithShare } from '../types';
 import { range, sum } from './utils';
 
 export const poundFormatter = new Intl.NumberFormat('en-GB', {
@@ -22,6 +22,9 @@ export const calculateDiscount = (discount: string, price: number): number => {
   }
   return price - parsedDiscount;
 };
+
+export const calculatePostDiscountTotal = (receiptItems: ReceiptItemWithShare[]) =>
+  sum(receiptItems.map(({ price, discount }) => calculateDiscount(discount, price)));
 
 export const calculatePercentDiscountFraction = (percentageMultiplier: string): number =>
   (Number.parseFloat(percentageMultiplier) || 0) / 100;
