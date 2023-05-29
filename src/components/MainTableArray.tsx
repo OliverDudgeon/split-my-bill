@@ -40,7 +40,9 @@ export function MainTableArray({
                 {item}
               </span>
               <span className="self-center">
-                {poundFormatter.format(calculateDiscount(discount, price))}
+                <abbr title={`Originally ${poundFormatter.format(price)}`}>
+                  {poundFormatter.format(calculateDiscount(discount, price))}
+                </abbr>
               </span>
               <Input
                 className="self-center w-full"
