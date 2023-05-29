@@ -14,10 +14,8 @@ jobs:
   # This workflow contains a single job called "build"
   deploy:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node-version: [16]
     steps:
+      - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
         with:
           version: 7.15.0
@@ -27,7 +25,7 @@ jobs:
         with:
           node-version: 18
           cache: "pnpm"
-      - run: pnpm i
+      - run: pnpm i --frozen-lockfile
       - run: pnpm build
 
       - name: Deploy
