@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.12](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.11...0.2.12) (2023-06-04)
+
+
+### Bug Fixes
+
+* fix UI issues caused by dependency updates ([af55ec4](https://github.com/OliverDudgeon/split-my-bill/commit/af55ec4007618703e734c7cafe9402ddcdbb52f3))
+
 ### [0.2.11](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.10...0.2.11) (2023-05-29)
 
 ### [0.2.10](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.9...0.2.10) (2023-05-29)
