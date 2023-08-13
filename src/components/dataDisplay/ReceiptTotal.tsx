@@ -19,7 +19,7 @@ export function ReceiptTotal({
   return (
     <ColonTotal
       label="Total"
-      price={total}
+      price={total * (1 + percentDiscountFraction)}
       subLabel={`${percentageMultiplierText} added`}
       subPrice={percentDiscount ? total * percentDiscountFraction : undefined}
     />
