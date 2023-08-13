@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.14](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.13...0.2.14) (2023-08-13)
+
+
+### Bug Fixes
+
+* improve split difference maths ([559b2cc](https://github.com/OliverDudgeon/split-my-bill/commit/559b2cc765a72923dba17055619e1c14152e1b27))
+
 ### [0.2.13](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.12...0.2.13) (2023-08-13)
 
 
