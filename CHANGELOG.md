@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.13](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.12...0.2.13) (2023-08-13)
+
+
+### Bug Fixes
+
+* change %mul text again ([e815a65](https://github.com/OliverDudgeon/split-my-bill/commit/e815a65375385f6f25bd3326473a15743b02d2eb))
+* display price after %mul ([00be569](https://github.com/OliverDudgeon/split-my-bill/commit/00be569b1af96a6bdbf2917dbb3513829ad66bb6))
+* display tooltip only if discount is applied ([7dabfc9](https://github.com/OliverDudgeon/split-my-bill/commit/7dabfc966f51d325d14ee14e7017ade1b4676612))
+
 ### [0.2.12](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.11...0.2.12) (2023-06-04)
 
 
