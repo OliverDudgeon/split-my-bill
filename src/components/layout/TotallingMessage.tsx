@@ -13,10 +13,13 @@ export function TotallingMessage({ values }: SharesProperties): ReactElement | n
   const itemsTotal = calculatePostDiscountTotal(receiptItems).toFixed(2);
   const difference = Number.parseFloat(itemsTotal) - totalAfterSplitting;
 
+  const value = Math.ceil(Math.abs(difference) * 100) / 100;
+  const sign = Math.sign(difference);
+
   // eslint-disable-next-line unicorn/no-null
   return difference === 0 ? null : (
     <div className="max-w-screen-sm mx-auto mb-2">
-      <b>The receipt was split with a difference of {poundFormatter.format(difference)}</b>
+      <b>The receipt was split with a difference of {poundFormatter.format(sign * value)}</b>
     </div>
   );
 }
