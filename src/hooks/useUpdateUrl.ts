@@ -6,7 +6,7 @@ import type { FormikFormState } from '../types';
 import { compressEncode, minify } from '../utils/serialisation';
 
 const updateUrl = throttle((url: string) => {
-  window.history.pushState('', '', url);
+  globalThis.history.pushState('', '', url);
 }, 500);
 
 export function useUpdateUrl(values: FormikFormState): void {

@@ -26,7 +26,7 @@ export function IncrementButton({
   return (
     <button
       {...properties}
-      className={`shadow-sm border ${roundedClass()} text-2xl px-3 text-gray-700 leading-tight focus:outline-none
+      className={`shadow-xs border ${roundedClass()} text-2xl px-3 text-gray-700 leading-tight focus:outline-hidden
     focus:shadow-outline appearance-none ${className ?? ''}`}
       type="button"
     >

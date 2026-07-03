@@ -18,7 +18,7 @@ export function TextArea({
   return (
     <textarea
       {...field}
-      className={`shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${className}`}
+      className={`shadow-sm appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-hidden focus:shadow-outline ${className}`}
       onChange={(event) => {
         onValueChange(event, field);
       }}

@@ -5,7 +5,6 @@
  */
 export const range = (n: number): number[] => [...Array.from({ length: n }).keys()];
 
-// eslint-disable-next-line unicorn/no-array-reduce
 export const sum = (array: number[]): number => array.reduce((a, b) => a + b, 0);
 
 /**

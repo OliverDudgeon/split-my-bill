@@ -10,7 +10,7 @@ export function Input({ className, ...properties }: InputProperties): ReactEleme
 
   return (
     <Field
-      className={`shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none
+      className={`shadow-sm border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-hidden
                   focus:shadow-outline appearance-none ${className ?? ''}`}
       {...properties}
       innerRef={reference}

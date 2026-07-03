@@ -1,21 +1,16 @@
 import eslintPlugin from '@nabla/vite-plugin-eslint';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(() => ({
-  optimizeDeps: {
-    disabled: false,
-  },
-  build: {
-    commonjsOptions: {
-      include: [],
-    },
-  },
   base: '/split-my-bill/',
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
-    tsconfigPaths(),
+    tailwindcss(),
     react(),
     eslintPlugin(),
     VitePWA({

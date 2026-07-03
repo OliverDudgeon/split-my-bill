@@ -1,15 +1,13 @@
-const defaultConfig = require('tailwindcss/defaultConfig');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
-/** @type {import('tailwindcss/types').Config} */
+/** @type {import('tailwindcss').Config} */
 const config = {
   content: ['index.html', 'src/**/*.tsx'],
   theme: {
     fontFamily: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
     },
   },
-  experimental: { optimizeUniversalDefaults: true },
   // plugins: [formsPlugin]
 };
 

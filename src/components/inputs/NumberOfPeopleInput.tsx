@@ -31,10 +31,7 @@ const handleChangeToNumberOfPeople = (
 
 export interface NumberOfPeopleInputProperties {
   values: FormikFormState;
-  setValues: (
-    values: React.SetStateAction<FormikFormState>,
-    shouldValidate?: boolean | undefined,
-  ) => void;
+  setValues: (values: React.SetStateAction<FormikFormState>, shouldValidate?: boolean) => void;
 }
 
 export function NumberOfPeopleInput({
@@ -43,7 +40,6 @@ export function NumberOfPeopleInput({
 }: NumberOfPeopleInputProperties): ReactElement {
   return (
     <div className="flex">
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="number-of-people">Number of People</label>
       <IncrementButton
         side="left"
@@ -55,7 +51,7 @@ export function NumberOfPeopleInput({
       </IncrementButton>
       <Input
         disabled
-        className="w-12 text-center rounded-none shadow-sm text-lg"
+        className="w-12 text-center rounded-none shadow-xs text-lg"
         id="number-of-people"
         name="numberOfPeople"
       />
