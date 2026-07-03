@@ -9,17 +9,16 @@ export function TotallingMessage({ values }: SharesProperties): ReactElement | n
   const { receiptItems } = values;
 
   const sharesByPerson = sumPricesByPerson(splitItems(values));
-  const totalAfterSplitting = sum(sharesByPerson.map((cost) => Number.parseFloat(cost.toFixed(2))));
-  const itemsTotal = calculatePostDiscountTotal(receiptItems).toFixed(2);
-  const difference = Number.parseFloat(itemsTotal) - totalAfterSplitting;
-
-  const value = Math.ceil(Math.abs(difference) * 100) / 100;
-  const sign = Math.sign(difference);
+  const totalAfterSplittingCents = sum(sharesByPerson.map((cost) => Math.round(cost * 100)));
+  const itemsTotalCents = Math.round(calculatePostDiscountTotal(receiptItems) * 100);
+  const differenceCents = itemsTotalCents - totalAfterSplittingCents;
 
   // eslint-disable-next-line unicorn/no-null
-  return difference === 0 ? null : (
+  return differenceCents === 0 ? null : (
     <div className="mx-auto mt-5 max-w-4xl rounded-3xl border border-amber-200 bg-amber-50 px-5 py-4 text-amber-950 shadow-lg shadow-amber-950/10">
-      <b>The receipt was split with a difference of {poundFormatter.format(sign * value)}</b>
+      <b>
+        The receipt was split with a difference of {poundFormatter.format(differenceCents / 100)}
+      </b>
     </div>
   );
 }
