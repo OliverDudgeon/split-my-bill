@@ -7,6 +7,14 @@ export interface ReceiptItem {
   price: number;
 }
 
+export type CurrencySymbolPosition = 'prefix' | 'suffix';
+
+export interface ReceiptCurrency {
+  symbol: string;
+  symbolPosition: CurrencySymbolPosition;
+  symbolSpacing: boolean;
+}
+
 export interface ReceiptItemWithShare extends ReceiptItem {
   discount: string;
   shares: string[];
@@ -14,6 +22,7 @@ export interface ReceiptItemWithShare extends ReceiptItem {
 
 export interface FormikFormState {
   receipt: string;
+  receiptCurrency: ReceiptCurrency | false;
   numberOfPeople: number;
   percentageMultiplier: string;
   peoplesInitials: string[];
@@ -25,6 +34,13 @@ export type AppFormikProperties = FormikProps<FormikFormState>;
 export interface MinifiedFormikState {
   n: number;
   sc: string;
+  c?:
+    | {
+        s: string;
+        p: CurrencySymbolPosition;
+        w?: boolean;
+      }
+    | false;
   r: {
     d: string;
     s: string[];

@@ -1,4 +1,4 @@
-import { MONEY_AMOUNT_REGEXP } from '../regexp';
+import { CURRENCY_SYMBOLS_REGEXP, MONEY_AMOUNT_REGEXP } from '../regexp';
 import type { FormikFormState, ReceiptItem } from '../types';
 import { calculateDiscount } from './money';
 import { sum } from './utils';
@@ -10,7 +10,11 @@ export function divideReceipt(source: string): ReceiptItem[] {
   for (const match of `${source}\n`.matchAll(MONEY_AMOUNT_REGEXP)) {
     if (typeof match.index === 'number' && !!match[0].match(/\d/)?.[0]) {
       const price = Number.parseFloat(
-        match[0].trim().replaceAll(/[$£€]/g, '').replaceAll(/[,']/g, '.'),
+        match[0]
+          .trim()
+          .replaceAll(CURRENCY_SYMBOLS_REGEXP, '')
+          .replaceAll(/\s/g, '')
+          .replaceAll(/[,']/g, '.'),
       );
       const item = source.slice(previousIndex, match.index).trim();
       previousIndex = match.index + match[0].length;

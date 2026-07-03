@@ -3,6 +3,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { Form, Formik } from 'formik';
 
 import type { AppFormikProperties, FormikFormState } from '../types';
+import { detectReceiptCurrency } from '../utils/money';
 import { divideReceipt } from '../utils/receipt';
 import { decompressDecode, deminify } from '../utils/serialisation';
 
@@ -18,6 +19,7 @@ Pesto & Goat Cheese Tortelloni 300g £1.50
 const initNumberOfPeople = 3;
 const initialValues: FormikFormState = {
   receipt: testReceipt,
+  receiptCurrency: detectReceiptCurrency(testReceipt) ?? false,
   numberOfPeople: initNumberOfPeople,
   percentageMultiplier: '0',
   peoplesInitials: Array.from({ length: initNumberOfPeople }).fill('') as string[],

@@ -5,7 +5,8 @@ import { FieldArray } from 'formik';
 
 import type { ReceiptItemWithShare } from '../types';
 import { getDiscountInputName, getShareInputName } from '../utils/inputs';
-import { calculateDiscount, poundFormatter } from '../utils/money';
+import type { CurrencyFormat } from '../utils/money';
+import { calculateDiscount, formatMoney } from '../utils/money';
 import { Input } from './inputs/Input';
 
 export interface MainTableArrayProperties {
@@ -14,6 +15,7 @@ export interface MainTableArrayProperties {
   numberOfPeople: number;
   onClick: (inputIndex: number) => void;
   focus: number;
+  currencyFormat: CurrencyFormat;
 }
 
 export function MainTableArray({
@@ -22,6 +24,7 @@ export function MainTableArray({
   numberOfPeople,
   onClick,
   focus,
+  currencyFormat,
 }: MainTableArrayProperties): ReactElement {
   return (
     <FieldArray name="receiptItems">
@@ -41,10 +44,10 @@ export function MainTableArray({
               </span>
               <span className="self-center rounded-2xl bg-slate-50 px-4 py-3 font-black text-slate-950 dark:bg-slate-800/80 dark:text-white">
                 {discount === '' ? (
-                  poundFormatter.format(calculateDiscount(discount, price))
+                  formatMoney(calculateDiscount(discount, price), currencyFormat)
                 ) : (
-                  <abbr title={`Originally ${poundFormatter.format(price)}`}>
-                    {poundFormatter.format(calculateDiscount(discount, price))}
+                  <abbr title={`Originally ${formatMoney(price, currencyFormat)}`}>
+                    {formatMoney(calculateDiscount(discount, price), currencyFormat)}
                   </abbr>
                 )}
               </span>

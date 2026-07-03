@@ -9,6 +9,7 @@ import type {
   FormikSetter,
   ReceiptItemWithShare,
 } from '../../types';
+import { detectCurrencyFormat, detectReceiptCurrency } from '../../utils/money';
 import { divideReceipt } from '../../utils/receipt';
 import { ReceiptTotal } from '../dataDisplay/ReceiptTotal';
 import { NumberOfPeopleInput } from '../inputs/NumberOfPeopleInput';
@@ -44,18 +45,24 @@ const onReceiptChange =
       };
     });
 
-    setValues({ ...values, receiptItems: newItemsState });
+    setValues({
+      ...values,
+      receiptCurrency: detectReceiptCurrency(event.target.value) ?? false,
+      receiptItems: newItemsState,
+    });
     field.onChange(event);
   };
 
 export function Receipt({ values, setValues }: AppFormikProperties): ReactElement {
+  const currencyFormat = detectCurrencyFormat(values.receipt, values.receiptCurrency);
+
   return (
     <div className="space-y-5">
       <ReceiptTextArea name="receipt" onValueChange={onReceiptChange(values, setValues)} />
 
       <div className="rounded-3xl border border-slate-200 bg-white px-5 py-4 shadow-sm dark:border-slate-700 dark:bg-slate-950/70">
         <b className="text-lg text-slate-950 dark:text-white">
-          <ReceiptTotal receiptItems={values.receiptItems} />
+          <ReceiptTotal currencyFormat={currencyFormat} receiptItems={values.receiptItems} />
         </b>
       </div>
 
@@ -63,6 +70,7 @@ export function Receipt({ values, setValues }: AppFormikProperties): ReactElemen
         <PercentDiscountInput />
         <div className="flex min-h-12 items-center justify-end rounded-2xl bg-white px-4 py-3 text-right font-bold text-slate-950 shadow-sm dark:bg-slate-950/80 dark:text-white">
           <ReceiptTotal
+            currencyFormat={currencyFormat}
             percentDiscount={values.percentageMultiplier}
             receiptItems={values.receiptItems}
           />
@@ -72,7 +80,9 @@ export function Receipt({ values, setValues }: AppFormikProperties): ReactElemen
       <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
         <NumberOfPeopleInput setValues={setValues} values={values} />
         <ResetButton
-          onReset={() => setValues({ ...initialValues, receipt: '', receiptItems: [] })}
+          onReset={() =>
+            setValues({ ...initialValues, receipt: '', receiptCurrency: false, receiptItems: [] })
+          }
         />
       </div>
     </div>

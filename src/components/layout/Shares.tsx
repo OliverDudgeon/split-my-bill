@@ -8,7 +8,8 @@ import type { FormikFormState } from '../../types';
 import {
   calculatePercentDiscountFraction,
   calculatePostDiscountTotal,
-  poundFormatter,
+  detectCurrencyFormat,
+  formatMoney,
   sumPricesByPerson,
 } from '../../utils/money';
 import { splitItems } from '../../utils/receipt';
@@ -33,6 +34,7 @@ export function Shares({ values }: SharesProperties): ReactElement {
   useUpdateUrl(values);
 
   const sharesByPerson = sumPricesByPerson(splitItems(values));
+  const currencyFormat = detectCurrencyFormat(values.receipt, values.receiptCurrency);
 
   return (
     <section className="mx-0 w-full rounded-[2rem] border border-slate-200 bg-white/75 p-4 shadow-2xl shadow-slate-950/10 ring-1 ring-slate-950/5 backdrop-blur dark:border-white/15 dark:bg-slate-950/80 dark:shadow-slate-950/40 dark:ring-white/10 sm:p-6">
@@ -68,6 +70,7 @@ export function Shares({ values }: SharesProperties): ReactElement {
 
           {receiptItems.length > 0 ? (
             <MainTableArray
+              currencyFormat={currencyFormat}
               focus={focus}
               numberOfPeople={numberOfPeople}
               peoplesInitials={peoplesInitials}
@@ -85,10 +88,11 @@ export function Shares({ values }: SharesProperties): ReactElement {
           </b>
 
           <b className="col-start-2 mt-2 self-center rounded-2xl bg-teal-100 px-4 py-3 text-teal-950 dark:bg-teal-300 dark:text-teal-950">
-            {poundFormatter.format(calculatePostDiscountTotal(receiptItems))}
+            {formatMoney(calculatePostDiscountTotal(receiptItems), currencyFormat)}
           </b>
 
           <PeopleTotals
+            currencyFormat={currencyFormat}
             labels={peoplesInitials}
             percentageMultiplierFraction={calculatePercentDiscountFraction(percentageMultiplier)}
             priceSummary={sharesByPerson}

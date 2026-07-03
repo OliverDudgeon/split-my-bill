@@ -1,5 +1,6 @@
-import { divideReceipt } from './utils/receipt';
 import type { FormikFormState } from './types';
+import { detectReceiptCurrency } from './utils/money';
+import { divideReceipt } from './utils/receipt';
 
 export const testReceipt = `Root Ginger Loose £1.03
 Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50
@@ -11,6 +12,7 @@ export const percentageMultiplierText = '%Mul';
 export const initNumberOfPeople = 3;
 export const initialValues: FormikFormState = {
   receipt: testReceipt,
+  receiptCurrency: detectReceiptCurrency(testReceipt) ?? false,
   numberOfPeople: initNumberOfPeople,
   percentageMultiplier: '0',
   peoplesInitials: Array.from({ length: initNumberOfPeople }).fill('') as string[],
