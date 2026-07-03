@@ -8,7 +8,6 @@ import type { FormikFormState } from '../../types';
 import {
   calculatePercentDiscountFraction,
   calculatePostDiscountTotal,
-  calculateTotal,
   poundFormatter,
   sumPricesByPerson,
 } from '../../utils/money';
@@ -34,7 +33,6 @@ export function Shares({ values }: SharesProperties): ReactElement {
   useUpdateUrl(values);
 
   const sharesByPerson = sumPricesByPerson(splitItems(values));
-  const itemsTotal = calculateTotal(receiptItems);
 
   return (
     <section className="mx-0 w-full rounded-[2rem] border border-slate-200 bg-white/75 p-4 shadow-2xl shadow-slate-950/10 ring-1 ring-slate-950/5 backdrop-blur dark:border-white/15 dark:bg-slate-950/80 dark:shadow-slate-950/40 dark:ring-white/10 sm:p-6">
@@ -94,7 +92,6 @@ export function Shares({ values }: SharesProperties): ReactElement {
             labels={peoplesInitials}
             percentageMultiplierFraction={calculatePercentDiscountFraction(percentageMultiplier)}
             priceSummary={sharesByPerson}
-            total={itemsTotal}
           />
         </div>
       </div>
