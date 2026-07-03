@@ -8,9 +8,9 @@ export function divideReceipt(source: string): ReceiptItem[] {
 
   let previousIndex = 0;
   for (const match of `${source}\n`.matchAll(MONEY_AMOUNT_REGEXP)) {
-    if (match.index && !!match[0].match(/\d/)?.[0]) {
+    if (typeof match.index === 'number' && !!match[0].match(/\d/)?.[0]) {
       const price = Number.parseFloat(
-        match[0].trim().replaceAll("[,']", '.').replaceAll(/[$£€]/g, ''),
+        match[0].trim().replaceAll(/[$£€]/g, '').replaceAll(/[,']/g, '.'),
       );
       const item = source.slice(previousIndex, match.index).trim();
       previousIndex = match.index + match[0].length;
