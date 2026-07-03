@@ -10,8 +10,7 @@ export function Input({ className, ...properties }: InputProperties): ReactEleme
 
   return (
     <Field
-      className={`shadow-sm border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-hidden
-                  focus:shadow-outline appearance-none ${className ?? ''}`}
+      className={`appearance-none rounded-2xl border border-slate-300 bg-white/90 px-4 py-3 leading-tight text-slate-900 shadow-inner shadow-slate-200/70 transition placeholder:text-slate-400 disabled:bg-slate-100 disabled:text-slate-500 focus:border-teal-500 focus:outline-hidden focus:ring-4 focus:ring-teal-500/15 dark:border-slate-700 dark:bg-slate-950/80 dark:text-white dark:shadow-black/20 dark:placeholder:text-slate-500 dark:disabled:bg-slate-900 dark:disabled:text-slate-400 ${className ?? ''}`}
       {...properties}
       innerRef={reference}
       onKeyDown={(event: KeyboardEvent) => {

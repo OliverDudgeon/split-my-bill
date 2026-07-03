@@ -50,29 +50,31 @@ const onReceiptChange =
 
 export function Receipt({ values, setValues }: AppFormikProperties): ReactElement {
   return (
-    <>
+    <div className="space-y-5">
       <ReceiptTextArea name="receipt" onValueChange={onReceiptChange(values, setValues)} />
 
-      <div>
-        <b>
+      <div className="rounded-3xl border border-slate-200 bg-white px-5 py-4 shadow-sm dark:border-slate-700 dark:bg-slate-950/70">
+        <b className="text-lg text-slate-950 dark:text-white">
           <ReceiptTotal receiptItems={values.receiptItems} />
         </b>
       </div>
 
-      <div className="flex justify-between my-3">
+      <div className="grid gap-4 rounded-3xl border border-dashed border-teal-300 bg-teal-50/80 p-4 dark:border-teal-400/50 dark:bg-teal-950/30 sm:grid-cols-2 sm:items-end">
         <PercentDiscountInput />
-        <ReceiptTotal
-          percentDiscount={values.percentageMultiplier}
-          receiptItems={values.receiptItems}
-        />
+        <div className="flex min-h-12 items-center justify-end rounded-2xl bg-white px-4 py-3 text-right font-bold text-slate-950 shadow-sm dark:bg-slate-950/80 dark:text-white">
+          <ReceiptTotal
+            percentDiscount={values.percentageMultiplier}
+            receiptItems={values.receiptItems}
+          />
+        </div>
       </div>
 
-      <div className="flex justify-between my-3">
+      <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
         <NumberOfPeopleInput setValues={setValues} values={values} />
         <ResetButton
           onReset={() => setValues({ ...initialValues, receipt: '', receiptItems: [] })}
         />
       </div>
-    </>
+    </div>
   );
 }

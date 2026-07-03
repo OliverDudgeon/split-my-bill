@@ -18,7 +18,7 @@ export function TotallingMessage({ values }: SharesProperties): ReactElement | n
 
   // eslint-disable-next-line unicorn/no-null
   return difference === 0 ? null : (
-    <div className="max-w-screen-sm mx-auto mb-2">
+    <div className="mx-auto mt-5 max-w-4xl rounded-3xl border border-amber-200 bg-amber-50 px-5 py-4 text-amber-950 shadow-lg shadow-amber-950/10">
       <b>The receipt was split with a difference of {poundFormatter.format(sign * value)}</b>
     </div>
   );

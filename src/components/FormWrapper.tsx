@@ -30,16 +30,18 @@ const initialValues: FormikFormState = {
 
 export function FormWrapper({ children }: FormWrapperProperties): ReactElement {
   let parsedFormikState: FormikFormState | undefined;
-  try {
-    const paths = globalThis.location.search;
+  const paths = globalThis.location.search;
 
-    // Remove the '?' at the start
-    const urlValues = decompressDecode(paths.slice(1));
+  if (paths) {
+    try {
+      // Remove the '?' at the start
+      const urlValues = decompressDecode(paths.slice(1));
 
-    parsedFormikState = urlValues === undefined ? undefined : deminify(urlValues);
-  } catch (error) {
-    console.error(error);
-    parsedFormikState = undefined;
+      parsedFormikState = urlValues === undefined ? undefined : deminify(urlValues);
+    } catch (error) {
+      console.error(error);
+      parsedFormikState = undefined;
+    }
   }
 
   return (

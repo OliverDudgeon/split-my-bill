@@ -3,6 +3,33 @@
 @config "../tailwind.config.js";
 
 @layer base {
+  html {
+    background: #f5f0e8;
+  }
+
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, rgb(20 184 166 / 22%), transparent 34rem),
+      radial-gradient(circle at 85% 12%, rgb(251 146 60 / 18%), transparent 28rem),
+      linear-gradient(135deg, #fff7ed 0%, #f8fafc 45%, #eef2ff 100%);
+    color: #1f2937;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      background: #111827;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgb(45 212 191 / 28%), transparent 34rem),
+        radial-gradient(circle at 85% 12%, rgb(251 146 60 / 22%), transparent 28rem),
+        linear-gradient(135deg, #0f172a 0%, #172033 45%, #111827 100%);
+      color: #e5e7eb;
+    }
+  }
+
   *,
   ::after,
   ::before,
@@ -14,5 +41,9 @@
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+
+  ::selection {
+    background: rgb(20 184 166 / 28%);
   }
 }

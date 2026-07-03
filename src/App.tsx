@@ -1,6 +1,5 @@
 import type { ReactElement } from 'react';
 
-import { BreakPointIndicator } from './components/BreakPointIndicator';
 import { FormWrapper } from './components/FormWrapper';
 import { Actions } from './components/layout/Actions';
 import { MastHead } from './components/layout/MastHead';
@@ -14,21 +13,22 @@ import { Header } from './Header';
 function App(): ReactElement {
   return (
     <ViewportProvider>
-      <div className="px-2 md:px-4">
-        <BreakPointIndicator />
-        <FormWrapper>
-          {(properties) => (
-            <>
-              <MastHead>
-                <Header />
-                <Receipt {...properties} />
-              </MastHead>
-              <Shares values={properties.values} />
-              <TotallingMessage values={properties.values} />
-              <Actions />
-            </>
-          )}
-        </FormWrapper>
+      <div className="min-h-screen px-3 py-5 sm:px-5 lg:px-8">
+        <main className="mx-auto w-full">
+          <FormWrapper>
+            {(properties) => (
+              <>
+                <MastHead>
+                  <Header />
+                  <Receipt {...properties} />
+                </MastHead>
+                <Shares values={properties.values} />
+                <TotallingMessage values={properties.values} />
+                <Actions />
+              </>
+            )}
+          </FormWrapper>
+        </main>
         <Footer />
       </div>
     </ViewportProvider>

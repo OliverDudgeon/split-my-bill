@@ -32,8 +32,7 @@ export function Total({
 
   return (
     <span {...properties}>
-      {/* eslint-disable-next-line unicorn/no-null */}
-      {text} {subText ? <span className="text-xs">{`(${subText})`}</span> : null}
+      {text} {subText && <span className="text-xs font-semibold opacity-70">{`(${subText})`}</span>}
     </span>
   );
 }

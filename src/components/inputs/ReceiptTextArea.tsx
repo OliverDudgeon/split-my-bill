@@ -12,5 +12,16 @@ export function ReceiptTextArea({
   onValueChange,
   ...config
 }: FieldHookConfig<string> & ReceiptTextAreaProperties): ReactElement {
-  return <TextArea {...config} className="w-full self-center" onValueChange={onValueChange} />;
+  return (
+    <div className="block">
+      <span className="mb-2 block text-sm font-black uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
+        Receipt text
+      </span>
+      <TextArea
+        {...config}
+        className="min-h-72 w-full resize-y self-center"
+        onValueChange={onValueChange}
+      />
+    </div>
+  );
 }

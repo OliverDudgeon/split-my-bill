@@ -39,30 +39,37 @@ export function NumberOfPeopleInput({
   setValues,
 }: NumberOfPeopleInputProperties): ReactElement {
   return (
-    <div className="flex">
-      <label htmlFor="number-of-people">Number of People</label>
-      <IncrementButton
-        side="left"
-        onClick={() => {
-          handleChangeToNumberOfPeople(values, setValues, Math.max(2, values.numberOfPeople - 1));
-        }}
+    <div>
+      <label
+        className="mb-2 block text-sm font-black uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400"
+        htmlFor="number-of-people"
       >
-        -
-      </IncrementButton>
-      <Input
-        disabled
-        className="w-12 text-center rounded-none shadow-xs text-lg"
-        id="number-of-people"
-        name="numberOfPeople"
-      />
-      <IncrementButton
-        side="right"
-        onClick={() => {
-          handleChangeToNumberOfPeople(values, setValues, values.numberOfPeople + 1);
-        }}
-      >
-        +
-      </IncrementButton>
+        Number of people
+      </label>
+      <div className="flex">
+        <IncrementButton
+          side="left"
+          onClick={() => {
+            handleChangeToNumberOfPeople(values, setValues, Math.max(2, values.numberOfPeople - 1));
+          }}
+        >
+          -
+        </IncrementButton>
+        <Input
+          disabled
+          className="w-16 rounded-none border-x-0 text-center text-lg font-black shadow-none"
+          id="number-of-people"
+          name="numberOfPeople"
+        />
+        <IncrementButton
+          side="right"
+          onClick={() => {
+            handleChangeToNumberOfPeople(values, setValues, values.numberOfPeople + 1);
+          }}
+        >
+          +
+        </IncrementButton>
+      </div>
     </div>
   );
 }

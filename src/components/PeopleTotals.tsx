@@ -23,7 +23,9 @@ export function PeopleTotals({
           (total * percentageMultiplierFraction * price) / total;
         return (
           <ColonTotal
-            className={personIndex === 0 ? 'col-start-1 sm:col-start-4' : ''}
+            className={`mt-2 rounded-2xl bg-teal-500 px-4 py-3 text-center font-black text-white shadow-lg shadow-teal-900/20 dark:bg-teal-300 dark:text-teal-950 ${
+              personIndex === 0 ? 'col-start-4' : ''
+            }`}
             key={personIndex}
             label={labels[personIndex]}
             price={price + percentageMultiplierDifference}

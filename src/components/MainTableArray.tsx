@@ -31,15 +31,15 @@ export function MainTableArray({
           return (
             <Fragment key={`${item}-${itemIndex}`}>
               <span
-                className={`self-center col-start-1 ${
+                className={`col-start-1 self-center rounded-2xl px-4 py-3 text-sm leading-5 ${
                   Math.floor((focus - 1 - numberOfPeople) / (numberOfPeople + 1)) === itemIndex
-                    ? 'font-bold'
-                    : ''
+                    ? 'bg-orange-100 font-black text-orange-950 ring-2 ring-orange-300 dark:bg-orange-300 dark:text-orange-950 dark:ring-orange-200'
+                    : 'bg-slate-100 font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200'
                 }`}
               >
                 {item}
               </span>
-              <span className="self-center">
+              <span className="self-center rounded-2xl bg-slate-50 px-4 py-3 font-black text-slate-950 dark:bg-slate-800/80 dark:text-white">
                 {discount === '' ? (
                   poundFormatter.format(calculateDiscount(discount, price))
                 ) : (
@@ -49,7 +49,7 @@ export function MainTableArray({
                 )}
               </span>
               <Input
-                className="self-center w-full"
+                className="w-full self-center"
                 name={getDiscountInputName(itemIndex)}
                 placeholder="discount"
                 onClick={() => onClick(inputIndex)}
@@ -58,9 +58,7 @@ export function MainTableArray({
                 {() =>
                   shares.map((_, personIndex) => (
                     <Input
-                      className={`self-center w-full ${
-                        personIndex === 0 ? 'col-start-1' : ''
-                      } sm:col-start-auto`}
+                      className="w-full self-center text-center"
                       key={personIndex}
                       name={getShareInputName(itemIndex, personIndex)}
                       placeholder={peoplesInitials[personIndex]}
