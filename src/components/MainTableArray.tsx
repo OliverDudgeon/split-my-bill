@@ -58,7 +58,9 @@ export function MainTableArray({
                 {() =>
                   shares.map((_, personIndex) => (
                     <Input
-                      className="w-full self-center text-center"
+                      className={`w-full self-center text-center ${
+                        personIndex === 0 ? 'col-start-1' : ''
+                      } sm:col-start-auto`}
                       key={personIndex}
                       name={getShareInputName(itemIndex, personIndex)}
                       placeholder={peoplesInitials[personIndex]}

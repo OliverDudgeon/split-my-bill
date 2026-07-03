@@ -53,10 +53,7 @@ export function Shares({ values }: SharesProperties): ReactElement {
       </div>
 
       <div className="overflow-x-auto border-y border-slate-300 bg-linear-to-b from-white/80 to-slate-100/80 px-2 py-5 dark:border-slate-700 dark:from-slate-900/40 dark:to-slate-900/80 sm:px-4">
-        <div
-          className="grid min-w-[42rem] gap-3 text-sm sm:min-w-0"
-          style={useGridTemplateColumns(numberOfPeople)}
-        >
+        <div className="grid gap-3 text-sm" style={useGridTemplateColumns(numberOfPeople)}>
           <span className="text-xs font-black uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
             Item
           </span>

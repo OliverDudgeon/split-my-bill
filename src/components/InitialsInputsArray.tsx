@@ -22,7 +22,7 @@ export function InitialsInputsArray({
           return (
             <Input
               className={`col-start-auto w-full self-center border-teal-200 bg-teal-50/80 text-center font-black uppercase tracking-[0.18em] dark:border-teal-400/40 dark:bg-teal-950/40 ${
-                personIndex === 0 ? 'col-start-4' : ''
+                personIndex === 0 ? 'sm:col-start-4' : ''
               }`}
               key={personIndex}
               name={getInitialsInputName(personIndex)}
