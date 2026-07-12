@@ -2,7 +2,6 @@ import js from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
-import prettierPlugin from 'eslint-plugin-prettier';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactPreferFunctionComponent from 'eslint-plugin-react-prefer-function-component';
@@ -39,24 +38,11 @@ export default tseslint.config(
       },
     },
     plugins: {
-      prettier: prettierPlugin,
       'react-prefer-function-component': reactPreferFunctionComponent,
       'simple-import-sort': simpleImportSort,
     },
     rules: {
       ...reactPreferFunctionComponent.configs.recommended.rules,
-      'prettier/prettier': [
-        'warn',
-        {
-          trailingComma: 'all',
-          singleQuote: true,
-          printWidth: 100,
-          semi: true,
-          arrowParens: 'always',
-          bracketSpacing: true,
-          tabWidth: 2,
-        },
-      ],
       'react/jsx-sort-props': [
         'error',
         {

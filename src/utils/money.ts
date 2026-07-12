@@ -8,6 +8,7 @@ const currencyBySymbol: Record<string, string> = {
   $: 'USD',
   '£': 'GBP',
   '€': 'EUR',
+  kr: 'DKK',
 };
 
 const currencyByRegion: Record<string, string> = {
@@ -52,7 +53,7 @@ const currencyByRegion: Record<string, string> = {
 };
 
 const currencyAmountRegexp =
-  /(?:[-\s]*([$£€])(\s*)-?(?:\d+(?:[',.]\d{0,2})?|[',.]\d{1,2}))|(?:-?(?:\d+(?:[',.]\d{0,2})?|[',.]\d{1,2})(\s*)([$£€]))/gu;
+  /(?:[-\s]*([$£€]|kr)(\s*)-?(?:\d+(?:[',.]\d{0,2})?|[',.]\d{1,2}))|(?:-?(?:\d+(?:[',.]\d{0,2})?|[',.]\d{1,2})(\s*)([$£€]|kr))/gu;
 
 export interface CurrencyFormat {
   currency: string;

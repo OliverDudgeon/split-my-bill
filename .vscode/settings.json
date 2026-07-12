@@ -13,9 +13,7 @@
     "**/yarn.lock": true,
     "**/pnpm-lock.yaml": true
   },
-  "stylelint.validate": [
-    "css"
-  ],
+  "stylelint.validate": ["css"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "conventionalCommits.scopes": [
     "actions",
@@ -49,7 +47,5 @@
     "testing",
     "money"
   ],
-  "cSpell.words": [
-    "Formik"
-  ]
+  "cSpell.words": ["Formik"]
 }

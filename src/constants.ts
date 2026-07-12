@@ -1,6 +1,6 @@
-import type { FormikFormState } from './types';
 import { detectReceiptCurrency } from './utils/money';
 import { divideReceipt } from './utils/receipt';
+import type { FormikFormState } from './types';
 
 export const testReceipt = `Root Ginger Loose £1.03
 Rice, Broccoli, Sweetcorn & Peas Microwaveable Steam Bags £1.50

@@ -4,30 +4,18 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": [
-      "DOM",
-      "ESNext"
-    ],
+    "lib": ["DOM", "ESNext"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
     "paths": {
-      "*": [
-        "./src/*"
-      ]
+      "*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": [
-      "vite/client",
-      "vite-plugin-pwa/client"
-    ]
+    "types": ["node", "vite/client", "vite-plugin-pwa/client"]
   },
-  "include": [
-    "src",
-    "vite.config.ts",
-    "global.d.ts",
-  ]
+  "include": ["src", "vite.config.ts", "global.d.ts"]
 }

@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "preview:test": "start-server-and-test 'pnpm serve' http://localhost:5000/split-my-bill/",
     "preinstall": "npx -y only-allow pnpm",
-    "format": "prettier --write --ignore-unknown --cache --ignore-path .gitignore .",
+    "format": "prettier --write --ignore-unknown --cache --ignore-path .gitignore --ignore-path .prettierignore .",
     "run-tsc": "tsc",
     "run-eslint": "eslint --cache --fix .",
     "run-stylelint": "stylelint --cache --fix \"src/**/*.css\"",
@@ -23,17 +23,20 @@
   },
   "packageManager": "pnpm@11.2.2",
   "dependencies": {
+    "@tesseract.js-data/eng": "1.0.0",
     "byte-base64": "1.1.0",
     "formik": "2.4.9",
     "just-throttle": "4.2.0",
     "pako": "3.0.0",
     "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "react-dom": "19.2.7",
+    "tesseract.js": "7.0.0"
   },
   "devDependencies": {
     "@eslint/js": "9.39.4",
     "@nabla/vite-plugin-eslint": "3.0.1",
     "@tailwindcss/vite": "4.3.2",
+    "@types/node": "26.1.0",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.3",
@@ -41,7 +44,6 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.1.1",
     "eslint-plugin-react-prefer-function-component": "5.0.0",

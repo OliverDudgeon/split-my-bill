@@ -4,26 +4,23 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.2.14](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.13...0.2.14) (2023-08-13)
 
-
 ### Bug Fixes
 
-* improve split difference maths ([559b2cc](https://github.com/OliverDudgeon/split-my-bill/commit/559b2cc765a72923dba17055619e1c14152e1b27))
+- improve split difference maths ([559b2cc](https://github.com/OliverDudgeon/split-my-bill/commit/559b2cc765a72923dba17055619e1c14152e1b27))
 
 ### [0.2.13](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.12...0.2.13) (2023-08-13)
 
-
 ### Bug Fixes
 
-* change %mul text again ([e815a65](https://github.com/OliverDudgeon/split-my-bill/commit/e815a65375385f6f25bd3326473a15743b02d2eb))
-* display price after %mul ([00be569](https://github.com/OliverDudgeon/split-my-bill/commit/00be569b1af96a6bdbf2917dbb3513829ad66bb6))
-* display tooltip only if discount is applied ([7dabfc9](https://github.com/OliverDudgeon/split-my-bill/commit/7dabfc966f51d325d14ee14e7017ade1b4676612))
+- change %mul text again ([e815a65](https://github.com/OliverDudgeon/split-my-bill/commit/e815a65375385f6f25bd3326473a15743b02d2eb))
+- display price after %mul ([00be569](https://github.com/OliverDudgeon/split-my-bill/commit/00be569b1af96a6bdbf2917dbb3513829ad66bb6))
+- display tooltip only if discount is applied ([7dabfc9](https://github.com/OliverDudgeon/split-my-bill/commit/7dabfc966f51d325d14ee14e7017ade1b4676612))
 
 ### [0.2.12](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.11...0.2.12) (2023-06-04)
 
-
 ### Bug Fixes
 
-* fix UI issues caused by dependency updates ([af55ec4](https://github.com/OliverDudgeon/split-my-bill/commit/af55ec4007618703e734c7cafe9402ddcdbb52f3))
+- fix UI issues caused by dependency updates ([af55ec4](https://github.com/OliverDudgeon/split-my-bill/commit/af55ec4007618703e734c7cafe9402ddcdbb52f3))
 
 ### [0.2.11](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.10...0.2.11) (2023-05-29)
 
@@ -35,40 +32,35 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.2.7](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.6...0.2.7) (2023-05-29)
 
-
 ### Features
 
-* **discounts:** display original price as hover text ([8821ddd](https://github.com/OliverDudgeon/split-my-bill/commit/8821ddd61e261d2b98fb9b53e1b01672b22652ab)), closes [#1](https://github.com/OliverDudgeon/split-my-bill/issues/1)
-* **money:** when the receipt can't be perfectly split, display the remaining amount ([a68ca28](https://github.com/OliverDudgeon/split-my-bill/commit/a68ca28ef943809a0e824a34690c7d90f4043792)), closes [#1](https://github.com/OliverDudgeon/split-my-bill/issues/1)
-
+- **discounts:** display original price as hover text ([8821ddd](https://github.com/OliverDudgeon/split-my-bill/commit/8821ddd61e261d2b98fb9b53e1b01672b22652ab)), closes [#1](https://github.com/OliverDudgeon/split-my-bill/issues/1)
+- **money:** when the receipt can't be perfectly split, display the remaining amount ([a68ca28](https://github.com/OliverDudgeon/split-my-bill/commit/a68ca28ef943809a0e824a34690c7d90f4043792)), closes [#1](https://github.com/OliverDudgeon/split-my-bill/issues/1)
 
 ### Bug Fixes
 
-* **receipt:** imrpove parsing to better handle a few things ([f735d41](https://github.com/OliverDudgeon/split-my-bill/commit/f735d41bff0e9f00175fee6b3c9fa4cdfc9046db))
+- **receipt:** imrpove parsing to better handle a few things ([f735d41](https://github.com/OliverDudgeon/split-my-bill/commit/f735d41bff0e9f00175fee6b3c9fa4cdfc9046db))
 
 ### [0.2.6](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.5...0.2.6) (2022-11-08)
 
-
 ### Bug Fixes
 
-* **deps:** fix package.json ([d1044c3](https://github.com/OliverDudgeon/split-my-bill/commit/d1044c37abbda0eef2917e3927c1103ad9230b89))
+- **deps:** fix package.json ([d1044c3](https://github.com/OliverDudgeon/split-my-bill/commit/d1044c37abbda0eef2917e3927c1103ad9230b89))
 
 ### [0.2.5](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.4...0.2.5) (2022-11-08)
 
-
 ### Bug Fixes
 
-* **share-button:** fix share button ([a172db8](https://github.com/OliverDudgeon/split-my-bill/commit/a172db83300522f432309a908f5f770047d115e2))
-* **totals:** fix display of initials in totals when initials are given with whitespace ([c305041](https://github.com/OliverDudgeon/split-my-bill/commit/c30504113bf90818b1aa64d650340da85fc8518e))
+- **share-button:** fix share button ([a172db8](https://github.com/OliverDudgeon/split-my-bill/commit/a172db83300522f432309a908f5f770047d115e2))
+- **totals:** fix display of initials in totals when initials are given with whitespace ([c305041](https://github.com/OliverDudgeon/split-my-bill/commit/c30504113bf90818b1aa64d650340da85fc8518e))
 
 ### [0.2.4](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.3...0.2.4) (2022-04-18)
 
 ### [0.2.3](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.2...0.2.3) (2022-03-11)
 
-
 ### Bug Fixes
 
-* **regexp:** Improve regexp by using [^£] groups ([fd34109](https://github.com/OliverDudgeon/split-my-bill/commit/fd341092e0a2cd9d1e1336638962cd6bf8e620d9))### [0.2.2](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.1...0.2.2) (2022-02-01)
+- **regexp:** Improve regexp by using [^£] groups ([fd34109](https://github.com/OliverDudgeon/split-my-bill/commit/fd341092e0a2cd9d1e1336638962cd6bf8e620d9))### [0.2.2](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.1...0.2.2) (2022-02-01)
 
 ## [0.2.0](https://github.com/OliverDudgeon/split-my-bill/compare/0.1.1...0.2.0) (2021-11-01)
 

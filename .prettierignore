@@ -1,0 +1,6 @@
+.claude/
+.opencode/
+data/
+dist/
+node_modules/
+pnpm-lock.yaml
