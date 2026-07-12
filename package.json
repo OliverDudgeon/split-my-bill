@@ -9,7 +9,6 @@
     "prepare": "husky",
     "preview": "vite preview",
     "preview:test": "start-server-and-test 'pnpm serve' http://localhost:5000/split-my-bill/",
-    "preinstall": "npx -y only-allow pnpm",
     "format": "prettier --write --ignore-unknown --cache --ignore-path .gitignore --ignore-path .prettierignore .",
     "run-tsc": "tsc",
     "run-eslint": "eslint --cache --fix .",
