@@ -21,19 +21,13 @@ Groups like to share, be that a meal or a grocery shop, but working out who owes
 
 ## Tech
 
-The app is build with [Vite](vitejs.dev/) using ReactJS. All components are written in TypeScript.
-Form data is handled with [Formik](https://formik.org/). And Gzip compression with [Pako](https://github.com/nodeca/pako). On tag the app is deployed to GitHub pages. TinyURL's API is used for URL shortening.
+The app is built with [Vite](https://vite.dev/) using React. All components are written in TypeScript.
+Form data is handled with [Formik](https://formik.org/), and Gzip compression with [Pako](https://github.com/nodeca/pako). Releases are deployed to GitHub Pages.
 
 ## Release
 
-Use [standard-version](https://github.com/conventional-changelog/standard-version) to:
+[Release Please](https://github.com/googleapis/release-please) maintains a release pull request from conventional commits on `main`. The pull request contains the next version and changelog update.
 
-- Update the changelog from conventional commit messages
-- Work out the next semver version
-- Update the package.json version
-- Commit these changes and create a tag
+Merge the release pull request when the release is ready. Release Please then creates an unprefixed version tag and a GitHub release, and the release workflow deploys that exact tag to GitHub Pages.
 
-```sh
-pnpm dlx standard-version -t "''"
-git push --follow-tags origin main
-```
+Use `fix:` for patch releases, `feat:` for minor releases, and a `BREAKING CHANGE:` footer for major releases.
