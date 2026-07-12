@@ -2,6 +2,98 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.3.0](https://github.com/OliverDudgeon/split-my-bill/compare/split-my-bill-0.2.14...split-my-bill-0.3.0) (2026-07-12)
+
+
+### Features
+
+* add basic receipt OCR ([031e4aa](https://github.com/OliverDudgeon/split-my-bill/commit/031e4aa4971dbf8ef3c4dbd0f0297babd046e9c2))
+* **app:** Change default number of people to 3 ([8c2d51c](https://github.com/OliverDudgeon/split-my-bill/commit/8c2d51cfee6081ec75086bdb66f90a32f13d611d))
+* **discounts:** display original price as hover text ([8821ddd](https://github.com/OliverDudgeon/split-my-bill/commit/8821ddd61e261d2b98fb9b53e1b01672b22652ab))
+* **discounts:** Show effective price computed from with discount and update total ([23546c9](https://github.com/OliverDudgeon/split-my-bill/commit/23546c90930447329e9805a710401a8dcbfca40c))
+* **discounts:** Support percentages in discounts ([43b9cdb](https://github.com/OliverDudgeon/split-my-bill/commit/43b9cdbc1389483b7e50b079d1fff1d750f26d75)), closes [#68](https://github.com/OliverDudgeon/split-my-bill/issues/68)
+* **footer:** Add basic footer ([291cc34](https://github.com/OliverDudgeon/split-my-bill/commit/291cc34441cf33e214eea78ed14315c7defc02b2))
+* **initials:** Reintroduce intials ([8317adb](https://github.com/OliverDudgeon/split-my-bill/commit/8317adbac6b1b9e385863a2aa6e7ece06bda9041))
+* **items:** Add bold font to name when row is selected ([58e0833](https://github.com/OliverDudgeon/split-my-bill/commit/58e0833b6ba26ac31ac7e7c5a2b41b9457f42788))
+* **keyboard-control:** Add implementation of keyboard control ([8e46515](https://github.com/OliverDudgeon/split-my-bill/commit/8e465155daad256707bff2c2a2fc9c858e0a4b7c))
+* **layout:** Improve display on mobile ([6c2894e](https://github.com/OliverDudgeon/split-my-bill/commit/6c2894eb8cc9cd3fdde0c7e82144d68209106113))
+* **layout:** Improve layout and spacing of components ([447268d](https://github.com/OliverDudgeon/split-my-bill/commit/447268d90c08faaa7b14c690459cb027de2c8ac1))
+* **layout:** Make gird responsive so it is more usable on mobile ([0b5394f](https://github.com/OliverDudgeon/split-my-bill/commit/0b5394f0978e1864e6f5b8a6538b9a19b615f649))
+* **layout:** Use css grid to layout the app ([d74ff81](https://github.com/OliverDudgeon/split-my-bill/commit/d74ff81646d122ec76783c94e3b5d90536570754))
+* **money:** when the receipt can't be perfectly split, display the remaining amount ([a68ca28](https://github.com/OliverDudgeon/split-my-bill/commit/a68ca28ef943809a0e824a34690c7d90f4043792)), closes [#1](https://github.com/OliverDudgeon/split-my-bill/issues/1)
+* **number-of-people:** Replace input field with buttons ([ba98091](https://github.com/OliverDudgeon/split-my-bill/commit/ba980918a5de5b095571c4e87b0acc458c10119e))
+* **query-params:** Save and load form state in query parameters ([f8c18ed](https://github.com/OliverDudgeon/split-my-bill/commit/f8c18ed14ff69d64ef02994d05dcc3888595c81b))
+* **receipt:** Add a calculated total of the receipt items ([afae0f6](https://github.com/OliverDudgeon/split-my-bill/commit/afae0f6d88b732953e21fec620f82dcc3c4bd30e))
+* **receipt:** Improve receipt parsing ([0f2e7eb](https://github.com/OliverDudgeon/split-my-bill/commit/0f2e7ebcc079b1d82d4bfebb3c7f42e5dba27a9a))
+* redesign app visuals ([94c88bf](https://github.com/OliverDudgeon/split-my-bill/commit/94c88bf885220cb7f865e76ab56c0f64800e5fd9))
+* **reset-button:** Change reset behaviour to reset to empty receipt ([5a71b46](https://github.com/OliverDudgeon/split-my-bill/commit/5a71b463d5c873fa5d51c80aebf2d584ab861715))
+* **reset-button:** Implement a reset button ([70360f7](https://github.com/OliverDudgeon/split-my-bill/commit/70360f72b123a8a7d3450460b6049d6267617ee3))
+* **service-charge:** Add ability to split a service charge ([32fbc4b](https://github.com/OliverDudgeon/split-my-bill/commit/32fbc4b9182289a22defd3d691a2febca86ae446))
+* **service-worker:** Enable new service working build tool ([dc93f48](https://github.com/OliverDudgeon/split-my-bill/commit/dc93f4808700514d5a4c012678c7a70651c23e7f))
+* **share-button:** Add button to share a shortenned url ([83bcc6e](https://github.com/OliverDudgeon/split-my-bill/commit/83bcc6eefa6f6bfa3b69283bba371d2eee31aeea))
+* support currencies other than GBP ([bc91e43](https://github.com/OliverDudgeon/split-my-bill/commit/bc91e43596bb2aa5e80f5fd6d29cbf7c82bf6199))
+* **tailwind:** Add autoprefixer to postcss config ([f549880](https://github.com/OliverDudgeon/split-my-bill/commit/f5498807a3ca1e267d0fa984bbc05f2b33f5ce60))
+* **tailwind:** Add breakpoint indicator to the Ui when in development ([d1df807](https://github.com/OliverDudgeon/split-my-bill/commit/d1df80742a90a5fe0bf10eb083766766b3d46e73))
+* **totals:** Add receipt total at the bottom of page ([4786327](https://github.com/OliverDudgeon/split-my-bill/commit/47863274f313119cef6fa74fe491a82d83934ea8))
+* **ui/inputs:** Add initial styles to input elements ([7d5efc6](https://github.com/OliverDudgeon/split-my-bill/commit/7d5efc64a8e49753092b81697f9246d5c8b168f0))
+* **ui/inputs:** Use peroples' names as placeholder text to make filling out data easier ([0e09d74](https://github.com/OliverDudgeon/split-my-bill/commit/0e09d744c8e3ef2084119da52bc2de27c705db13))
+* **url-state:** Allow the state to be stored as a base64 encoded path ([747b9a6](https://github.com/OliverDudgeon/split-my-bill/commit/747b9a6b22c50e058c6a5d763dfb83b48901fe8c))
+
+
+### Bug Fixes
+
+* **actions:** Add missing pnpm install ([d06a7dd](https://github.com/OliverDudgeon/split-my-bill/commit/d06a7dd3aa2fb718c59b303fc3c0abc18b57f8c4))
+* **actions:** Another test-action fix ([ee4379a](https://github.com/OliverDudgeon/split-my-bill/commit/ee4379ad288744cd3a7d5f00f43af7f4fc6508bf))
+* **actions:** Attempt to fix actions running on tag ([45ff1e8](https://github.com/OliverDudgeon/split-my-bill/commit/45ff1e8d055f2ace55265a1ebef2a2902b0ddc8c))
+* **actions:** Fix order of jobs ([8038a13](https://github.com/OliverDudgeon/split-my-bill/commit/8038a1303bf9470a4ba4b0120a9eca02ba8edde6))
+* **actions:** One more test-action fix ([711ba1c](https://github.com/OliverDudgeon/split-my-bill/commit/711ba1c5a595b6f0ccce16491a626ae93770c908))
+* **actions:** pnpm actions fixes ([1c26282](https://github.com/OliverDudgeon/split-my-bill/commit/1c2628285427958d5fecd5eec8875410705ce9ee))
+* **actions:** Switch github pages action to use yarn ([83c996c](https://github.com/OliverDudgeon/split-my-bill/commit/83c996c29a1622a8756a03ae29f4929f6aa0850c))
+* **actions:** Try to fix path issues with the github-pages deployment ([ca7b13c](https://github.com/OliverDudgeon/split-my-bill/commit/ca7b13c826d775ed2e173b922f3d0c2f6c0a4ab0))
+* **actions:** Use Node 16 in test-action ([43d27e6](https://github.com/OliverDudgeon/split-my-bill/commit/43d27e677f067db3549f85ea96035320b718d1e6))
+* Add missing key prop to initials ([2fbc160](https://github.com/OliverDudgeon/split-my-bill/commit/2fbc160e7975608194b65cfb40f0741431a35941))
+* Attempt to fix tinyurl requests failing on github pages ([59fe858](https://github.com/OliverDudgeon/split-my-bill/commit/59fe858032e74f22cacbd6c9b535c65d48c7c310))
+* avoid zero-total multiplier division ([523f816](https://github.com/OliverDudgeon/split-my-bill/commit/523f816440ba43a0322ffda7ddb98d04c34bd987))
+* change %mul text again ([e815a65](https://github.com/OliverDudgeon/split-my-bill/commit/e815a65375385f6f25bd3326473a15743b02d2eb))
+* compare split differences in pennies ([ada3fba](https://github.com/OliverDudgeon/split-my-bill/commit/ada3fba55d994e1d2e5849d3cce421fe9a988f7c))
+* **currency-format:** Fix position of pound symbol ([50f1159](https://github.com/OliverDudgeon/split-my-bill/commit/50f11597d7b6c84fa85b6375ede0fd5e1ed3d3cb))
+* **deps:** fix package.json ([d1044c3](https://github.com/OliverDudgeon/split-my-bill/commit/d1044c37abbda0eef2917e3927c1103ad9230b89))
+* Disable npm publish ([6fdbbfa](https://github.com/OliverDudgeon/split-my-bill/commit/6fdbbfaa1fee2e425e82c94fa475e7ec1ce5c1a1))
+* display price after %mul ([00be569](https://github.com/OliverDudgeon/split-my-bill/commit/00be569b1af96a6bdbf2917dbb3513829ad66bb6))
+* display tooltip only if discount is applied ([7dabfc9](https://github.com/OliverDudgeon/split-my-bill/commit/7dabfc966f51d325d14ee14e7017ade1b4676612))
+* fix mobile layout regression ([0b2c2d9](https://github.com/OliverDudgeon/split-my-bill/commit/0b2c2d9a3bde500af8165072fb63b51bf38444f8))
+* fix typo ([fa61930](https://github.com/OliverDudgeon/split-my-bill/commit/fa619301c48abbb01020823d2ca0145bf26d3714))
+* fix UI issues caused by dependency updates ([af55ec4](https://github.com/OliverDudgeon/split-my-bill/commit/af55ec4007618703e734c7cafe9402ddcdbb52f3))
+* improve split difference maths ([559b2cc](https://github.com/OliverDudgeon/split-my-bill/commit/559b2cc765a72923dba17055619e1c14152e1b27))
+* **initials:** Fix initials not updating when the number of people change ([66975cf](https://github.com/OliverDudgeon/split-my-bill/commit/66975cf4218ef98210b274bb5c9035da96ccd6c7))
+* **initials:** Fix loading of initials when missing - as long as numberOfPeople is defined ([51d2c86](https://github.com/OliverDudgeon/split-my-bill/commit/51d2c86bef2fbb3efa4127ad630fc56752e4b0b4))
+* **keyboard-control:** Cleanup type of KyeboardEvent to not cause type issues ([1b79220](https://github.com/OliverDudgeon/split-my-bill/commit/1b79220160d51ec40d48d621f424104c2e73715a)), closes [#3](https://github.com/OliverDudgeon/split-my-bill/issues/3)
+* **keyboard-control:** Fix keyboard popping up on mobile when changing number of people ([5b1dba7](https://github.com/OliverDudgeon/split-my-bill/commit/5b1dba796687cedf7e373cd690659176c483d40a))
+* **keyboard-control:** Switch from a focus trap to focus dom node to fix bugs ([8b936da](https://github.com/OliverDudgeon/split-my-bill/commit/8b936daa27d73ec1368d21f26b9ca6ef9ec878aa))
+* **layout:** Fix missing classes due to interpolation ([8dae78b](https://github.com/OliverDudgeon/split-my-bill/commit/8dae78b876b3385bece2437281c37c7dc87de633))
+* **number-of-people:** Improve size and style ([18c3f79](https://github.com/OliverDudgeon/split-my-bill/commit/18c3f7968afba19b41f423f6ad1cbb43f4cc711d))
+* parse receipt amount decimals ([7d4425b](https://github.com/OliverDudgeon/split-my-bill/commit/7d4425bbb8bfbb7d892818cbb585d465f31b935b))
+* **receipt:** Add some symbols to the regex ([b2e9371](https://github.com/OliverDudgeon/split-my-bill/commit/b2e93712810b199d018ba7ff75bf1529e935c7b0))
+* **receipt:** Display table even if no text is entered. ([a4b98f0](https://github.com/OliverDudgeon/split-my-bill/commit/a4b98f00627d7ebaa7e08bf303072dcd64e56518))
+* **receipt:** imrpove parsing to better handle a few things ([f735d41](https://github.com/OliverDudgeon/split-my-bill/commit/f735d41bff0e9f00175fee6b3c9fa4cdfc9046db))
+* **regexp:** add % and - as possible chars in item name ([553d94c](https://github.com/OliverDudgeon/split-my-bill/commit/553d94cea405a901c516c2122abe500703b9d33d))
+* **regexp:** Improve regexp by using [^£] groups ([fd34109](https://github.com/OliverDudgeon/split-my-bill/commit/fd341092e0a2cd9d1e1336638962cd6bf8e620d9))
+* **regexp:** Remove unneeded escape char ([23ff22f](https://github.com/OliverDudgeon/split-my-bill/commit/23ff22fd8e0e7ef174cc81c4aea07069d50e32a6))
+* render zero-value totals ([f30f47a](https://github.com/OliverDudgeon/split-my-bill/commit/f30f47a9eb39fa38cfac26e899f5bb793fb7289a))
+* **share-button:** fix share button ([a172db8](https://github.com/OliverDudgeon/split-my-bill/commit/a172db83300522f432309a908f5f770047d115e2))
+* **snowpack:** Fix index.html js source for deployment ([463d25a](https://github.com/OliverDudgeon/split-my-bill/commit/463d25a13695a7c108302c106a5575701afeabbd))
+* **snowpack:** Switch index.html to use PUBLIC_URL ([2b83f7b](https://github.com/OliverDudgeon/split-my-bill/commit/2b83f7b57a8c56b72489ef13dc93282418b1250a))
+* **totals:** fix display of initials in totals when initials are given with whitespace ([c305041](https://github.com/OliverDudgeon/split-my-bill/commit/c30504113bf90818b1aa64d650340da85fc8518e))
+* **url-state:** Fix error that appears when loading the site with no state ([7d31bd7](https://github.com/OliverDudgeon/split-my-bill/commit/7d31bd75500ee141be0fa5392ffe719898f5f0d6))
+* **url-state:** Fix github pages not loading properly due to use of subpaths ([5e18ac4](https://github.com/OliverDudgeon/split-my-bill/commit/5e18ac4f1e431837a7fc6576d4229f2cc767fe8e))
+* **vite:** Add missing trailing slash to base path ([4e5be2b](https://github.com/OliverDudgeon/split-my-bill/commit/4e5be2b9551aec46e85b53b8a11e72f59a2fc523))
+* **vite:** Fix missing base path ([bedb93e](https://github.com/OliverDudgeon/split-my-bill/commit/bedb93e3a18e67d76ab0565e13a6d8ee624b2fc5))
+
+
+### Performance Improvements
+
+* Replace lodash with just for throttle ([3978677](https://github.com/OliverDudgeon/split-my-bill/commit/3978677e93c31aebc02734f7505f1576a0a2f841))
+
 ### [0.2.14](https://github.com/OliverDudgeon/split-my-bill/compare/0.2.13...0.2.14) (2023-08-13)
 
 ### Bug Fixes
