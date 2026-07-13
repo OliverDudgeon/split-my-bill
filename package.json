@@ -26,7 +26,7 @@
     "byte-base64": "1.1.0",
     "formik": "2.4.9",
     "just-throttle": "4.2.0",
-    "pako": "3.0.0",
+    "pako": "3.0.1",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "tesseract.js": "7.0.0"
